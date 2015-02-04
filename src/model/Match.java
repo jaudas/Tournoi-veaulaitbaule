@@ -55,6 +55,20 @@ public class Match {
 		this.scoreB = scoreB;
 	}
 	
+	public Equipe getGagnant()
+	{
+		if(scoreA>scoreB)
+		{
+			return equipeA;
+		}
+		
+		else
+		{
+			return equipeB;
+		}
+			
+	}
+	
 	//Methodes
 	public String toString(){
 		return this.equipeA +" "+this.scoreA+"-"+this.scoreB+" "+this.equipeB;

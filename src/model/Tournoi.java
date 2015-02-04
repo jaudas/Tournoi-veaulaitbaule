@@ -9,7 +9,7 @@ public class Tournoi {
 	protected int nbEquipesInit;
 	protected String description;
 	protected LinkedList<Equipe> listeEquipes;
-	protected LinkedList<TourEliminatoire> listeTourEliminatoire;
+	protected LinkedList<TourEliminatoire> listeToursEliminatoires;
 	
 	//Get & Set
 	public int getNbEquipesInit() {
@@ -49,5 +49,6 @@ public class Tournoi {
 		listeEquipes.add(e);
 	}
 
+	public void ajouterTour
 
 }

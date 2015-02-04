@@ -8,6 +8,8 @@ public class ConsoleView {
 	      for(int i = 0; i< listeEquipe.size(); i++)
 	          System.out.println(listeEquipe.get(i)); 
 	  }
+	  
+	 
 
 
 
