@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import controleur.Poule;
+
 
 public class TournoiParPoules extends Tournoi {
 	int nbPoules;

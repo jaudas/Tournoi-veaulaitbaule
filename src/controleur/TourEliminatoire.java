@@ -8,31 +8,39 @@ import model.Match;
 public class TourEliminatoire {
 	private LinkedList<Equipe> listeEquipesTour;
 	private LinkedList<Match> listeMatchTour;
-	int qualifOffice = -1;
+	private int qualifOffice = -1;
 	
 	public TourEliminatoire()
 	{
 		super();
 	}
 	
-	public int setQualifOffice()
+	public void setQualifOffice()
 	{
 		int indexEquipe = 0;
 		indexEquipe = (int) (Math.random()*listeEquipesTour.size());	
-		return indexEquipe;
+		this.qualifOffice = indexEquipe;
 		
 	}
+	
+	
+	
 	public void CreerTour()
 	{
-		int j = listeEquipesTour.size();
-		int i = 0;
+		int nbmatchs = listeEquipesTour.size()%2;
+		LinkedList<Match> MatchTour = new LinkedList<Match>();
 		
-		if (listeEquipesTour.size()%2 !=0)
+		for (int i = 0; i<nbmatchs;i++)	
 		{
-			qualifOffice = setQualifOffice();
+			Equipe e1 = listeEquipesTour.get(i);
+			Equipe e2 = listeEquipesTour.get(i++);
+			Match rencontre = new Match(e1,e2);
+			i++;
+			MatchTour.add(rencontre);
+			
 		}
-		
-		
+		this.listeMatchTour=MatchTour;
+
 	}
 	
 
