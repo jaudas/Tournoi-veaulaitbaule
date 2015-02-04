@@ -1,15 +1,14 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import controleur.Poule;
 
 import controleur.Poule;
 
 
 public class TournoiParPoules extends Tournoi {
 	int nbPoules;
-	ArrayList<Poule> listePoules;
-
+	ArrayList<Poule> listePoules = new ArrayList<Poule>();
 
 	//Constructeur
 	public TournoiParPoules()
@@ -24,21 +23,26 @@ public class TournoiParPoules extends Tournoi {
 
 		//Calcul du nombre de poules necessaires
 		int nbpoul = nbeq/4;//Nb poules complètes
-		if (nbpoul%4 != 0)//S'il reste des équipes
+		System.out.println("Reste : "+(nbeq%4));
+		if (nbeq%4 != 0)//S'il reste des équipes
 		{
-			this.nbPoules = nbpoul++;
+			this.nbPoules = nbpoul+1;
 		}
 		else
 		{
 			this.nbPoules = nbpoul;
 		}
-
+		System.out.println("Le nombre de poules à créer est : "+this.nbPoules);
+	
+		/*
 		LinkedList<Equipe> listEq = new LinkedList<Equipe>();
 		super.listeEquipesEnJeu = listEq;
 
 		LinkedList<Match> listMatch = new LinkedList<Match>();
 		super.listeMatchs = listMatch;
+		*/
 	}
+	
 
 	//Méthodes
 	@Override
@@ -48,30 +52,76 @@ public class TournoiParPoules extends Tournoi {
 		return str;
 	}
 
-	//Créer les poules du tournoi
-	public ArrayList<Poule> creerPoules(ArrayList<Equipe> listeEquipes){
-		int cptPoules = nbPoules;
-		while (cptPoules>0){     
-			ArrayList<Equipe> equipesPoule = null;
+		//Créer les poules du tournoi
+	public ArrayList<Poule> creerPoules(ArrayList<Equipe> listeEquipes)
+	{		
+		int cptPoules = this.nbPoules;
+		int numPoule=1;
+		while (cptPoules>0){ 
+			//On crée une liste vide d'équipes qui va être attribué à une poule
+			ArrayList<Equipe> equipesPoule = new ArrayList<Equipe>() ;
+			
 			int ind=0;
-			do{
-
+			
+			while ((equipesPoule.size()<4) && (listeEquipes.isEmpty() == false))
+			{
 				//Trouver une équipe au hasard dans la liste d'équipes
 				ind = (int) ((Math.random())*listeEquipes.size());
 				System.out.println(ind);
 
 				//Ajouter l'équipe choisie dans une poule
 				equipesPoule.add(listeEquipes.get(ind));
-				listeEquipes.get(ind).toString();
-				listeEquipes.remove(ind);
-
-			}while (equipesPoule.size()<4);
-			System.out.println("Creation d'une poule");
-			Poule poule = new Poule ("nom", equipesPoule);
-			this.listePoules.add(poule);
+				
+				
+				System.out.println("Ajout de l'équipe "+listeEquipes.get(ind).toString()+" dans la poule.");
+				//listeEquipes.get(ind).toString();//Affichage de l'équipe sélectionnée pour la poule
+				
+				listeEquipes.remove(ind);//Suppression de l'équipe dans la liste des équipes du tournoi
+			}			
+			
+			//System.out.println("Creation d'une poule");
+			Poule poule = new Poule ("Poule "+numPoule+"", equipesPoule);
+			if (poule!=null)
+			{
+				listePoules.add(poule);
+				System.out.println("Poule "+numPoule+" ajoutée !");
+			}
+			numPoule ++;
 			cptPoules --;
 		}
 
-		return this.listePoules;
+		return listePoules;
+	}
+	
+	
+	public static void main (String [] arg){
+		Equipe e1 = new Equipe ("Jaune");
+		Equipe e2 = new Equipe ("Bleu");
+		Equipe e3 = new Equipe ("Rouge");
+		Equipe e4 = new Equipe ("Vert");
+		Equipe e5 = new Equipe ("Cyan");
+		Equipe e6 = new Equipe ("Rose");
+		Equipe e7 = new Equipe ("Marron");
+		Equipe e8 = new Equipe ("Orange");
+		Equipe e9 = new Equipe ("Blanc");
+		Equipe e10 = new Equipe ("Noir");
+		
+		ArrayList<Equipe> eDT = new ArrayList<Equipe> ();
+		eDT.add(e1);
+		eDT.add(e2);
+		eDT.add(e3);
+		eDT.add(e4);
+		eDT.add(e5);
+		eDT.add(e6);
+		eDT.add(e7);
+		eDT.add(e8);
+		eDT.add(e9);
+		eDT.add(e10);
+		
+		TournoiParPoules tournoi = new TournoiParPoules (eDT.size(), "Tournoi numero 1");
+		
+		tournoi.creerPoules(eDT);
+		System.out.println("Fin création des poules.");		
+		
 	}
 }
