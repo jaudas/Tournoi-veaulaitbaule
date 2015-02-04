@@ -14,13 +14,40 @@ public class TourEliminatoire {
 	public TourEliminatoire()
 	{
 		super();
+		
+	}
+	
+	public TourEliminatoire(LinkedList<Equipe> listeEq)
+	{
+
+		listeEquipesTour = listeEq;
+		
+	}
+	
+	
+
+	public LinkedList<Equipe> getListeEquipesTour() {
+		return listeEquipesTour;
 	}
 
 	public void setQualifOffice()
 	{
+		System.out.println("Tirage au sort de l'équipe qualifiée ! ");
 		int indexEquipe = -1;
-		indexEquipe = (int) (Math.random()*listeEquipesTour.size());	
+		
+		int parite = this.listeEquipesTour.size()%2;
+		
+		if(parite!=0)
+		{
+			indexEquipe = (int) (Math.random()*listeEquipesTour.size());
+			System.out.println("L'équipe qualifiée d'office est : " + listeEquipesTour.get(indexEquipe));
+		}
+		else
+		{
+			System.out.println("Pas d'équipe qualifiée automatiquement ! ");
+		}
 		this.qualifOffice = indexEquipe;
+		
 	}
 
 
@@ -28,47 +55,55 @@ public class TourEliminatoire {
 	{
 		//Le nombre de matchs correspond au nombre de paire(s) d'équipes
 		int nbmatchs = (int)listeEquipesTour.size()/2;
-		LinkedList<Match> MatchTour = new LinkedList<Match>();
+		LinkedList<Match> matchTour = new LinkedList<Match>();
 
+		System.out.println("Il y aura " + nbmatchs + " matchs dans ce tour ! ");
+		int j = 0; 
 
-		for (int i = 0; i<nbmatchs;i++)
+		for (int i = 0; i<nbmatchs; i++)
 		{
 
+			System.out.println("Match "+i);
 			Equipe e1, e2;//Les deux équipes d'un match
 
 			//Verification de l'équipe 1
 			if(i!=qualifOffice)
 			{
 				//Si l'équipe n'est pas qualifiée d'office, on l'ajoute dans le match
-				e1 = listeEquipesTour.get(i);
+				e1 = listeEquipesTour.get(j);
 			}
 			else 
 			{
 				//Sinon, on prend l'équipe suivante
-				i++;
-				e1 = listeEquipesTour.get(i);
+				j++;
+				e1 = listeEquipesTour.get(j);
 			}
 
 			//On passe à l'équipe d'après dans la liste des équipes
-			i++;
+			j++;
 
 			//Vérification de l'équipe 2
 			if(i!=qualifOffice)
 			{
 				//Si l'équipe n'est pas qualifiée d'office, on l'ajoute dans le match
-				e2 = listeEquipesTour.get(i);
+				e2 = listeEquipesTour.get(j);
 			}
 			else 
 			{
 				//Sinon, on prend l'équipe suivante
-				i++;
-				e2 = listeEquipesTour.get(i);
+				j++;
+				e2 = listeEquipesTour.get(j);
 			}
 			Match rencontre = new Match(e1,e2);
-			MatchTour.add(rencontre);
+		//	System.out.println(rencontre.toString());
+			rencontre.setScoreAleatoire();
+			
+		//	System.out.println("ajout du match dans la liste ! ");
+			matchTour.add(rencontre);
+		//	System.out.println("match ajouté ! ");
 
 		}
-		this.listeMatchTour=MatchTour;
+		this.listeMatchTour=matchTour;
 	}
 
 	public LinkedList<Equipe> equipesQualifiees()
@@ -82,8 +117,11 @@ public class TourEliminatoire {
 		}
 		
 		//Pour chaque match, on ajoute le gagnant à la liste des équipes qualifiées 
-		for(int i = 0; i < listeEquipesTour.size(); i++)
+		for(int i = 0; i < listeMatchTour.size(); i++)
 		{
+			System.out.println("Génération aléatoire des scores... ");
+			listeMatchTour.get(i).setScoreAleatoire();
+			System.out.println(listeMatchTour.get(i).getGagnant());
 			listeEqQualif.add(listeMatchTour.get(i).getGagnant());
 		}
 		return listeEqQualif;

@@ -49,6 +49,5 @@ public class Tournoi {
 		listeEquipes.add(e);
 	}
 
-	public void ajouterTour
 
 }

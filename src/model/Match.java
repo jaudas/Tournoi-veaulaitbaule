@@ -18,7 +18,7 @@ public class Match {
 	
 	public Match()
 	{
-		
+		super();
 	}
 	
 	//Get et Set
@@ -67,6 +67,12 @@ public class Match {
 			return equipeB;
 		}
 			
+	}
+	
+	public void setScoreAleatoire()
+	{
+		scoreA = (int) (Math.random()*10);
+		scoreB = (int) (Math.random()*10);
 	}
 	
 	//Methodes
