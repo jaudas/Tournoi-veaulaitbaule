@@ -1,6 +1,7 @@
 package model;
 
-import java.util.ArrayList;
+
+import java.util.LinkedList;
 
 public class Equipe {
 	//Attributs
@@ -11,7 +12,7 @@ public class Equipe {
 	private int nbVictoire;
 	private int nbMatchJoue;
 	private int nbSetGagne;
-	private ArrayList <Joueur> listeJoueurs;
+	private LinkedList<Joueur> listeJoueurs;
 
 	//Constructeurs
 	public Equipe (){
@@ -31,7 +32,7 @@ public class Equipe {
 		this.nbJoueurs = 0;
 	}
 
-	public Equipe(int idEquipe, String nom, String description, ArrayList<Joueur> listeJoueurs) {
+	public Equipe(int idEquipe, String nom, String description, LinkedList<Joueur> listeJoueurs) {
 		super();
 		this.idEquipe = idEquipe;
 		this.nom = nom;
@@ -39,10 +40,10 @@ public class Equipe {
 		this.nbVictoire = 0;
 		this.nbSetGagne = 0;
 		this.nbMatchJoue = 0;
-		this.listeJoueurs = listeJoueurs;
+		this.listeJoueurs = null;
 	}
 	
-	public Equipe(int idEquipe, String nom, String description, int nbVictoire, int nbButMarque, int nbMatchJoue,ArrayList<Joueur> listeJoueurs) {
+	public Equipe(int idEquipe, String nom, String description, int nbVictoire, int nbButMarque, int nbMatchJoue,LinkedList<Joueur> listeJoueurs) {
 		super();
 		this.idEquipe = idEquipe;
 		this.nom = nom;
@@ -50,7 +51,7 @@ public class Equipe {
 		this.nbVictoire = nbVictoire;
 		this.nbSetGagne = nbButMarque;
 		this.nbMatchJoue = nbMatchJoue;
-		this.listeJoueurs = listeJoueurs;
+		this.setListeJoueurs(listeJoueurs);
 	}
 
 	public int getIdEquipe() {
@@ -66,7 +67,9 @@ public class Equipe {
 	}
 
 	public void setNom(String nom) {
+		
 		this.nom = nom;
+		
 	}
 	
 	public int getNbJoueurs() {
@@ -109,21 +112,26 @@ public class Equipe {
 		this.nbSetGagne = nbSetGagne;
 	}
 
-	public ArrayList<Joueur> getListeJoueurs() {
+	public LinkedList<Joueur> getListeJoueurs() {
+		
 		return listeJoueurs;
+			
 	}
 
-	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
+	public void setListeJoueurs(LinkedList<Joueur> listeJoueurs) {
 		this.listeJoueurs = listeJoueurs;
 	}
-	
+
 	  
 	//Méthodes
 		@Override
 		public String toString(){
-			return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description+ "  Liste de joueurs: "+ this.listeJoueurs;
+			return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description +  " Joueurs: " +this.listeJoueurs;
+			
 
 		}
+
+
 	
 
 }
