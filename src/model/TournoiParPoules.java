@@ -93,35 +93,39 @@ public class TournoiParPoules extends Tournoi {
 		return listePoules;
 	}
 	
-	
 	public static void main (String [] arg){
-		Equipe e1 = new Equipe ("Jaune");
-		Equipe e2 = new Equipe ("Bleu");
-		Equipe e3 = new Equipe ("Rouge");
-		Equipe e4 = new Equipe ("Vert");
-		Equipe e5 = new Equipe ("Cyan");
-		Equipe e6 = new Equipe ("Rose");
-		Equipe e7 = new Equipe ("Marron");
-		Equipe e8 = new Equipe ("Orange");
-		Equipe e9 = new Equipe ("Blanc");
-		Equipe e10 = new Equipe ("Noir");
+		Equipe e1 = new Equipe ("Jaune", 4, 6);
+		Equipe e2 = new Equipe ("Bleu", 3, 7);
+		Equipe e3 = new Equipe ("Rouge", 5, 4);
+		Equipe e4 = new Equipe ("Vert", 0, 3);
+		Equipe e5 = new Equipe ("Cyan", 1, 2);
+		Equipe e6 = new Equipe ("Rose", 1, 3);
+		Equipe e7 = new Equipe ("Marron", 2, 4);
+		Equipe e8 = new Equipe ("Orange", 6, 6);
+		Equipe e9 = new Equipe ("Blanc", 0, 2);
+		Equipe e10 = new Equipe ("Noir", 4, 5);
 		
 		ArrayList<Equipe> eDT = new ArrayList<Equipe> ();
-		eDT.add(e1);
-		eDT.add(e2);
-		eDT.add(e3);
+		//eDT.add(e1);
+		//eDT.add(e2);
+		//eDT.add(e3);
 		eDT.add(e4);
 		eDT.add(e5);
 		eDT.add(e6);
-		eDT.add(e7);
-		eDT.add(e8);
+		//eDT.add(e7);
+		//eDT.add(e8);
 		eDT.add(e9);
-		eDT.add(e10);
+		//eDT.add(e10);
 		
 		TournoiParPoules tournoi = new TournoiParPoules (eDT.size(), "Tournoi numero 1");
 		
 		tournoi.creerPoules(eDT);
-		System.out.println("Fin création des poules.");		
+		System.out.println("Fin création des poules.");	
+		Poule pouleTest = tournoi.listePoules.get(0);
+		pouleTest.classerEquipes();
+		for (int i=0; i<pouleTest.getEquipesPoule().size(); i++){
+			System.out.println("Equipe "+i+": "+pouleTest.getEquipesPoule().get(i).getNom());
+		}		
 		
 	}
 }

@@ -1,9 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 
-import java.util.LinkedList;
-
-public class Equipe {
+public class Equipe implements Comparable<Equipe> {
 	//Attributs
 	private int idEquipe;
 	private String nom;
@@ -12,7 +11,7 @@ public class Equipe {
 	private int nbVictoire;
 	private int nbMatchJoue;
 	private int nbSetGagne;
-	private LinkedList<Joueur> listeJoueurs;
+	private ArrayList <Joueur> listeJoueurs;
 
 	//Constructeurs
 	public Equipe (){
@@ -32,7 +31,7 @@ public class Equipe {
 		this.nbJoueurs = 0;
 	}
 
-	public Equipe(int idEquipe, String nom, String description, LinkedList<Joueur> listeJoueurs) {
+	public Equipe(int idEquipe, String nom, String description, ArrayList<Joueur> listeJoueurs) {
 		super();
 		this.idEquipe = idEquipe;
 		this.nom = nom;
@@ -40,18 +39,18 @@ public class Equipe {
 		this.nbVictoire = 0;
 		this.nbSetGagne = 0;
 		this.nbMatchJoue = 0;
-		this.listeJoueurs = null;
+		this.listeJoueurs = listeJoueurs;
 	}
 	
-	public Equipe(int idEquipe, String nom, String description, int nbVictoire, int nbButMarque, int nbMatchJoue,LinkedList<Joueur> listeJoueurs) {
+	public Equipe(String nom,  int nbVictoire, int nbSets) {
 		super();
 		this.idEquipe = idEquipe;
 		this.nom = nom;
-		this.description = description;
+		this.description = "rien";
 		this.nbVictoire = nbVictoire;
-		this.nbSetGagne = nbButMarque;
-		this.nbMatchJoue = nbMatchJoue;
-		this.setListeJoueurs(listeJoueurs);
+		this.nbSetGagne = nbSets;
+		this.nbMatchJoue = 0;
+		this.listeJoueurs = null;
 	}
 
 	public int getIdEquipe() {
@@ -67,9 +66,7 @@ public class Equipe {
 	}
 
 	public void setNom(String nom) {
-		
 		this.nom = nom;
-		
 	}
 	
 	public int getNbJoueurs() {
@@ -112,26 +109,48 @@ public class Equipe {
 		this.nbSetGagne = nbSetGagne;
 	}
 
-	public LinkedList<Joueur> getListeJoueurs() {
-		
+	public ArrayList<Joueur> getListeJoueurs() {
 		return listeJoueurs;
-			
 	}
 
-	public void setListeJoueurs(LinkedList<Joueur> listeJoueurs) {
+	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
 		this.listeJoueurs = listeJoueurs;
 	}
-
+	
 	  
 	//Méthodes
 		@Override
 		public String toString(){
-			return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description +  " Joueurs: " +this.listeJoueurs;
-			
+			return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description+ "  Liste de joueurs: "+ this.listeJoueurs;
 
 		}
-
-
 	
+		//Calculer le score de chaque équipe selon le nombre de victoires
+		public int getScore (){
+			int score = 0;
+			return (score = nbVictoire*3);			
+		}
+
+		@Override
+		public int compareTo(Equipe eq2) {
+			//Comparaion des équipes selon leurs nombres de victoire
+			if (getScore() > eq2.getScore()){
+				return -1;
+			}
+			else if (getScore() < eq2.getScore()){
+				return 1;
+			}
+			else if (getScore() == eq2.getScore()){
+				//Comparaison des équipes selon leurs nombres de sets gagnés
+				if (getNbSetGagne() > eq2.getNbSetGagne()){
+					return -1;
+				}
+				else if (getNbSetGagne() < eq2.getNbSetGagne()){
+					return 1;
+				}
+				return 0;
+			}
+			return 0;
+		}
 
 }

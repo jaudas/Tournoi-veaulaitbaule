@@ -1,15 +1,18 @@
 package controleur;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 import model.Equipe;
 import model.Match;
+import model.Tournoi;
 
 public class Poule {
 	//Attributs
 	private String nom;
 	private ArrayList<Equipe> equipesPoule;
 	private ArrayList<Match> matchsPoule = new ArrayList<Match>();
-	private int classement;
+	//private int [] classement;
 	
 	//Constructeurs
 	public Poule(){
@@ -21,6 +24,7 @@ public class Poule {
 		this.nom = nom;
 		this.equipesPoule = equipesPoule;
 		creerTableauMatchs();
+		//creerClassement();
 	}
 
 	//Méthodes
@@ -39,12 +43,7 @@ public class Poule {
 	public void setEquipesPoule(ArrayList<Equipe> equipesPoule) {
 		this.equipesPoule = equipesPoule;
 	}
-	
-	
-	public void calculerClassement(){
 		
-	}
-	
 	
 	//Création du tableau de matchs d'une poule
 	public ArrayList<Match> creerTableauMatchs()
@@ -89,10 +88,44 @@ public class Poule {
 		}
 	}
 	
-	//Générer le classement d'une poule
-	public int [] creerClassement(){
+	//Créer le tableau des numéros  de chaque équipe (classement non ordonné)
+	/*public int [] creerClassement(){
+		classement = new int [equipesPoule.size()];
 		
-		return null;
+		for (int i = 0; i<equipesPoule.size(); i++){
+			classement[i]=equipesPoule.get(i).getIdEquipe();
+		}		
+		return classement;
+	}
+	*/
+	
+	//Ordonner le classement (classement des identifiants par ordre décroissant du score de chaque équipe)
+	//public int [] ordonnerClassement(){
+	/*public ArrayList<Equipe> classerEquipes(){
+ 		int ind = 0;
+		Equipe echange;
+		Tournoi tournoi;
+		boolean permut;
+		
+		do{
+			permut = false;//On suppose le tableau trié
+			for (ind = 0; ind < equipesPoule.size(); ind++){
+				//Tester si deux éléments successifs sont das le bon ordre
+				if (equipesPoule.get(ind).calculerScoreVictoire() < equipesPoule.get(ind+1).calculerScoreVictoire()){
+					//S'ils ne sont pas dans le bon ordre, on les échange de place
+					echange = equipesPoule.get(ind);
+					//equipesPoule.get(ind) = equipesPoule.get(ind+1);
+					//equipesPoule.get(ind+1) = echange;
+				}
+					
+				
+			}
+		}while(permut);
+		
+	}*/
+	public ArrayList<Equipe> classerEquipes(){ 
+		Collections.sort(equipesPoule);
+		return equipesPoule;
 	}
 	
 }
