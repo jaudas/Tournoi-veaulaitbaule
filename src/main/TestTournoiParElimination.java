@@ -9,12 +9,13 @@ public class TestTournoiParElimination {
 	public static void main(String[] args) {
 		
 		//Creation d'un tournoi
-		System.out.println("Création du tournoi par elimination directe ! ");
+		System.out.println("Création du tournoi par elimination directe >.> ");
 		TournoiEliminationDirecte tournoi = new TournoiEliminationDirecte();
 		
 		
 		//Creation liste equipes 
 		System.out.println("Création de la liste des équipes ! ");
+		
 		LinkedList<Equipe> liste = new LinkedList<Equipe>();
 		Equipe e1= new Equipe("Equipe 1");
 		liste.add(e1);
@@ -24,7 +25,7 @@ public class TestTournoiParElimination {
 		liste.add(e3);
 		Equipe e4= new Equipe("Equipe 4");
 		liste.add(e4);
-		Equipe e5= new Equipe("Equipe 4");
+		Equipe e5= new Equipe("Equipe 5");
 		liste.add(e5);
 		
 		tournoi.setListeEquipes(liste);

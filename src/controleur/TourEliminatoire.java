@@ -41,10 +41,11 @@ public class TourEliminatoire {
 		{
 			indexEquipe = (int) (Math.random()*listeEquipesTour.size());
 			System.out.println("L'équipe qualifiée d'office est : " + listeEquipesTour.get(indexEquipe));
+			
 		}
 		else
 		{
-			System.out.println("Pas d'équipe qualifiée automatiquement ! ");
+			System.out.println("Pas d'équipe qualifiée automatiquement... :( ");
 		}
 		this.qualifOffice = indexEquipe;
 		
@@ -57,7 +58,7 @@ public class TourEliminatoire {
 		int nbmatchs = (int)listeEquipesTour.size()/2;
 		LinkedList<Match> matchTour = new LinkedList<Match>();
 
-		System.out.println("Il y aura " + nbmatchs + " matchs dans ce tour ! ");
+		System.out.println("Il y aura " + nbmatchs + " matchs dans ce tour : ");
 		int j = 0; 
 
 		for (int i = 0; i<nbmatchs; i++)
@@ -67,40 +68,33 @@ public class TourEliminatoire {
 			Equipe e1, e2;//Les deux équipes d'un match
 
 			//Verification de l'équipe 1
-			if(i!=qualifOffice)
+			if(i==qualifOffice)
 			{
-				//Si l'équipe n'est pas qualifiée d'office, on l'ajoute dans le match
-				e1 = listeEquipesTour.get(j);
-			}
-			else 
-			{
-				//Sinon, on prend l'équipe suivante
+				//Si l'équipe est pas qualifiée d'office, on prend le suivant
 				j++;
-				e1 = listeEquipesTour.get(j);
 			}
+			
+			e1 = listeEquipesTour.get(j);
+			
 
 			//On passe à l'équipe d'après dans la liste des équipes
 			j++;
-
-			//Vérification de l'équipe 2
-			if(i!=qualifOffice)
+			
+			//Vérification equipe 2
+			if(i+1==qualifOffice)
 			{
-				//Si l'équipe n'est pas qualifiée d'office, on l'ajoute dans le match
-				e2 = listeEquipesTour.get(j);
-			}
-			else 
-			{
-				//Sinon, on prend l'équipe suivante
+				//Si l'équipe est pas qualifiée d'office, on prend le suivant
 				j++;
-				e2 = listeEquipesTour.get(j);
 			}
+			
+			e2 = listeEquipesTour.get(j);
 			Match rencontre = new Match(e1,e2);
-		//	System.out.println(rencontre.toString());
+			System.out.println(rencontre.toString());
 			rencontre.setScoreAleatoire();
 			
-		//	System.out.println("ajout du match dans la liste ! ");
+			System.out.println("ajout du match dans la liste ! ");
 			matchTour.add(rencontre);
-		//	System.out.println("match ajouté ! ");
+			System.out.println("match ajouté ! ");
 
 		}
 		this.listeMatchTour=matchTour;
