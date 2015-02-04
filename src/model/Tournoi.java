@@ -2,12 +2,15 @@ package model;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import controleur.TourEliminatoire;
+
 public class Tournoi {
 	//Attributs
 	protected int nbEquipesInit;
 	protected String description;
 	protected LinkedList<Equipe> listeEquipes;
-
+	protected LinkedList<TourEliminatoire> listeTourEliminatoire;
+	
 	//Get & Set
 	public int getNbEquipesInit() {
 		return nbEquipesInit;
