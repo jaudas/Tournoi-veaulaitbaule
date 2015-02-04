@@ -6,7 +6,7 @@ public class Joueur {
 	private String nom;
 	private String age;
 	private String sexe;
-	private Equipe equipe;
+	
 	//public boolean capitaine;
 
 	//Constructeurs
@@ -18,7 +18,7 @@ public class Joueur {
 		this.nom=nom;
 		this.age=age;
 		this.sexe=sexe;
-		this.equipe=equipe;
+		
 	}
 	
 	//Getteur et Setteurs 
@@ -54,18 +54,13 @@ public class Joueur {
 		this.sexe = sexe;
 	}
 
-	public Equipe getEquipe() {
-		return equipe;
-	}
 
-	public void setEquipe(Equipe equipe) {
-		this.equipe = equipe;
-	}
+	
 
 	//Méthodes
 	@Override
 	public String toString(){
-		return "Joueur: "+this.prenom+" "+this.nom+" Age: "+this.age+" Sexe: "+this.sexe+" Equipe: "+this.equipe;
+		return "Joueur: "+this.prenom+" "+this.nom+" Age: "+this.age+" Sexe: "+this.sexe;
 
 	}
 	
@@ -74,4 +69,3 @@ public class Joueur {
 
 
 }
-

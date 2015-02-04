@@ -7,6 +7,7 @@ public class Equipe {
 	private int idEquipe;
 	private String nom;
 	private String description;
+	private int nbJoueurs;
 	private int nbVictoire;
 	private int nbMatchJoue;
 	private int nbSetGagne;
@@ -18,6 +19,7 @@ public class Equipe {
 		this.nbVictoire = 0;
 		this.nbSetGagne = 0;
 		this.nbMatchJoue = 0;
+		this.nbJoueurs = 0;
 	}
 
 	public Equipe(String nom) {
@@ -26,6 +28,7 @@ public class Equipe {
 		this.nbVictoire = 0;
 		this.nbSetGagne = 0;
 		this.nbMatchJoue = 0;
+		this.nbJoueurs = 0;
 	}
 
 	public Equipe(int idEquipe, String nom, String description, ArrayList<Joueur> listeJoueurs) {
@@ -64,6 +67,14 @@ public class Equipe {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	public int getNbJoueurs() {
+			return nbJoueurs;
+	}
+	
+	public void setNbJoueurs(int nbJoueurs) {
+		this.nbJoueurs= nbJoueurs;
 	}
 
 	public String getDescription() {
@@ -106,8 +117,13 @@ public class Equipe {
 		this.listeJoueurs = listeJoueurs;
 	}
 	
+	  
+	//Méthodes
+		@Override
+		public String toString(){
+			return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description+ "  Liste de joueurs: "+ this.listeJoueurs;
+
+		}
 	
-
-
 
 }
