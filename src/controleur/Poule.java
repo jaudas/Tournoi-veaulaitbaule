@@ -46,22 +46,9 @@ public class Poule {
 		
 	
 	//Création du tableau de matchs d'une poule
-	public ArrayList<Match> creerTableauMatchs()
-	{
-		/*Match m1 = new Match (equipesPoule.get(0), equipesPoule.get(1));
-		matchsPoule.add(m1);
-		Match m2 = new Match (equipesPoule.get(0), equipesPoule.get(2));
-		matchsPoule.add(m2);
-		Match m3 = new Match (equipesPoule.get(0), equipesPoule.get(3));
-		matchsPoule.add(m3);
-		Match m4 = new Match (equipesPoule.get(1), equipesPoule.get(2));
-		matchsPoule.add(m4);
-		Match m5 = new Match (equipesPoule.get(1), equipesPoule.get(3));
-		matchsPoule.add(m5);
-		Match m6 = new Match (equipesPoule.get(2), equipesPoule.get(3));
-		matchsPoule.add(m6);
-		*/
+	public ArrayList<Match> creerTableauMatchs(){
 		int ind = 0;
+		System.out.println("Taille de la liste d'équipes: "+equipesPoule.size());
 		if (equipesPoule.size() == 1){
 			System.out.println("Une seule équipe dans la poule. Pas de tableau de matchs.");
 			return null;
@@ -74,55 +61,22 @@ public class Poule {
 				Match match1 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+1));
 				matchsPoule.add(match1);
 				
-				if (ind+2<equipesPoule.size()-1){
+				if (ind+2<equipesPoule.size()){
 					Match match2 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+2));
 					matchsPoule.add(match2);
 				}
-				if (ind+3<equipesPoule.size()-1){
-					Match match3 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+2));
+				if (ind+3<equipesPoule.size()){
+					Match match3 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+3));
 					matchsPoule.add(match3);
 				}
 				ind ++;						
 			}
+			System.out.println("Nombre de matchs créés : "+matchsPoule.size());
 			return matchsPoule;
 		}
 	}
 	
-	//Créer le tableau des numéros  de chaque équipe (classement non ordonné)
-	/*public int [] creerClassement(){
-		classement = new int [equipesPoule.size()];
-		
-		for (int i = 0; i<equipesPoule.size(); i++){
-			classement[i]=equipesPoule.get(i).getIdEquipe();
-		}		
-		return classement;
-	}
-	*/
-	
-	//Ordonner le classement (classement des identifiants par ordre décroissant du score de chaque équipe)
-	//public int [] ordonnerClassement(){
-	/*public ArrayList<Equipe> classerEquipes(){
- 		int ind = 0;
-		Equipe echange;
-		Tournoi tournoi;
-		boolean permut;
-		
-		do{
-			permut = false;//On suppose le tableau trié
-			for (ind = 0; ind < equipesPoule.size(); ind++){
-				//Tester si deux éléments successifs sont das le bon ordre
-				if (equipesPoule.get(ind).calculerScoreVictoire() < equipesPoule.get(ind+1).calculerScoreVictoire()){
-					//S'ils ne sont pas dans le bon ordre, on les échange de place
-					echange = equipesPoule.get(ind);
-					//equipesPoule.get(ind) = equipesPoule.get(ind+1);
-					//equipesPoule.get(ind+1) = echange;
-				}
-					
-				
-			}
-		}while(permut);
-		
-	}*/
+	//Classer les équipes d'une poule	
 	public ArrayList<Equipe> classerEquipes(){ 
 		Collections.sort(equipesPoule);
 		return equipesPoule;

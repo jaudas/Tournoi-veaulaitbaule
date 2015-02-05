@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import controleur.Poule;
 
 import controleur.Poule;
 
@@ -9,6 +8,7 @@ import controleur.Poule;
 public class TournoiParPoules extends Tournoi {
 	int nbPoules;
 	ArrayList<Poule> listePoules = new ArrayList<Poule>();
+	ArrayList<Equipe> eqPhaseEliminatoire = new ArrayList<Equipe>();//Liste des équipes qualifiées pour les phases finales 
 
 	//Constructeur
 	public TournoiParPoules()
@@ -93,6 +93,59 @@ public class TournoiParPoules extends Tournoi {
 		return listePoules;
 	}
 	
+	//Ordonner les équipes qualifiées pour les phases éliminatoires dans une liste
+	public ArrayList<Equipe> creerEqQualifiees (){		
+		int ind=0;
+		System.out.println(listePoules.size());
+		
+		/*
+		while (ind<listePoules.size()-1){
+			eqPhaseEliminatoire.add(listePoules.get(ind).getEquipesPoule().get(0));
+			System.out.println("Equipe ajoutee : "+listePoules.get(ind).getEquipesPoule().get(0).getNom());
+			
+			//S'il y a une poule suivante dans la liste & S'il y a une équipe 2 dans la poule suivante de la liste	
+			if (listePoules.get(ind+1).getEquipesPoule().get(1) != null){
+				System.out.println("Debut de l'ajout");
+				eqPhaseEliminatoire.add(listePoules.get(ind+1).getEquipesPoule().get(1));
+				System.out.println("Equipe ajoutee aussi : "+listePoules.get(ind+1).getEquipesPoule().get(1).getNom());
+							
+			}
+			ind ++;	
+		}
+		*/
+		//On ajoute la première équipe de la première poule
+		eqPhaseEliminatoire.add(listePoules.get(ind).getEquipesPoule().get(0));
+		
+		while(ind<listePoules.size()-1){
+			ind ++;
+			//On regarde s'il y a une deuxième équipe dans la poule suivante
+			if(listePoules.get(ind).getEquipesPoule().size()>1){
+				eqPhaseEliminatoire.add(listePoules.get(ind).getEquipesPoule().get(1));
+			}
+			//On ajoute la première équipe de la poule suivante
+			eqPhaseEliminatoire.add(listePoules.get(ind).getEquipesPoule().get(0));
+		}
+		
+		eqPhaseEliminatoire.add(listePoules.get(0).getEquipesPoule().get(1));
+		System.out.println("Ajout de la derniere equipe ! "+listePoules.get(0).getEquipesPoule().get(1));
+		
+		System.out.println(eqPhaseEliminatoire.size());
+		return eqPhaseEliminatoire;
+	}
+	
+	//Déroulement d'un tournoi lors des phases de poules
+	public void deroulementTournoiPoule(){
+		
+	}
+	
+	//Classer chaque poule du tournoi
+	public ArrayList<Poule> classerEqPoules (){
+		for (int ind = 0; ind <listePoules.size(); ind++ ){
+			listePoules.get(ind).classerEquipes();
+		}
+		return listePoules;
+	}
+	
 	public static void main (String [] arg){
 		Equipe e1 = new Equipe ("Jaune", 4, 6);
 		Equipe e2 = new Equipe ("Bleu", 3, 7);
@@ -106,14 +159,14 @@ public class TournoiParPoules extends Tournoi {
 		Equipe e10 = new Equipe ("Noir", 4, 5);
 		
 		ArrayList<Equipe> eDT = new ArrayList<Equipe> ();
-		//eDT.add(e1);
-		//eDT.add(e2);
-		//eDT.add(e3);
+		eDT.add(e1);
+		eDT.add(e2);
+		eDT.add(e3);
 		eDT.add(e4);
 		eDT.add(e5);
 		eDT.add(e6);
-		//eDT.add(e7);
-		//eDT.add(e8);
+		eDT.add(e7);
+		eDT.add(e8);
 		eDT.add(e9);
 		//eDT.add(e10);
 		
@@ -121,11 +174,30 @@ public class TournoiParPoules extends Tournoi {
 		
 		tournoi.creerPoules(eDT);
 		System.out.println("Fin création des poules.");	
+		tournoi.classerEqPoules();
 		Poule pouleTest = tournoi.listePoules.get(0);
-		pouleTest.classerEquipes();
+		Poule pouleTest2 = tournoi.listePoules.get(1);
+		Poule pouleTest3 = tournoi.listePoules.get(2);
+		
+		System.out.println("Poule 1");
 		for (int i=0; i<pouleTest.getEquipesPoule().size(); i++){
 			System.out.println("Equipe "+i+": "+pouleTest.getEquipesPoule().get(i).getNom());
-		}		
+		}
+		
+		System.out.println("\nPoule 2");
+		for (int i=0; i<pouleTest2.getEquipesPoule().size(); i++){
+			System.out.println("Equipe "+i+": "+pouleTest2.getEquipesPoule().get(i).getNom());
+		}
+		
+		System.out.println("\nPoule 3");
+		for (int i=0; i<pouleTest3.getEquipesPoule().size(); i++){
+			System.out.println("Equipe "+i+": "+pouleTest3.getEquipesPoule().get(i).getNom());
+		}
+		
+		tournoi.creerEqQualifiees();
+		for (int i=0; i< tournoi.eqPhaseEliminatoire.size(); i++){
+			System.out.println("Equipe "+i+": "+tournoi.eqPhaseEliminatoire.get(i).toString());
+		}
 		
 	}
 }
