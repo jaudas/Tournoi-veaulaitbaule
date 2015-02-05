@@ -10,7 +10,9 @@ public class Match {
 	// Constructeurs
 	public Match(Equipe equipeA, Equipe equipeB) {
 		this.equipeA = equipeA;
+		this.equipeA.ajouterMatchJoue();
 		this.equipeB = equipeB;
+		this.equipeB.ajouterMatchJoue();
 		this.scoreA = 0;
 		this.scoreB = 0;
 	}

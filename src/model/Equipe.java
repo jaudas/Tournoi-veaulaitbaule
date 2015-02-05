@@ -118,6 +118,10 @@ public class Equipe implements Comparable<Equipe> {
 		this.listeJoueurs = listeJoueurs;
 	}
 	
+	public void ajouterMatchJoue (){
+		this.nbMatchJoue++;
+	}
+	
 	  
 	//Méthodes
 		@Override
