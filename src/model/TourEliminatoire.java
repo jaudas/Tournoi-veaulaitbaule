@@ -1,9 +1,6 @@
-package controleur;
+package model;
 
 import java.util.LinkedList;
-
-import model.Equipe;
-import model.Match;
 
 public class TourEliminatoire {
 	private LinkedList<Equipe> listeEquipesTour;

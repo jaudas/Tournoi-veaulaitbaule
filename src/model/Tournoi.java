@@ -2,8 +2,6 @@ package model;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import controleur.TourEliminatoire;
-
 public class Tournoi {
 	//Attributs
 	protected int nbEquipesInit;

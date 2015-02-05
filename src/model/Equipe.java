@@ -136,8 +136,7 @@ public class Equipe implements Comparable<Equipe> {
 	
 		//Calculer le score de chaque équipe selon le nombre de victoires
 		public int getScore (){
-			int score = 0;
-			return (score = nbVictoire*3);			
+			return nbVictoire*3;			
 		}
 
 		@Override

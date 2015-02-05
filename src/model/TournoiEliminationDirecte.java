@@ -2,8 +2,6 @@ package model;
 
 import java.util.LinkedList;
 
-import controleur.TourEliminatoire;
-
 public class TournoiEliminationDirecte extends Tournoi {
 
 	// Constructeur

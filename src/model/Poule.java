@@ -1,11 +1,7 @@
-package controleur;
+package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import model.Equipe;
-import model.Match;
-import model.Tournoi;
 
 public class Poule {
 	//Attributs

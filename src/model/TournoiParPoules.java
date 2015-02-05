@@ -2,9 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import controleur.Poule;
-
-
 public class TournoiParPoules extends Tournoi {
 	int nbPoules;
 	ArrayList<Poule> listePoules = new ArrayList<Poule>();
@@ -156,7 +153,7 @@ public class TournoiParPoules extends Tournoi {
 		Equipe e7 = new Equipe ("Marron", 2, 4);
 		Equipe e8 = new Equipe ("Orange", 6, 6);
 		Equipe e9 = new Equipe ("Blanc", 0, 2);
-		Equipe e10 = new Equipe ("Noir", 4, 5);
+		//Equipe e10 = new Equipe ("Noir", 4, 5);
 		
 		ArrayList<Equipe> eDT = new ArrayList<Equipe> ();
 		eDT.add(e1);
