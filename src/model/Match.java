@@ -1,27 +1,25 @@
 package model;
 
 public class Match {
-	//Attributs
+	// Attributs
 	private Equipe equipeA;
 	private Equipe equipeB;
 	private int scoreA;
 	private int scoreB;
 
-
-	//Constructeurs
-	public Match(Equipe equipeA, Equipe  equipeB){
-		this.equipeA=equipeA;
-		this.equipeB=equipeB;
-		this.scoreA=0;
-		this.scoreB=0;
+	// Constructeurs
+	public Match(Equipe equipeA, Equipe equipeB) {
+		this.equipeA = equipeA;
+		this.equipeB = equipeB;
+		this.scoreA = 0;
+		this.scoreB = 0;
 	}
-	
-	public Match()
-	{
+
+	public Match() {
 		super();
 	}
-	
-	//Get et Set
+
+	// Get et Set
 
 	public Equipe getEquipeA() {
 		return equipeA;
@@ -54,37 +52,31 @@ public class Match {
 	public void setScoreB(int scoreB) {
 		this.scoreB = scoreB;
 	}
-	
-	public Equipe getGagnant()
-	{
-		if(scoreA>scoreB)
-		{
+
+	public Equipe getGagnant() {
+		// Pas d'égalité possible au volley
+		if (scoreA > scoreB) {
 			return equipeA;
-		}
-		
-		else
-		{
+		} else {
 			return equipeB;
 		}
-			
-	}
-	
-	public void setScoreAleatoire()
-	{
-		scoreA = (int) (Math.random()*10);
-		scoreB = (int) (Math.random()*10);
-	}
-	
-	//Methodes
-	public String toString(){
-		return this.equipeA +" "+this.scoreA+"-"+this.scoreB+" "+this.equipeB;
+
 	}
 
-	public void ajouterScore(int scoreA, int scoreB)
-	{
-		this.scoreA=scoreA;
-		this.scoreB=scoreB;
+	public void setScoreAleatoire() {
+		scoreA = (int) (Math.random() * 10);
+		scoreB = (int) (Math.random() * 10);
 	}
-	
+
+	// Methodes
+	public String toString() {
+		return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
+				+ this.equipeB.getNom();
+	}
+
+	public void ajouterScore(int scoreA, int scoreB) {
+		this.scoreA = scoreA;
+		this.scoreB = scoreB;
+	}
 
 }

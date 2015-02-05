@@ -2,14 +2,15 @@ package main;
 
 import java.util.LinkedList;
 
-import model.*;
+import model.Equipe;
+import model.TournoiEliminationDirecte;
 
 public class TestTournoiParElimination {
 
 	public static void main(String[] args) {
 		
 		//Creation d'un tournoi
-		System.out.println("Création du tournoi par elimination directe >.> ");
+		System.out.println("Création du tournoi par elimination directe x_x ");
 		TournoiEliminationDirecte tournoi = new TournoiEliminationDirecte();
 		
 		
