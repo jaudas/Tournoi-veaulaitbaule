@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 public class Equipe implements Comparable<Equipe> {
 	//Attributs
+	private static int compteur=1;
 	private int idEquipe;
 	private String nom;
 	private String description;
@@ -20,6 +21,8 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbSetGagne = 0;
 		this.nbMatchJoue = 0;
 		this.nbJoueurs = 0;
+		this.idEquipe = compteur;
+		compteur ++;
 	}
 
 	public Equipe(String nom) {
@@ -29,28 +32,34 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbSetGagne = 0;
 		this.nbMatchJoue = 0;
 		this.nbJoueurs = 0;
+		this.idEquipe = compteur;
+		compteur ++; 
 	}
 
-	public Equipe(int idEquipe, String nom, String description, LinkedList<Joueur> listeJoueurs) {
+	public Equipe(String nom, String description, LinkedList<Joueur> listeJoueurs) {
 		super();
-		this.idEquipe = idEquipe;
 		this.nom = nom;
 		this.description = description;
 		this.nbVictoire = 0;
 		this.nbSetGagne = 0;
 		this.nbMatchJoue = 0;
 		this.listeJoueurs = listeJoueurs;
+		this.idEquipe = compteur;
+		compteur ++;
+		this.idEquipe = compteur;
+		compteur ++;
 	}
 	
 	public Equipe(String nom,  int nbVictoire, int nbSets) {
 		super();
-		this.idEquipe = idEquipe;
 		this.nom = nom;
 		this.description = "rien";
 		this.nbVictoire = nbVictoire;
 		this.nbSetGagne = nbSets;
 		this.nbMatchJoue = 0;
 		this.listeJoueurs = null;
+		this.idEquipe = compteur;
+		compteur ++;
 	}
 
 	public int getIdEquipe() {

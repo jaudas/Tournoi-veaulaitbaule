@@ -59,6 +59,7 @@ public class TournoiEliminationDirecte extends Tournoi {
 			System.out.println("\nFin du tour " + compteurtour);
 
 		}
+		System.out.println("Le super gagnant est : " + listEqEnJeu.getFirst());
 
 	}
 

@@ -10,22 +10,16 @@ public class TourEliminatoire {
 	private LinkedList<Match> listeMatchTour;
 	private int qualifOffice;
 
-
 	public TourEliminatoire()
 	{
 		super();
-		
 	}
 	
 	public TourEliminatoire(LinkedList<Equipe> listeEq)
 	{
-
 		listeEquipesTour = listeEq;
-		
 	}
 	
-	
-
 	public LinkedList<Equipe> getListeEquipesTour() {
 		return listeEquipesTour;
 	}
@@ -34,6 +28,7 @@ public class TourEliminatoire {
 	{
 		int indexEquipe = -1;
 		
+		//Indique la parité de la liste d'équipes 
 		int parite = this.listeEquipesTour.size()%2;
 		
 		if(parite!=0)
@@ -86,7 +81,6 @@ public class TourEliminatoire {
 			
 			Match rencontre = new Match(e1,e2);
 			System.out.println(" >>> "+rencontre.toString()+" <<< ");
-			//rencontre.setScoreAleatoire();
 			matchTour.add(rencontre);
 			
 			j++;

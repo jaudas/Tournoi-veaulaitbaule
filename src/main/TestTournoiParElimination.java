@@ -10,7 +10,7 @@ public class TestTournoiParElimination {
 	public static void main(String[] args) {
 		
 		//Creation d'un tournoi
-		System.out.println("Création du tournoi par elimination directe x_x ");
+		System.out.println("Création du tournoi par elimination directe 'x_x' ");
 		TournoiEliminationDirecte tournoi = new TournoiEliminationDirecte();
 		
 		
@@ -28,6 +28,15 @@ public class TestTournoiParElimination {
 		liste.add(e4);
 		Equipe e5= new Equipe("Equipe 5");
 		liste.add(e5);
+		
+		Equipe e6= new Equipe("Equipe 6");
+		liste.add(e6);
+		Equipe e7= new Equipe("Equipe 7");
+		liste.add(e7);
+		Equipe e8= new Equipe("Equipe 8");
+		liste.add(e8);
+		Equipe e9= new Equipe("Equipe 9");
+		liste.add(e9);
 		
 		tournoi.setListeEquipes(liste);
 		

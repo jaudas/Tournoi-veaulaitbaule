@@ -39,6 +39,7 @@ public class Match {
 
 	public int getScoreA() {
 		return scoreA;
+		
 	}
 
 	public void setScoreA(int scoreA) {
