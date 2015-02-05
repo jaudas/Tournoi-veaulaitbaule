@@ -8,13 +8,19 @@ import model.Match;
 public class ConsoleView {
 
 	
+	  public static void afficherEquipesEtJoueurs(LinkedList<Equipe> listeEquipe){      
+	      for(int i = 0; i< listeEquipe.size(); i++){
+	          System.out.println(listeEquipe.get(i));
+	          afficherJoueurs(i-1, listeEquipe.get(i).getListeJoueurs());
+	      }
+	  }
 	  public static void afficherEquipes(LinkedList<Equipe> listeEquipe){      
 	      for(int i = 0; i< listeEquipe.size(); i++){
-	          System.out.println(listeEquipe.get(i)); 
+	          System.out.println(listeEquipe.get(i));
+	         
 	      }
 	  }
 	  public static void afficherJoueurs(int idEquipe,LinkedList<Joueur> listeJoueurs){      
-
 		  for(int i = 0; i< listeJoueurs.size(); i++){
 			  int nbJoueur=i+1;
 	    	  System.out.println(nbJoueur+". " + listeJoueurs.get(i)); 

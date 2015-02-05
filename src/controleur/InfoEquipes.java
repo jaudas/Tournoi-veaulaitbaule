@@ -4,8 +4,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 
+
 import model.Equipe;
 import model.Joueur;
+
+
 import view.ConsoleView;
 
 public class InfoEquipes {
@@ -15,18 +18,21 @@ public class InfoEquipes {
 	
 	  
 	  public static void main(String[] args) {
+		
 		  LinkedList<Equipe> listeEquipe= inscrireEquipes();
 	   
 		
-		  for(int i = 0; i< listeEquipe.size(); i++){
-			  ConsoleView.afficherEquipes(listeEquipe);
-			  ConsoleView.afficherJoueurs(i, listeEquipe.get(i).getListeJoueurs());
-		  }
+		 
+			  ConsoleView.afficherEquipesEtJoueurs(listeEquipe);
+			  
+		 
 	      modifierEquipes(listeEquipe);
-	      ConsoleView.afficherEquipes(listeEquipe);
+	      ConsoleView.afficherEquipesEtJoueurs(listeEquipe);
+	      
 	  } 
 	 
-	  public static LinkedList<Equipe> inscrireEquipes(){
+
+	public static LinkedList<Equipe> inscrireEquipes(){
 		  LinkedList<Equipe> listeEquipe = new LinkedList<Equipe>();
 		  LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur>();   
 	      //Attributes
@@ -34,37 +40,45 @@ public class InfoEquipes {
 		 String description;
 		 int nbJoueurs = 0;  
 	     Equipe aux; //Attribut auxilier pour remplir la liste des Equipes
-	     int i = 0, N;
+	     int i = 0;
+	     String N;
+	     int NE=0;
 	      //On demande le nombre d'equipes pa incrire 
 	     do {
 	    	 System.out.print("Nombre d'equipes: ");
-	         N = sc.nextInt();
-	      } while (N < 0);
-	      		sc.nextLine(); //Nettoyer le clavier
+	         N = sc.nextLine();
+	     	 NE=exception(N);
+	     	
+	      } while (NE < 0);
+	      		 
 	      		//On demande l'information de chaque equipe
 	      		//On demande la creation automatique des equipes ou l'option d'introduir l'information de caque equipe
 	      		int opt;
 	      		boolean option=false;
+	      		
 	      		System.out.println("Vous voulez introduir l'information de chaque equipe(1) ou utilizer les equipes pour defaut(2)?");
 	      		opt=sc.nextInt();
 	      
 	      		while (option==false){ 
 	      			if(opt==2){
-	      				for (i = 1; i <= N; i++) {
+	      				System.out.println("Création automatique des Equipes: ");
+	      				for (i = 1; i <= NE; i++) {
 	      					//Creation d'un equipe aleatoire
 	      					//System.out.println("ID Equipe: " + i);
+	      					
 	      					nom="";
 	      					char n='0'; 
 	      					Random rnd = new Random(); 
 	      					for (int k=0; k < 5 ; k++) { 
-	      						n = (char)(rnd.nextDouble() * 26.0 + 65.0 ); 
+	      						n = (char)(rnd.nextDouble() * 26. + 65.0 ); 
 	      						nom += n;
 	    	        	  
 	      					}	
 	      					description = "Equipe du veaulait";
 	      					nbJoueurs = 5;
+	      					listeJoueurs=inscrireJoueursAuto(nbJoueurs);
 	      					option=true;
-	      					aux = new Equipe(); //On cree l'object de l'Equipe aux(auxilier) pour aider a l'attribution des valeur
+	      					aux = new Equipe(); //On cree l'objet temporaire "aux" de type Equipe pour aider a l'initialisation des valeurs
 	      					//On attribue un valor a chaque attribute
 	      					aux.setIdEquipe(i);
 	      					aux.setNom(nom);
@@ -77,7 +91,7 @@ public class InfoEquipes {
 	      			}
 	      			else if (opt==1){
 	      				sc.nextLine();//Netoyer le clavier
-	      				for (i = 1; i <= N; i++) {
+	      				for (i = 1; i <= NE; i++) {
 	      					//On lit l'information de chaque equipe
 	      					System.out.println("ID Equipe: " + i);
 	      					System.out.println("  Nom: ");
@@ -85,7 +99,8 @@ public class InfoEquipes {
 	      					System.out.println("  Description: ");
 	      					description = sc.nextLine();
 	      					System.out.println("  Nombre de joueurs: ");
-	      					nbJoueurs = sc.nextInt();	    			   
+	      					String nJ = sc.nextLine();
+	      					nbJoueurs=exception(nJ);
 	      					listeJoueurs=inscrireJoueurs(nbJoueurs);
 	      					option=true;
 	      					aux = new Equipe(); //On cree l'object de l'Equipe
@@ -115,7 +130,7 @@ public class InfoEquipes {
 	      int j;
 	      
 	      	while (nbJoueurs < 0);{
-	      		sc.nextLine(); //Nettoyer le clavier
+	      		 //Nettoyer le clavier
 	      		//On demande l'information de chaque equipe
 	      			for (j = 1; j <= nbJoueurs; j++) {
 	      				//On lis l'information de chaque equip
@@ -128,6 +143,36 @@ public class InfoEquipes {
 	      				age = sc.nextLine(); 
 	      				System.out.println("Sexe: ");
 	      				sexe = sc.nextLine();
+	      				aux = new Joueur(); //On cree l'object de l'Equipe
+	      				//On attribue un valor a chaque attribute
+	      				aux.setNom(nomj);
+	      				aux.setPrenom(prenom);
+	      				aux.setAge(age);
+	      				aux.setSexe(sexe);  
+	      				listeJoueurs.add(aux);
+	      			}
+	      	}
+	      	return listeJoueurs;
+	  }
+	  public static LinkedList<Joueur> inscrireJoueursAuto(int nbJoueurs){
+	      //Attributes
+		   String prenom;
+		   String nomj;
+		   String age;
+		   String sexe;
+		   Joueur aux;
+		   LinkedList<Joueur> listeJoueurs= new LinkedList<Joueur>();
+	      int j;
+	      
+	      	while (nbJoueurs < 0);{
+	      		
+	      		//On demande l'information de chaque equipe
+	      			for (j = 1; j <= nbJoueurs; j++) {
+	      				//On lis l'information de chaque equip
+	      				prenom = "Joueur"; 
+	      				nomj = "default";
+	      				age = "Sans information"; 
+	      				sexe = "Sans information";
 	      				aux = new Joueur(); //On cree l'object de l'Equipe
 	      				//On attribue un valor a chaque attribute
 	      				aux.setNom(nomj);
@@ -284,6 +329,20 @@ public class InfoEquipes {
 		  
 		  
 	  }
-
 	  
+	  public static int exception(String str){
+		  
+		  int num=0;
+			try{
+		        	num=Integer.parseInt(str);
+		    	}catch(NumberFormatException ex){
+		        	System.out.println("Ce n'est pas un numero!  ");
+		        	System.out.println("Veuillez saisir un nombre :");
+		        	str=sc.nextLine();
+		        	exception(str);
+		        	
+		    	}
+			num=Integer.parseInt(str);
+	 return  num; 
+	  } 
 }
