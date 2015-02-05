@@ -13,18 +13,11 @@ public class ConsoleView {
 	      }
 	  }
 	  public static void afficherJoueurs(int idEquipe,LinkedList<Joueur> listeJoueurs){      
-<<<<<<< HEAD
+
 		  for(int i = 0; i< listeJoueurs.size(); i++){
 			  int nbJoueur=i+1;
 	    	  System.out.println(nbJoueur+". " + listeJoueurs.get(i)); 
 		  }
-=======
-		  for(int i = 0; i< listeJoueurs.size(); i++)
-	    	  System.out.println(listeJoueurs.get(i)); 
-		  
-		  
-
->>>>>>> correction bug qualifie doffice
 	  }
 
 }
