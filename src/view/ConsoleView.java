@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import model.Equipe;
 import model.Joueur;
+import model.Match;
 public class ConsoleView {
 
 	
@@ -18,6 +19,11 @@ public class ConsoleView {
 			  int nbJoueur=i+1;
 	    	  System.out.println(nbJoueur+". " + listeJoueurs.get(i)); 
 		  }
+	  }
+	  public static void afficherMatch(LinkedList<Match> listeMatch){      
+	      for(int i = 0; i< listeMatch.size(); i++){
+	          System.out.println(listeMatch.get(i)); 
+	      }
 	  }
 
 }
