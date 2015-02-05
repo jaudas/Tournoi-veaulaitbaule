@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Equipe implements Comparable<Equipe> {
 	//Attributs
@@ -11,7 +11,7 @@ public class Equipe implements Comparable<Equipe> {
 	private int nbVictoire;
 	private int nbMatchJoue;
 	private int nbSetGagne;
-	private ArrayList <Joueur> listeJoueurs;
+	private LinkedList <Joueur> listeJoueurs;
 
 	//Constructeurs
 	public Equipe (){
@@ -31,7 +31,7 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbJoueurs = 0;
 	}
 
-	public Equipe(int idEquipe, String nom, String description, ArrayList<Joueur> listeJoueurs) {
+	public Equipe(int idEquipe, String nom, String description, LinkedList<Joueur> listeJoueurs) {
 		super();
 		this.idEquipe = idEquipe;
 		this.nom = nom;
@@ -109,11 +109,11 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbSetGagne = nbSetGagne;
 	}
 
-	public ArrayList<Joueur> getListeJoueurs() {
+	public LinkedList<Joueur> getListeJoueurs() {
 		return listeJoueurs;
 	}
 
-	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
+	public void setListeJoueurs(LinkedList<Joueur> listeJoueurs) {
 		this.listeJoueurs = listeJoueurs;
 	}
 	
@@ -121,7 +121,7 @@ public class Equipe implements Comparable<Equipe> {
 	//Méthodes
 		@Override
 		public String toString(){
-			return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description+ "  Liste de joueurs: "+ this.listeJoueurs;
+			return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description;
 
 		}
 	
