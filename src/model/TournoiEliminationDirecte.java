@@ -12,6 +12,11 @@ public class TournoiEliminationDirecte extends Tournoi {
 		super.listeEquipes = listEq;
 	}
 
+
+	public TournoiEliminationDirecte(LinkedList<Equipe> listEq) {
+		super.listeEquipes = listEq;
+	}
+	
 	public TournoiEliminationDirecte() {
 		super();
 	}

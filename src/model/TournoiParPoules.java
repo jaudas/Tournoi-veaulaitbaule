@@ -7,23 +7,18 @@ import java.util.List;
 public class TournoiParPoules extends Tournoi {
 	int nbPoules;
 	private ArrayList<Poule> listePoules = new ArrayList<Poule>();
-	private static LinkedList<Equipe> eqPhaseEliminatoire = new LinkedList<Equipe>();// Liste
-																						// des
-																						// équipes
-																						// qualifiées
-																						// pour
-																						// les
-																						// phases
-																						// finales
+	private static LinkedList<Equipe> eqPhaseEliminatoire = new LinkedList<Equipe>();
+	// Liste des équipes qualifiées
+
 
 	// Constructeur
 	public TournoiParPoules() {
 		super();
 	}
 
-	public TournoiParPoules(int nbeq, String descr) {
-		super.nbEquipesInit = nbeq;
-		super.description = descr;
+	public TournoiParPoules(LinkedList<Equipe> listeEq) {
+		int nbeq=listeEq.size();
+		super.listeEquipes = listeEq;
 
 		// Calcul du nombre de poules necessaires
 		int nbpoul = nbeq / 4;// Nb poules complètes
@@ -36,14 +31,6 @@ public class TournoiParPoules extends Tournoi {
 		}
 		System.out
 				.println("Le nombre de poules à créer est : " + this.nbPoules);
-
-		/*
-		 * LinkedList<Equipe> listEq = new LinkedList<Equipe>();
-		 * super.listeEquipesEnJeu = listEq;
-		 * 
-		 * LinkedList<Match> listMatch = new LinkedList<Match>();
-		 * super.listeMatchs = listMatch;
-		 */
 	}
 
 	// Méthodes
@@ -174,10 +161,9 @@ public class TournoiParPoules extends Tournoi {
 		return eDT;
 	}
 
-	public static void main(String[] arg) {
+	/*public static void main(String[] arg) {
 		List<Equipe> eDT = getListEquipeDuTournoi("Jaune","Bleu","Rouge","Vert","Cyan","Rose","Marron","Orange","Blanc","Noir");
-		TournoiParPoules tournoi = new TournoiParPoules(eDT.size(),
-				"Tournoi Par Poules, GO ! ");
+		TournoiParPoules tournoi = new TournoiParPoules(eDT);
 
 		tournoi.creerPoules(eDT);
 		System.out.println("Fin création des poules.");
@@ -247,5 +233,5 @@ public class TournoiParPoules extends Tournoi {
 		System.out.println("Le super gagnant est : "
 				+ getEqPhaseEliminatoire().getFirst());
 
-	}
+	}*/
 }

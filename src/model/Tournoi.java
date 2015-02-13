@@ -8,6 +8,7 @@ public class Tournoi {
 	protected String description;
 	protected LinkedList<Equipe> listeEquipes;
 	protected LinkedList<TourEliminatoire> listeToursEliminatoires;
+	protected LinkedList<Match> listeMatchs;
 	
 	//Get & Set
 	public int getNbEquipesInit() {
@@ -23,7 +24,7 @@ public class Tournoi {
 		this.description = description;
 	}
 	public LinkedList<Equipe> getListeEquipes() {
-		return listeEquipes;
+		return this.listeEquipes;
 	}
 	public void setListeEquipes(LinkedList<Equipe> listeEquipes) {
 		this.listeEquipes = listeEquipes;
@@ -45,6 +46,10 @@ public class Tournoi {
 	public void ajouterEquipe(Equipe e)
 	{
 		listeEquipes.add(e);
+	}
+	public void creerPoules(LinkedList<Equipe> listeEquipes) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -8,29 +8,10 @@ import java.util.Scanner;
 import model.Equipe;
 import model.Joueur;
 
-
-import view.ConsoleView;
-
 public class InfoEquipes {
 	  //Arraylist 
 	
 	  static Scanner sc = new Scanner(System.in);
-	
-	  
-	  public static void main(String[] args) {
-		
-		  LinkedList<Equipe> listeEquipe= inscrireEquipes();
-	   
-		
-		 
-			  ConsoleView.afficherEquipesEtJoueurs(listeEquipe);
-			  
-		 
-	      modifierEquipes(listeEquipe);
-	      ConsoleView.afficherEquipesEtJoueurs(listeEquipe);
-	      
-	  } 
-	 
 
 	public static LinkedList<Equipe> inscrireEquipes(){
 		  LinkedList<Equipe> listeEquipe = new LinkedList<Equipe>();
@@ -57,7 +38,7 @@ public class InfoEquipes {
 	      		boolean option=false;
 	      		
 	      		System.out.println("Vous voulez introduir l'information de chaque equipe(1) ou utilizer les equipes pour defaut(2)?");
-	      		opt=sc.nextInt();
+	      		opt=sc.nextInt();//Ajouter vérif saisie
 	      
 	      		while (option==false){ 
 	      			if(opt==2){

@@ -22,14 +22,15 @@ public class InfoMatch {
 		  String sB=sc.nextLine();
 		  int scoreB=exception(sB);
 		  if (scoreA==scoreB){
-			  System.out.println("Les scores ne sont pas valids, si vous plait ajouter un autre resultat");
+			  System.out.println("Les scores ne sont pas valides, s'il vous plait ajoutez un autre resultat : ");
 			  resultMatch(match);
 		  }
 		  
 		  
 		  match.setScoreA(scoreA);
 		  match.setScoreB(scoreB);
-		  
+		  match.getGagnant().setNbVictoire(match.getGagnant().getNbVictoire()+1)  ;
+		 
 	  }
 	  
 	  public static int exception(String str){
