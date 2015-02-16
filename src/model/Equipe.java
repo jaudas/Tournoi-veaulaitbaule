@@ -1,14 +1,10 @@
 package model;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+
 import java.util.LinkedList;
 
 import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import tools.FilesTools;
 
 public class Equipe implements Comparable<Equipe> {
 	//Attributs
@@ -29,23 +25,23 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbMatchJoue = 0;
 		this.nbJoueurs = 0;
 		this.listeJoueurs= null;
-		
-		//Ajout du nom, depuis une liste de couleurs stockées dans un JSON
-		JSONParser parser=new JSONParser();
-		String stringFile;
-		try {
-			stringFile = FilesTools.readFile (System.getProperty("user.dir")+"//src//data//nomequipe.json",StandardCharsets.UTF_8);
-			Object obj = parser.parse(stringFile);
-			JSONArray array = (JSONArray)obj;	
-			int idnom = (int)(Math.random()*array.size());
-			this.nom = (String) (array.get(idnom));
-			
-			array.remove(idnom);
+	}
 
-		} catch (IOException | ParseException e) {
-			e.printStackTrace();
-			
-		}
+	public Equipe (JSONArray listeNom){
+		super();
+		this.nbVictoire = 0;
+		this.nbSetGagne = 0;
+		this.nbMatchJoue = 0;
+		this.nbJoueurs = 0;
+		this.listeJoueurs= null;
+
+		//Ajout du nom, depuis une liste de couleurs stockées dans un JSON
+
+		int idnom = (int)(Math.random()*listeNom.size());
+		this.nom = (String) (listeNom.get(idnom));
+		System.out.println("Avant" + listeNom.size());
+		listeNom.remove(idnom);
+		System.out.println("Après" +listeNom.size());
 	}
 
 	public Equipe(String nom) {
@@ -67,7 +63,7 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbMatchJoue = 0;
 		this.listeJoueurs = listeJoueurs;
 	}
-	
+
 	public Equipe(String nom,  int nbVictoire, int nbSets) {
 		super();
 		this.idEquipe = 0;
@@ -94,11 +90,11 @@ public class Equipe implements Comparable<Equipe> {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
+
 	public int getNbJoueurs() {
-			return nbJoueurs;
+		return nbJoueurs;
 	}
-	
+
 	public void setNbJoueurs(int nbJoueurs) {
 		this.nbJoueurs= nbJoueurs;
 	}
@@ -142,45 +138,45 @@ public class Equipe implements Comparable<Equipe> {
 	public void setListeJoueurs(LinkedList<Joueur> listeJoueurs) {
 		this.listeJoueurs = listeJoueurs;
 	}
-	
+
 	public void ajouterMatchJoue (){
 		this.nbMatchJoue++;
 	}
-	
-	  
+
+
 	//Méthodes
-		@Override
-		public String toString(){
-			return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description;
+	@Override
+	public String toString(){
+		return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description;
 
-		}
-	
-		//Calculer le score de chaque équipe selon le nombre de victoires
-		public int getScore (){
-			
-			return  nbVictoire*3;			
-		}
+	}
 
-		@Override
-		public int compareTo(Equipe eq2) {
-			//Comparaion des équipes selon leurs nombres de victoire
-			if (getScore() > eq2.getScore()){
+	//Calculer le score de chaque équipe selon le nombre de victoires
+	public int getScore (){
+
+		return  nbVictoire*3;			
+	}
+
+	@Override
+	public int compareTo(Equipe eq2) {
+		//Comparaion des équipes selon leurs nombres de victoire
+		if (getScore() > eq2.getScore()){
+			return -1;
+		}
+		else if (getScore() < eq2.getScore()){
+			return 1;
+		}
+		else if (getScore() == eq2.getScore()){
+			//Comparaison des équipes selon leurs nombres de sets gagnés
+			if (getNbSetGagne() > eq2.getNbSetGagne()){
 				return -1;
 			}
-			else if (getScore() < eq2.getScore()){
+			else if (getNbSetGagne() < eq2.getNbSetGagne()){
 				return 1;
-			}
-			else if (getScore() == eq2.getScore()){
-				//Comparaison des équipes selon leurs nombres de sets gagnés
-				if (getNbSetGagne() > eq2.getNbSetGagne()){
-					return -1;
-				}
-				else if (getNbSetGagne() < eq2.getNbSetGagne()){
-					return 1;
-				}
-				return 0;
 			}
 			return 0;
 		}
+		return 0;
+	}
 
 }

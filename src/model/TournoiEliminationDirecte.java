@@ -54,7 +54,7 @@ public class TournoiEliminationDirecte extends Tournoi {
 
 			// On cree le tour de jeu
 			System.out.println("C'est parti pour la création des matchs ! ");
-			tourJeu.creerTour();
+			tourJeu.creerTour(this);
 			System.out.println("Matchs générés ! ");
 
 			// On mets à jour la liste des équipes en jeu

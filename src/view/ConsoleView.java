@@ -1,6 +1,7 @@
 package view;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 import controleur.InfoEquipes;
@@ -58,12 +59,12 @@ public class ConsoleView {
 		System.out.println(" From ConsoleView.afficherPoules : Afficher le numero de la poule et la liste des équipes qui y sont.");
 
 	}
-	
+
 	public static void afficherMatchsJoues()
 	{
 		System.out.println("From ConsoleView.afficherMatchsJoués");
 	}
-	
+
 	public static void afficherEquipesEnJeu()
 	{
 		System.out.println("From ConsoleView.afficherEquipesEnJeu");
@@ -89,12 +90,12 @@ public class ConsoleView {
 				InfoEquipes.modifierEquipes(tournoi.getListeEquipes());
 				System.out.println("Liste des équipes modifiée ! ");
 				break;
-				
+
 			case 2 : 
 				System.out.println("Afficher les résultats des derniers matchs : A faire ! ");
 				afficherMatchsJoues();
 				break;
-				
+
 			case 3 : 
 				System.out.println("Afficher les équipes en jeu : A faire ! ");
 				afficherEquipesEnJeu();
@@ -103,9 +104,10 @@ public class ConsoleView {
 			case 4 : 
 				afficherEquipes(tournoi.getListeEquipes());
 				break;
-				
+
 			case 5 : 
-				System.out.println("Afficher la liste des matchs à jouer = ceux qui sont dans la liste de matchs et qui ont 0-0 comme score (dans ConsoleView)") ; 
+				System.out.println("Afficher la liste des matchs à jouer = ceux qui sont dans la liste de matchs et qui ont 0-0 comme score (dans ConsoleView)") ;
+				System.out.println("Il faut créer la liste des matchs, avant le début du tour");
 				System.out.println("Permettre la saisie des résultats d'un match, si il y en a plusieurs (dans InfoMatch)");
 				break;
 
@@ -113,6 +115,26 @@ public class ConsoleView {
 
 		}
 		while (choixMenu != EXITMENU); 
+	}
+
+	public static void afficherMatchNonJoues(Tournoi t)
+	{
+		LinkedList<Match> listeM = new LinkedList<Match>();
+		ListIterator<Match> liTournoi = t.getListeMatchs().listIterator();		
+
+		while(liTournoi.hasNext())
+		{
+			Match m = liTournoi.next();
+			if (m.getScoreB() == 0 && m.getScoreA()==0)
+				listeM.add(m);
+
+		}
+
+		ListIterator<Match> li2 = listeM.listIterator();	
+
+		System.out.println("Liste des matchs à jouer ! ");
+		while(li2.hasNext())
+			System.out.println(li2.next());
 	}
 
 }

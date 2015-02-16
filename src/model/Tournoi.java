@@ -26,6 +26,11 @@ public class Tournoi {
 	public LinkedList<Equipe> getListeEquipes() {
 		return this.listeEquipes;
 	}
+	
+	public LinkedList<Match> getListeMatchs() {
+		return this.listeMatchs;
+	}
+	
 	public void setListeEquipes(LinkedList<Equipe> listeEquipes) {
 		this.listeEquipes = listeEquipes;
 	}
@@ -55,6 +60,5 @@ public class Tournoi {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }

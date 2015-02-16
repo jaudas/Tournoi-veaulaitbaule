@@ -1,9 +1,18 @@
 package controleur;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 
 
+
+
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import tools.FilesTools;
 import model.Equipe;
 import model.Joueur;
 
@@ -42,33 +51,35 @@ public class InfoEquipes {
 		while (option==false){ 
 			if(opt==2){
 				System.out.println("Création automatique des Equipes: ");
-				for (i = 1; i <= NE; i++) {
-					//Creation d'un equipe aleatoire
-					//System.out.println("ID Equipe: " + i);
+				JSONParser parser=new JSONParser();
+				String stringFileNomsEquipes;
+				try {
+					stringFileNomsEquipes = FilesTools.readFile (System.getProperty("user.dir")+"//src//data//nomequipe.json",StandardCharsets.UTF_8);
+					Object parsedFile = parser.parse(stringFileNomsEquipes);
+					JSONArray arrayNomsEquipe = (JSONArray)parsedFile;
 
-					/*nom="";
-					char n='0'; 
-					
-					Random rnd = new Random(); 
-					for (int k=0; k < 5 ; k++) { 
-						n = (char)(rnd.nextDouble() * 26. + 65.0 ); 
-						nom += n;
+					for (i = 1; i <= NE; i++) {
 
-					}	*/
-					
-					description = "Equipe de veaulait";
-					nbJoueurs = 6;
-					listeJoueurs=inscrireJoueursAuto(nbJoueurs);
-					option=true;
-					aux = new Equipe(); //On cree l'objet temporaire "aux" de type Equipe pour aider a l'initialisation des valeurs
-					//On attribue un valor a chaque attribute
-					aux.setIdEquipe(i);
-					//aux.setNom(nom); Le nom est donné directement dans la fonction
-					aux.setDescription(description);
-					aux.setNbJoueurs(nbJoueurs);
-					aux.setListeJoueurs(listeJoueurs);
-					listeEquipe.add(aux);
-					nom="";
+						description = "Equipe de veaulait";
+						nbJoueurs = 6;
+						listeJoueurs=inscrireJoueursAuto(nbJoueurs);
+						option=true;
+
+						//On cree l'objet temporaire "aux" de type Equipe pour aider a l'initialisation des valeurs
+						//On attribue un valor a chaque attribute
+						aux = new Equipe(arrayNomsEquipe);
+						aux.setIdEquipe(i);
+						//aux.setNom(nom); Le nom est donné directement dans la fonction
+						aux.setDescription(description);
+						aux.setNbJoueurs(nbJoueurs);
+						aux.setListeJoueurs(listeJoueurs);
+						listeEquipe.add(aux);
+
+						nom="";
+					}
+				} catch (IOException | ParseException e) {
+					e.printStackTrace();
+
 				}
 			}
 			else if (opt==1){
@@ -295,7 +306,6 @@ public class InfoEquipes {
 			break;
 
 		}
-
 
 	}
 
