@@ -6,6 +6,7 @@ public class Match {
 	private Equipe equipeB;
 	private int scoreA;
 	private int scoreB;
+	private boolean joue;
 
 	// Constructeurs
 	public Match(Equipe equipeA, Equipe equipeB) {
@@ -15,10 +16,14 @@ public class Match {
 		this.equipeB.ajouterMatchJoue();
 		this.scoreA = 0;
 		this.scoreB = 0;
+		this.joue = false;
 	}
 
 	public Match() {
 		super();
+		this.scoreA = 0;
+		this.scoreB = 0;
+		this.joue = false;
 	}
 
 	// Get et Set

@@ -29,6 +29,10 @@ public class Tournoi {
 	public void setListeEquipes(LinkedList<Equipe> listeEquipes) {
 		this.listeEquipes = listeEquipes;
 	}
+	
+	public void addMatch(Match m) {
+		this.listeMatchs.addLast(m);
+	}
 
 	//Methodes
 	public String toString()

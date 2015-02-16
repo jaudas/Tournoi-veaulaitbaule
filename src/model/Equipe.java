@@ -1,6 +1,14 @@
 package model;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
+
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import tools.FilesTools;
 
 public class Equipe implements Comparable<Equipe> {
 	//Attributs
@@ -21,6 +29,23 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbMatchJoue = 0;
 		this.nbJoueurs = 0;
 		this.listeJoueurs= null;
+		
+		//Ajout du nom, depuis une liste de couleurs stockées dans un JSON
+		JSONParser parser=new JSONParser();
+		String stringFile;
+		try {
+			stringFile = FilesTools.readFile (System.getProperty("user.dir")+"//src//data//nomequipe.json",StandardCharsets.UTF_8);
+			Object obj = parser.parse(stringFile);
+			JSONArray array = (JSONArray)obj;	
+			int idnom = (int)(Math.random()*array.size());
+			this.nom = (String) (array.get(idnom));
+			
+			array.remove(idnom);
+
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+			
+		}
 	}
 
 	public Equipe(String nom) {
