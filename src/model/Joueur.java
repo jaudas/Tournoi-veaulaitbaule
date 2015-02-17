@@ -114,7 +114,7 @@ public class Joueur {
 		{
 			this.sexejoueur = EnumSexe.Femme;
 		}
-		this.sexejoueur = EnumSexe.NA;
+		else this.sexejoueur = EnumSexe.NA;
 	}
 
 

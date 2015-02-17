@@ -57,9 +57,8 @@ public class Tournoi {
 	{
 		listeEquipes.add(e);
 	}
-	public void creerPoules(LinkedList<Equipe> listeEquipes) {
+	public void creerPoules() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -39,8 +39,9 @@ public class Main {
 		if (tournoiType == 2)
 		{
 			tournoi = new TournoiParPoules(listeEquipes);
-			tournoi.creerPoules(tournoi.getListeEquipes());
+			tournoi.creerPoules();
 			System.out.println("Tournoi par poules ! ");
+			
 		}
 
 		System.out.println("taille de la liste : "+tournoi.getListeEquipes().size());
@@ -60,6 +61,7 @@ public class Main {
       
       //ConsoleView.afficherEquipesEtJoueurs(listeEquipe);
 	}
+
 
 
 

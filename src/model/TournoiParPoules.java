@@ -43,7 +43,8 @@ public class TournoiParPoules extends Tournoi {
 	}
 
 	// Créer les poules du tournoi
-	public ArrayList<Poule> creerPoules(List<Equipe> listeEquipes) {
+	public void creerPoules() {
+
 		int cptPoules = this.nbPoules;
 		int numPoule = 1;
 		while (cptPoules > 0) {
@@ -57,19 +58,20 @@ public class TournoiParPoules extends Tournoi {
 				ind = (int) ((Math.random()) * listeEquipes.size());
 				//System.out.println(ind);
 
+
 				// Ajouter l'équipe choisie dans une poule
-				equipesPoule.add(listeEquipes.get(ind));
+				equipesPoule.add(super.listeEquipes.get(ind));
 
 				// System.out.println("Ajout de l'équipe "+listeEquipes.get(ind).toString()+" dans la poule.");
 				// listeEquipes.get(ind).toString();//Affichage de l'équipe
 				// sélectionnée pour la poule
 
-				listeEquipes.remove(ind);// Suppression de l'équipe dans la
+				super.listeEquipes.remove(ind);// Suppression de l'équipe dans la
 											// liste des équipes du tournoi
 			}
 
 			// System.out.println("Creation d'une poule");
-			Poule poule = new Poule("Poule " + numPoule + "", equipesPoule, super.listeMatchs, numPoule);
+			Poule poule = new Poule();
 			if (poule != null) {
 				listePoules.add(poule);
 				// System.out.println("Poule "+numPoule+" ajoutée !");
@@ -77,8 +79,6 @@ public class TournoiParPoules extends Tournoi {
 			numPoule++;
 			cptPoules--;
 		}
-
-		return listePoules;
 	}
 
 	// Ordonner les équipes qualifiées pour les phases éliminatoires dans une
