@@ -27,65 +27,87 @@ public class InfoEquipes {
 		Equipe aux; //Attribut auxilier pour remplir la liste des Equipes
 		int i = 0;
 		String N;
-		int NE=0;
-		//On demande le nombre d'equipes pa incrire 
-		do {
-			System.out.print("Nombre d'equipes: (ajouter une contrainte sur 40 équipes)");
-			N = sc.nextLine();
-			NE=Exception.mauvaisNumero(N);
+		int NE = 0;
+		String C;
+		int CH = 0;
 
-		} while (NE < 0);
 
 		//On demande l'information de chaque equipe
 		//On demande la creation automatique des equipes ou l'option d'introduir l'information de caque equipe
 		int opt;
 		boolean option=false;
 
-		System.out.println("Vous voulez introduir l'information de chaque equipe(1) ou utilizer les equipes pour defaut(2)?");
-		opt=sc.nextInt();//Ajouter vérif saisie
-		
+		//System.out.println("Vous voulez introduir l'information de chaque equipe(1) ou utilizer les equipes pour defaut(2)?");
+		//opt=sc.nextInt();//Ajouter vérif saisie
+
 		while (option==false){ 
-			System.out.println("Vous voulez introduir l'information de chaque equipe(1) ou utilizer les equipes pour defaut(2)?");
+			System.out.println("Voulez-vous introduire les informations de chaque équipe (tapez 1) ou utiliser les équipes par défaut (tapez 2)?");
 			opt=sc.nextInt();//Ajouter vérif saisie
-			
+
 			switch (opt){
 			case 1:
-			    sc.nextLine();//Netoyer le clavier
-			    for (i = 1; i <= NE; i++) {
-			    	//On lit l'information de chaque equipe
-			    	System.out.println("ID Equipe: " + i);
-			    	System.out.println("  Nom: ");
-			    	nom = sc.nextLine();
-			    	System.out.println("  Description: ");
-			    	description = sc.nextLine();
-			    	System.out.println("  Nombre de joueurs: ");
-			    	String nJ = sc.nextLine();
-			    	nbJoueurs=Exception.mauvaisNumero(nJ);
-			    	listeJoueurs=inscrireJoueurs(nbJoueurs);
-			    	option=true;
-			    	aux = new Equipe(); //On cree l'object de l'Equipe
-			    	//On attribue un valor a chaque attribute
-			    	aux.setIdEquipe(i);
-			    	aux.setNom(nom);
-			    	aux.setDescription(description);
-			    	aux.setNbJoueurs(nbJoueurs);
-			    	aux.setListeJoueurs(listeJoueurs);
+				System.out.println("-- Saisie manuelle des équipes du tournoi --");
+				sc.nextLine();//Netoyer le clavier
+				do {
+					//On lit l'information de chaque equipe
+					System.out.println("ID Equipe: " + i);
+					System.out.println("  Nom: ");
+					nom = sc.nextLine();
+					System.out.println("  Description: ");
+					description = sc.nextLine();
+					System.out.println("  Nombre de joueurs: ");
+					String nJ = sc.nextLine();
+					nbJoueurs=Exception.mauvaisNumero(nJ);
+					listeJoueurs=inscrireJoueurs(nbJoueurs);
+					option=true;
+					aux = new Equipe(); //On cree l'object de l'Equipe
+					//On attribue un valor a chaque attribute
+					aux.setIdEquipe(i);
+					aux.setNom(nom);
+					aux.setDescription(description);
+					aux.setNbJoueurs(nbJoueurs);
+					aux.setListeJoueurs(listeJoueurs);
+					
+					do{
+						System.out.println("Ajouter une équipe supplémentaire? : 0.NON - 1.OUI");
+						C = sc.nextLine();
+						CH = Integer.parseInt(C);
+						if ((CH != 0)||(CH != 1)){
+							System.out.println("Choix invalide");
+						}
+						
+					}while((CH != 0)||(CH != 1));
+					
 
-			    	listeEquipe.add(aux);
-			    }
-			    break;
-			
-			case 2: System.out.println("Création automatique des Equipes: ");
-					JSONParser parser=new JSONParser();
-					String stringFileNomsEquipes;
-					try {
-						stringFileNomsEquipes = FilesTools.readFile (System.getProperty("user.dir")+"//src//data//nomequipe.json",StandardCharsets.UTF_8);
-						Object parsedFile = parser.parse(stringFileNomsEquipes);
-						JSONArray arrayNomsEquipe = (JSONArray)parsedFile;
+					listeEquipe.add(aux);
+				}while (CH == 1);
+				break;
 
-						for (i = 1; i <= NE; i++) {
-
-						description = "Equipe de veaulait";
+			case 2: System.out.println("-- Création automatique des Equipes -- ");
+				
+				sc.nextLine();
+				JSONParser parser=new JSONParser();
+				String stringFileNomsEquipes;
+				try {
+					stringFileNomsEquipes = FilesTools.readFile (System.getProperty("user.dir")+"//src//data//nomequipe.json",StandardCharsets.UTF_8);
+					Object parsedFile = parser.parse(stringFileNomsEquipes);
+					JSONArray arrayNomsEquipe = (JSONArray)parsedFile;
+					
+					//On demande le nombre d'equipes à inscrire 
+					do {
+						System.out.print("Combien d'équipes voulez-vous générer automatiquement ? (Max "+arrayNomsEquipe.size()+") : ");
+						N = sc.nextLine();
+						
+						NE=Exception.mauvaisNumero(N);
+						
+						if (NE>arrayNomsEquipe.size()){
+							System.out.println("Veuillez saisir un nombre inférieur ou égal à "+arrayNomsEquipe.size()+" :");
+						}
+					} while ((NE < 0) || (NE > arrayNomsEquipe.size()));
+	
+					for (i = 1; i <= NE; i++) {
+	
+						description = "Equipe de volley-ball";
 						nbJoueurs = 6;
 						listeJoueurs=inscrireJoueursAuto(nbJoueurs);
 						option=true;
@@ -98,20 +120,20 @@ public class InfoEquipes {
 						aux.setNbJoueurs(nbJoueurs);
 						aux.setListeJoueurs(listeJoueurs);
 						listeEquipe.add(aux);
-
+	
 						nom="";
-						}
-					} catch (IOException | ParseException e) {
-						e.printStackTrace();
-						}
-					
-					break;
+				}
+			} catch (IOException | ParseException e) {
+				e.printStackTrace();
+			}
+
+			break;
 			default:
 				System.out.println("Option incorrect!");
 				break;
 			}
 		}
-			
+
 		return listeEquipe;
 	}  
 

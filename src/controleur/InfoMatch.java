@@ -25,8 +25,7 @@ public class InfoMatch {
 			  System.out.println("Les scores ne sont pas valides, s'il vous plait ajoutez un autre resultat : ");
 			  resultMatch(match);
 		  }
-		  
-		  
+		  		  
 		  match.setScoreA(scoreA);
 		  match.setScoreB(scoreB);
 		  match.getGagnant().setNbVictoire(match.getGagnant().getNbVictoire()+1)  ;

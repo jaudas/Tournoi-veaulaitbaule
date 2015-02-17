@@ -71,7 +71,6 @@ public class Poule {
 				}
 				ind ++;						
 			}
-			//System.out.println("Nombre de matchs créés : "+listeM.size());
 		}
 	}
 	

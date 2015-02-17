@@ -15,55 +15,44 @@ public class Main {
 		ConsoleView.accueil(); 
 		
 //Initialisation du tournoi
-		LinkedList<Equipe> listeEquipes=InfoEquipes.inscrireEquipes();
-		ConsoleView.afficherEquipesEtJoueurs(listeEquipes);
-		
-		System.out.println("Modifier les équipes ? 1. Oui 2.Non");
-		int modification = 0;
-		modification = sc.nextInt();
-		if(modification == 1)
-		{
-			InfoEquipes.modifierEquipes(listeEquipes);
-		}
-		
-		System.out.println("LISTE DES EQUIPES ETABLIE ! Vous ne pourrez plus ajouter/supprimer d'équipes. " );
-		
+		//Demande du type de tournoi
 		int tournoiType = ConsoleView.choixTournoi();
 		Tournoi tournoi = new Tournoi();
 		
+		//Demande le nombre d'équipes dans le tournoi
+		LinkedList<Equipe> listeEquipes=InfoEquipes.inscrireEquipes();
+		ConsoleView.afficherEquipesEtJoueurs(listeEquipes);
+		
+		System.out.println("LISTE DES EQUIPES ETABLIE !");		
+		
+		//Si c'est un tournoi par élminitation directe
 		if (tournoiType == 1)
 		{
 			tournoi = new TournoiEliminationDirecte(listeEquipes);
 			System.out.println("Tournoi par élimination ! ");
 			TourEliminatoire tourInitial = new TourEliminatoire(tournoi.getListeEquipes());
 			tourInitial.creerTour(tournoi);
+			
 		}
+		//Tournoi par poules
 		if (tournoiType == 2)
 		{
 			tournoi = new TournoiParPoules(listeEquipes);
 			tournoi.creerPoules();
 			System.out.println("Tournoi par poules ! ");
+			ConsoleView.afficherPoules((TournoiParPoules)tournoi);
 			
 		}
 
-		System.out.println("taille de la liste : "+tournoi.getListeEquipes().size());
-		ConsoleView.afficherEquipes(tournoi.getListeEquipes());
+		//ConsoleView.afficherEquipes(tournoi.getListeEquipes());
 		
-		ConsoleView.menu(tournoi);
-		
-		
-		
-		
-		
+		ConsoleView.menu(tournoi);		
 		
 		//ConsoleView.affichermenu();
 				
 		//InfoEquipes.modifierEquipes(listeEquipe);
-		//ConsoleView.afficherEquipesEtJoueurs(listeEquipe);
-		
-		  
+		//ConsoleView.afficherEquipesEtJoueurs(listeEquipe);  
 	 
-      
       //ConsoleView.afficherEquipesEtJoueurs(listeEquipe);
 	}
 

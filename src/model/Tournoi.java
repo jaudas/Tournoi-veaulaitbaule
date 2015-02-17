@@ -37,8 +37,6 @@ public class Tournoi {
 	}
 	
 	public void addMatch(Match m) {
-		System.out.println(m.toString() + "ajouté à "+ listeMatchs.size());
-		
 		listeMatchs.add(m);
 	}
 

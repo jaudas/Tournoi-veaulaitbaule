@@ -15,10 +15,11 @@ public class Exception {
 		        	System.out.println("Veuillez saisir un nombre :");
 		        	str=sc.nextLine();
 		        	mauvaisNumero(str);
-		        	
 		    	}
 			num=Integer.parseInt(str);
-	 return  num; 
+			return  num; 
 	  } 
+	  
+	  
 
 }

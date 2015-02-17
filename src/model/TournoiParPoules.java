@@ -23,7 +23,7 @@ public class TournoiParPoules extends Tournoi {
 
 		// Calcul du nombre de poules necessaires
 		int nbpoul = nbeq / 4;// Nb poules complètes
-		System.out.println("Reste : " + (nbeq % 4));
+		
 		if (nbeq % 4 != 0)// S'il reste des équipes
 		{
 			this.nbPoules = nbpoul + 1;
