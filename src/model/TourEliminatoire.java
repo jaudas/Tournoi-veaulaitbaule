@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 public class TourEliminatoire {
 	private LinkedList<Equipe> listeEquipesTour;
-	private int qualifOffice;
-	private LinkedList<Match> listeMatchTour;
+	private int qualifOffice = -1;
+	private LinkedList<Match> listeMatchTour = new LinkedList<Match>();
 
 	public TourEliminatoire()
 	{
@@ -44,6 +44,7 @@ public class TourEliminatoire {
 
 	public void creerTour(Tournoi t)
 	{
+		this.setQualifOffice();
 		//Le nombre de matchs correspond au nombre de paire(s) d'équipes
 		int nbmatchs = (int)listeEquipesTour.size()/2;
 
@@ -77,9 +78,9 @@ public class TourEliminatoire {
 			
 			Match rencontre = new Match(e1,e2);
 			System.out.println(" >>> "+rencontre.toString()+" <<< ");
-			t.addMatch(rencontre);
 			this.listeMatchTour.add(rencontre);
-			
+			t.addMatch(rencontre);
+
 			j++;
 
 		}
@@ -108,6 +109,8 @@ public class TourEliminatoire {
 		return listeEqQualif;
 	}
 
+
+	
 
 
 

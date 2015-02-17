@@ -8,7 +8,7 @@ public class Tournoi {
 	protected String description;
 	protected LinkedList<Equipe> listeEquipes;
 	protected LinkedList<TourEliminatoire> listeToursEliminatoires;
-	protected LinkedList<Match> listeMatchs;
+	protected LinkedList<Match> listeMatchs = new LinkedList<Match>();
 	
 	//Get & Set
 	public int getNbEquipesInit() {
@@ -37,7 +37,9 @@ public class Tournoi {
 	}
 	
 	public void addMatch(Match m) {
-		this.listeMatchs.addLast(m);
+		System.out.println(m.toString() + "ajouté à "+ listeMatchs.size());
+		
+		listeMatchs.add(m);
 	}
 
 	//Methodes
@@ -60,5 +62,10 @@ public class Tournoi {
 	public void creerPoules() {
 		// TODO Auto-generated method stub
 	}
-
+	public void creerEqQualifiees() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

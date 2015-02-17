@@ -128,6 +128,7 @@ public class ConsoleView {
 				System.out.println("Afficher la liste des matchs à jouer = ceux qui sont dans la liste de matchs et qui ont 0-0 comme score (dans ConsoleView)") ;
 				System.out.println("Il faut créer la liste des matchs, avant le début du tour");
 				System.out.println("Permettre la saisie des résultats d'un match, si il y en a plusieurs (dans InfoMatch)");
+				afficherMatchNonJoues(tournoi);
 				break;
 
 			}
@@ -144,7 +145,7 @@ public class ConsoleView {
 		while(liTournoi.hasNext())
 		{
 			Match m = liTournoi.next();
-			if (m.getScoreB() == 0 && m.getScoreA()==0)
+			if (m.estJoue()==false)
 				listeM.add(m);
 
 		}

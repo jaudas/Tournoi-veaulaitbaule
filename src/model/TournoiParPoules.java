@@ -8,7 +8,7 @@ public class TournoiParPoules extends Tournoi {
 	int nbPoules;
 	private ArrayList<Poule> listePoules = new ArrayList<Poule>();
 	//private ArrayList<Match> listeMatchs = new ArrayList<Match>();
-	private static LinkedList<Equipe> eqPhaseEliminatoire = new LinkedList<Equipe>();
+	private LinkedList<Equipe> eqPhaseEliminatoire = new LinkedList<Equipe>();
 	// Liste des équipes qualifiées
 
 
@@ -53,9 +53,9 @@ public class TournoiParPoules extends Tournoi {
 
 			int ind = 0;
 
-			while ((equipesPoule.size() < 4) && (listeEquipes.isEmpty() == false)) {
+			while ((equipesPoule.size() < 4) && (super.listeEquipes.isEmpty() == false)) {
 				// Trouver une équipe au hasard dans la liste d'équipes
-				ind = (int) ((Math.random()) * listeEquipes.size());
+				ind = (int) ((Math.random()) * super.listeEquipes.size());
 				//System.out.println(ind);
 
 
@@ -71,7 +71,7 @@ public class TournoiParPoules extends Tournoi {
 			}
 
 			// System.out.println("Creation d'une poule");
-			Poule poule = new Poule();
+			Poule poule = new Poule("Poule " + numPoule, equipesPoule, this, numPoule);
 			if (poule != null) {
 				listePoules.add(poule);
 				// System.out.println("Poule "+numPoule+" ajoutée !");
@@ -83,50 +83,27 @@ public class TournoiParPoules extends Tournoi {
 
 	// Ordonner les équipes qualifiées pour les phases éliminatoires dans une
 	// liste
-	public LinkedList<Equipe> creerEqQualifiees() {
+	public void creerEqQualifiees() {
 		int ind = 0;
-		//System.out.println(listePoules.size());
-
-		/*
-		 * while (ind<listePoules.size()-1){
-		 * eqPhaseEliminatoire.add(listePoules.
-		 * get(ind).getEquipesPoule().get(0));
-		 * System.out.println("Equipe ajoutee : "
-		 * +listePoules.get(ind).getEquipesPoule().get(0).getNom());
-		 * 
-		 * //S'il y a une poule suivante dans la liste & S'il y a une équipe 2
-		 * dans la poule suivante de la liste if
-		 * (listePoules.get(ind+1).getEquipesPoule().get(1) != null){
-		 * System.out.println("Debut de l'ajout");
-		 * eqPhaseEliminatoire.add(listePoules
-		 * .get(ind+1).getEquipesPoule().get(1));
-		 * System.out.println("Equipe ajoutee aussi : "
-		 * +listePoules.get(ind+1).getEquipesPoule().get(1).getNom());
-		 * 
-		 * } ind ++; }
-		 */
 		// On ajoute la première équipe de la première poule
-		getEqPhaseEliminatoire().add(
+		eqPhaseEliminatoire.add(
 				listePoules.get(ind).getEquipesPoule().get(0));
 
 		while (ind < listePoules.size() - 1) {
 			ind++;
 			// On regarde s'il y a une deuxième équipe dans la poule suivante
 			if (listePoules.get(ind).getEquipesPoule().size() > 1) {
-				getEqPhaseEliminatoire().add(
+				eqPhaseEliminatoire.add(
 						listePoules.get(ind).getEquipesPoule().get(1));
 			}
 			// On ajoute la première équipe de la poule suivante
-			getEqPhaseEliminatoire().add(
+			this.eqPhaseEliminatoire.add(
 					listePoules.get(ind).getEquipesPoule().get(0));
 		}
 
-		getEqPhaseEliminatoire().add(
+		this.eqPhaseEliminatoire.add(
 				listePoules.get(0).getEquipesPoule().get(1));
-		// System.out.println("Ajout de la derniere equipe ! "+listePoules.get(0).getEquipesPoule().get(1));
 
-		// System.out.println(eqPhaseEliminatoire.size());
-		return getEqPhaseEliminatoire();
 	}
 
 	public ArrayList<Poule> getListePoules() {
@@ -150,12 +127,12 @@ public class TournoiParPoules extends Tournoi {
 		return listePoules;
 	}
 
-	public static LinkedList<Equipe> getEqPhaseEliminatoire() {
+	public LinkedList<Equipe> getEqPhaseEliminatoire() {
 		return eqPhaseEliminatoire;
 	}
 
-	public static void setEqPhaseEliminatoire(LinkedList<Equipe> eqPhaseEliminatoire) {
-		TournoiParPoules.eqPhaseEliminatoire = eqPhaseEliminatoire;
+	public void setEqPhaseEliminatoire(LinkedList<Equipe> eqPhaseEliminatoire) {
+		this.eqPhaseEliminatoire = eqPhaseEliminatoire;
 	}
 
 	public static List<Equipe> getListEquipeDuTournoi(String...names) {//var-args

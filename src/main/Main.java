@@ -35,6 +35,8 @@ public class Main {
 		{
 			tournoi = new TournoiEliminationDirecte(listeEquipes);
 			System.out.println("Tournoi par élimination ! ");
+			TourEliminatoire tourInitial = new TourEliminatoire(tournoi.getListeEquipes());
+			tourInitial.creerTour(tournoi);
 		}
 		if (tournoiType == 2)
 		{
@@ -46,7 +48,10 @@ public class Main {
 
 		System.out.println("taille de la liste : "+tournoi.getListeEquipes().size());
 		ConsoleView.afficherEquipes(tournoi.getListeEquipes());
+		
 		ConsoleView.menu(tournoi);
+		
+		
 		
 		
 		

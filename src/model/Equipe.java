@@ -36,12 +36,9 @@ public class Equipe implements Comparable<Equipe> {
 		this.listeJoueurs= null;
 
 		//Ajout du nom, depuis une liste de couleurs stockées dans un JSON
-
 		int idnom = (int)(Math.random()*listeNom.size());
 		this.nom = (String) (listeNom.get(idnom));
-		System.out.println("Avant" + listeNom.size());
 		listeNom.remove(idnom);
-		System.out.println("Après" +listeNom.size());
 	}
 
 	public Equipe(String nom) {

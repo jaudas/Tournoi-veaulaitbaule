@@ -9,14 +9,24 @@ public class Match {
 	private EnumTypeMatch type;
 
 	// Constructeurs
-	public Match(Equipe equipeA, Equipe equipeB, EnumTypeMatch typeMatch) {
+	public Match(Equipe equipeA, Equipe equipeB) {
 		this.equipeA = equipeA;
 		this.equipeA.ajouterMatchJoue();
 		this.equipeB = equipeB;
 		this.equipeB.ajouterMatchJoue();
 		this.scoreA = 0;
 		this.scoreB = 0;
-		this.type = typeMatch;
+
+	}
+	
+	public Match(Equipe equipeA, Equipe equipeB, EnumTypeMatch type) {
+		this.equipeA = equipeA;
+		this.equipeA.ajouterMatchJoue();
+		this.equipeB = equipeB;
+		this.equipeB.ajouterMatchJoue();
+		this.scoreA = 0;
+		this.scoreB = 0;
+		this.type = type;
 	}
 
 	public Match() {
@@ -70,6 +80,8 @@ public class Match {
 		}
 
 	}
+	
+
 
 	public void setScoreAleatoire() {
 		scoreA = (int) (Math.random() * 10);
