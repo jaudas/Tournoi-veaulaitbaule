@@ -8,8 +8,6 @@ import java.util.Scanner;
 import controleur.InfoEquipes;
 import model.*;
 
-
-
 public class ConsoleView {
 	static Scanner sc = new Scanner(System.in);
 	static final int EXITMENU = 5;
@@ -81,12 +79,48 @@ public class ConsoleView {
 		System.out.println("From ConsoleView.afficherMatchsJoués");
 		System.out.println("-- Match Joués --");	
 		
-		for (int i = 0; i <listeMatchs.size(); i++){
-			if (listeMatchs.get(i).estJoue() == true){				
+		int temp = 0;
+		int i=0;
+		
+		for (i = 0; i <listeMatchs.size(); i++){
+			if (listeMatchs.get(i).estJoue() == true){		
+				
+				if (temp!=listeMatchs.get(i).getType())
+				{
+					temp=listeMatchs.get(i).getType();
+					ConsoleView.afficherCategorieMatch(temp);
+				}
+				
 				System.out.println("Match "+i+" : "+listeMatchs.get(i).toString());
 			}
 		}
 		
+		if (temp==0)
+			System.out.println("Aucun match n'a été joué pour le moment :(");
+
+	}
+	
+	public static void afficherCategorieMatch(int ID)
+	{
+		if (ID>0 && ID<10)
+		{
+			System.out.println("----- Matchs joués dans la Poule "+ID+" -----");
+		}
+		
+		if (ID==-1)
+			System.out.println("----- FINALE -----");
+		if (ID==-2)
+			System.out.println("----- DEMI-FINALE -----");
+		if (ID==-3)
+			System.out.println("----- QUART DE FINALE -----");
+		if (ID==-4)
+			System.out.println("----- HUITIEME DE FINALE -----");
+		if (ID==-5)
+			System.out.println("----- SEIXIEME DE FINALE -----");
+		if (ID==-6)
+			System.out.println("----- TRENTE DEUXIEME DE FINALE -----");
+		
+		else System.out.println("Catégorie de Match imcomprise :(");
 	}
 
 	public static void afficherEquipesEnJeu()
@@ -116,7 +150,6 @@ public class ConsoleView {
 				break;
 
 			case 2 : 
-				System.out.println("Afficher les résultats des derniers matchs : A faire ! ");
 				afficherMatchsJoues(tournoi.getListeMatchs());
 				break;
 

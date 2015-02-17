@@ -7,7 +7,6 @@ public class Poule {
 	//Attributs
 	private String nom;
 	private ArrayList<Equipe> equipesPoule;
-	private EnumTypeMatch type;
 	
 	//Constructeurs
 	public Poule(){
@@ -48,7 +47,7 @@ public class Poule {
 	
 	//Création des matchs des poules. Les matchs seront stockés dans une liste de matchs qui est un attribut de la classe TournoiParPoules
 	public void creerTableauMatchs(Tournoi tournoi){
-		int ind = 0;
+		int ind = 0; //Indice de la poule
 		
 		if (equipesPoule.size() == 1){
 			System.out.println("Une seule équipe dans la poule. Pas de tableau de matchs.");
@@ -58,15 +57,15 @@ public class Poule {
 		{
 			while (ind<equipesPoule.size()-1)
 			{									
-				Match match1 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+1), this.type);
+				Match match1 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+1), (ind+1));
 				tournoi.addMatch(match1);
 				
 				if (ind+2<equipesPoule.size()){
-					Match match2 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+2), this.type);
+					Match match2 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+2), (ind+1));
 					tournoi.addMatch(match2);
 				}
 				if (ind+3<equipesPoule.size()){
-					Match match3 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+3), this.type);
+					Match match3 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+3), (ind+1));
 					tournoi.addMatch(match3);
 				}
 				ind ++;						

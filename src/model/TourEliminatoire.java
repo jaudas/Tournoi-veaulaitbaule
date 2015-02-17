@@ -6,6 +6,13 @@ public class TourEliminatoire {
 	private LinkedList<Equipe> listeEquipesTour;
 	private int qualifOffice = -1;
 	private LinkedList<Match> listeMatchTour = new LinkedList<Match>();
+	
+	final int FINALE = -1;
+	final int DEMIFINALE = -2;
+	final int QUARTDEFINALE = -3;
+	final int HUITIEMEDEFINALE = -4;
+	final int SEIZIEMEDEFINALE = -5;
+	final int TRENTEDEUXIEMEDEFINALE =-6;
 
 	public TourEliminatoire()
 	{
@@ -86,6 +93,30 @@ public class TourEliminatoire {
 		}
 
 
+	}
+	
+	public int trouverPhaseTour(int nbequipes)
+	{
+		if (nbequipes<2)
+				return 0;
+		
+		if (nbequipes==2)
+				return FINALE;
+		
+		if (nbequipes<=4)
+				return DEMIFINALE;
+		
+		if (nbequipes <=8)
+				return QUARTDEFINALE;
+		
+		if (nbequipes <=16)
+			return HUITIEMEDEFINALE;
+		
+		if (nbequipes <=32)
+			return SEIXIEMEDEFINALE;
+		
+		else return TRENTEDEUXIEMEDEFINALE;
+		
 	}
 
 	public LinkedList<Equipe> equipesQualifiees()

@@ -6,7 +6,14 @@ public class Match {
 	private Equipe equipeB;
 	private int scoreA;
 	private int scoreB;
-	private EnumTypeMatch type;
+	private int type;
+	
+	final int FINALE = -1;
+	final int DEMIFINALE = -2;
+	final int QUARTDEFINALE = -3;
+	final int HUITIEMEDEFINALE = -4;
+	final int SEIZIEMEDEFINALE = -5;
+	final int TRENTEDEUXIEMEDEFINALE =-6;
 
 	// Constructeurs
 	public Match(Equipe equipeA, Equipe equipeB) {
@@ -19,7 +26,7 @@ public class Match {
 
 	}
 	
-	public Match(Equipe equipeA, Equipe equipeB, EnumTypeMatch type) {
+	public Match(Equipe equipeA, Equipe equipeB, int type) {
 		this.equipeA = equipeA;
 		this.equipeA.ajouterMatchJoue();
 		this.equipeB = equipeB;
@@ -57,6 +64,11 @@ public class Match {
 		return scoreA;
 		
 	}
+	
+	public int getType()
+	{
+		return type;
+	}
 
 	public void setScoreA(int scoreA) {
 		this.scoreA = scoreA;
@@ -91,7 +103,8 @@ public class Match {
 	// Methodes
 	public String toString() {
 		return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
-				+ this.equipeB.getNom();
+				+ this.equipeB.getNom()+"C'est un match de ";
+		
 	}
 
 	public void ajouterScore(int scoreA, int scoreB) {
