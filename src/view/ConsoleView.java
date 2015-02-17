@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
@@ -52,22 +53,40 @@ public class ConsoleView {
 
 	public static void accueil() {
 		System.out.println(" From ConsoleView.accueil : Texte d'accueil à modifier !");
-
+ 
 	}
-
-	public static void afficherPoules() {
+	
+	//Afficher les poules et leurs équipes. Passer en paramètre la liste de poules d'un objet de type TournoiParPoules
+	public static void afficherPoules(ArrayList<Poule> listePoules) {
 		System.out.println(" From ConsoleView.afficherPoules : Afficher le numero de la poule et la liste des équipes qui y sont.");
 
+		for (int cptPoule = 0; cptPoule < listePoules.size(); cptPoule ++){
+			Poule pouleAffichage = listePoules.get(cptPoule);
+			System.out.println("-- "+pouleAffichage.getNom()+" --");
+			for (int i = 0; i < pouleAffichage.getEquipesPoule().size(); i++) {
+				System.out.println("Equipe " + i + ": "+ pouleAffichage.getEquipesPoule().get(i).getNom());
+			}
+		}
 	}
 
-	public static void afficherMatchsJoues()
+	
+	public static void afficherMatchsJoues(LinkedList<Match> listeMatchs)
 	{
 		System.out.println("From ConsoleView.afficherMatchsJoués");
+		System.out.println("-- Match Joués --");	
+		
+		for (int i = 0; i <listeMatchs.size(); i++){
+			if (listeMatchs.get(i).estJoue() == true){				
+				System.out.println("Match "+i+" : "+listeMatchs.get(i).toString());
+			}
+		}
+		
 	}
 
 	public static void afficherEquipesEnJeu()
 	{
 		System.out.println("From ConsoleView.afficherEquipesEnJeu");
+		
 	}
 
 	public static void menu(Tournoi tournoi)
@@ -93,7 +112,7 @@ public class ConsoleView {
 
 			case 2 : 
 				System.out.println("Afficher les résultats des derniers matchs : A faire ! ");
-				afficherMatchsJoues();
+				afficherMatchsJoues(tournoi.getListeMatchs());
 				break;
 
 			case 3 : 

@@ -26,6 +26,7 @@ public class Tournoi {
 	public LinkedList<Equipe> getListeEquipes() {
 		return this.listeEquipes;
 	}
+
 	
 	public LinkedList<Match> getListeMatchs() {
 		return this.listeMatchs;

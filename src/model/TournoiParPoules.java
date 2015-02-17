@@ -7,6 +7,7 @@ import java.util.List;
 public class TournoiParPoules extends Tournoi {
 	int nbPoules;
 	private ArrayList<Poule> listePoules = new ArrayList<Poule>();
+	//private ArrayList<Match> listeMatchs = new ArrayList<Match>();
 	private static LinkedList<Equipe> eqPhaseEliminatoire = new LinkedList<Equipe>();
 	// Liste des équipes qualifiées
 
@@ -29,8 +30,7 @@ public class TournoiParPoules extends Tournoi {
 		} else {
 			this.nbPoules = nbpoul;
 		}
-		System.out
-				.println("Le nombre de poules à créer est : " + this.nbPoules);
+		//System.out.println("Le nombre de poules à créer est : " + this.nbPoules);
 	}
 
 	// Méthodes
@@ -43,7 +43,6 @@ public class TournoiParPoules extends Tournoi {
 	}
 
 	// Créer les poules du tournoi
-
 	public ArrayList<Poule> creerPoules(List<Equipe> listeEquipes) {
 		int cptPoules = this.nbPoules;
 		int numPoule = 1;
@@ -53,11 +52,10 @@ public class TournoiParPoules extends Tournoi {
 
 			int ind = 0;
 
-			while ((equipesPoule.size() < 4)
-					&& (listeEquipes.isEmpty() == false)) {
+			while ((equipesPoule.size() < 4) && (listeEquipes.isEmpty() == false)) {
 				// Trouver une équipe au hasard dans la liste d'équipes
 				ind = (int) ((Math.random()) * listeEquipes.size());
-				System.out.println(ind);
+				//System.out.println(ind);
 
 				// Ajouter l'équipe choisie dans une poule
 				equipesPoule.add(listeEquipes.get(ind));
@@ -71,7 +69,7 @@ public class TournoiParPoules extends Tournoi {
 			}
 
 			// System.out.println("Creation d'une poule");
-			Poule poule = new Poule("Poule " + numPoule + "", equipesPoule);
+			Poule poule = new Poule("Poule " + numPoule + "", equipesPoule, super.listeMatchs, numPoule);
 			if (poule != null) {
 				listePoules.add(poule);
 				// System.out.println("Poule "+numPoule+" ajoutée !");
@@ -87,7 +85,7 @@ public class TournoiParPoules extends Tournoi {
 	// liste
 	public LinkedList<Equipe> creerEqQualifiees() {
 		int ind = 0;
-		System.out.println(listePoules.size());
+		//System.out.println(listePoules.size());
 
 		/*
 		 * while (ind<listePoules.size()-1){
@@ -131,6 +129,14 @@ public class TournoiParPoules extends Tournoi {
 		return getEqPhaseEliminatoire();
 	}
 
+	public ArrayList<Poule> getListePoules() {
+		return listePoules;
+	}
+
+	public void setListePoules(ArrayList<Poule> listePoules) {
+		this.listePoules = listePoules;
+	}
+
 	// Déroulement d'un tournoi lors des phases de poules
 	public void deroulementTournoiPoule() {
 
@@ -148,8 +154,7 @@ public class TournoiParPoules extends Tournoi {
 		return eqPhaseEliminatoire;
 	}
 
-	public static void setEqPhaseEliminatoire(
-			LinkedList<Equipe> eqPhaseEliminatoire) {
+	public static void setEqPhaseEliminatoire(LinkedList<Equipe> eqPhaseEliminatoire) {
 		TournoiParPoules.eqPhaseEliminatoire = eqPhaseEliminatoire;
 	}
 

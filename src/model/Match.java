@@ -6,15 +6,17 @@ public class Match {
 	private Equipe equipeB;
 	private int scoreA;
 	private int scoreB;
+	private EnumTypeMatch type;
 
 	// Constructeurs
-	public Match(Equipe equipeA, Equipe equipeB) {
+	public Match(Equipe equipeA, Equipe equipeB, EnumTypeMatch typeMatch) {
 		this.equipeA = equipeA;
 		this.equipeA.ajouterMatchJoue();
 		this.equipeB = equipeB;
 		this.equipeB.ajouterMatchJoue();
 		this.scoreA = 0;
 		this.scoreB = 0;
+		this.type = typeMatch;
 	}
 
 	public Match() {
@@ -83,6 +85,13 @@ public class Match {
 	public void ajouterScore(int scoreA, int scoreB) {
 		this.scoreA = scoreA;
 		this.scoreB = scoreB;
+	}
+	
+	public boolean estJoue(){
+		if ((this.scoreA == 0) && (this.scoreB == 0)){
+			return false;
+		}
+		return true;
 	}
 
 }
