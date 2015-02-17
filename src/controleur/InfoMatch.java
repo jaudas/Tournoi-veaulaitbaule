@@ -17,10 +17,10 @@ public class InfoMatch {
 		  System.out.println("Ajouter le resultat de match:");
 		  System.out.println("Score "+match.getEquipeA().getNom()+" :");
 		  String sA=sc.nextLine();
-		  int scoreA=exception(sA);
+		  int scoreA=Exception.mauvaisNumero(sA);
 		  System.out.println("Score "+match.getEquipeB().getNom()+" :");
 		  String sB=sc.nextLine();
-		  int scoreB=exception(sB);
+		  int scoreB=Exception.mauvaisNumero(sB);
 		  if (scoreA==scoreB){
 			  System.out.println("Les scores ne sont pas valides, s'il vous plait ajoutez un autre resultat : ");
 			  resultMatch(match);
@@ -33,21 +33,6 @@ public class InfoMatch {
 		 
 	  }
 	  
-	  public static int exception(String str){
-		  
-		  int num=0;
-			try{
-		        	num=Integer.parseInt(str);
-		    	}catch(NumberFormatException ex){
-		        	System.out.println("Ce n'est pas un numero!  ");
-		        	System.out.println("Veuillez saisir un nombre :");
-		        	str=sc.nextLine();
-		        	exception(str);
-		        	
-		    	}
-			num=Integer.parseInt(str);
-	 return  num; 
-	  } 
-		
+	
 
 }
