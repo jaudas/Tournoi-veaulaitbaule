@@ -201,9 +201,12 @@ public class ConsoleView {
 			
 		}
 		
-		if (i==1)
+		if (i==1 && t.getListeToursEliminatoires().getLast().getListeEquipesTour().size() < 2)
 		{
 			t.creerTour();
 		}
+		
+		else 
+			System.out.println("Le tournoi est fini ! ");
 	}
 }

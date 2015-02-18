@@ -11,15 +11,18 @@ public class TournoiEliminationDirecte extends Tournoi {
 		super.description = descr;
 		super.listeEquipes = listEq;
 		super.listeMatchs = new LinkedList<Match>();
+		super.listeToursEliminatoires = new LinkedList <TourEliminatoire>();
 	}
 
 
 	public TournoiEliminationDirecte(LinkedList<Equipe> listEq) {
 		super.listeEquipes = listEq;
+		super.listeToursEliminatoires = new LinkedList <TourEliminatoire>();
 	}
 	
 	public TournoiEliminationDirecte() {
 		super();
+		super.listeToursEliminatoires = new LinkedList <TourEliminatoire>();
 	}
 
 	// Methode

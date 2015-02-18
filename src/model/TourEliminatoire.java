@@ -104,4 +104,9 @@ public class TourEliminatoire {
 		return this.listeMatchTour;
 	}
 
+	public void setListeEquipes(LinkedList<Equipe> listeEquipes) {
+		this.listeEquipesTour = listeEquipes;
+		
+	}
+
 }

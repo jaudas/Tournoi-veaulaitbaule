@@ -13,8 +13,21 @@ public class Randomator {
 	{
 		//On complete les matchs non joués de la liste 
 		tirageMatchsGeneres(tAleatoire.getListeMatchs());
-		tAleatoire.creerTour();
-		ConsoleView.afficherMatchsJoues(tAleatoire.getListeMatchs());
+		
+		if((tAleatoire.getListeToursEliminatoires() != null) && (tAleatoire.getListeEquipes().size()>2))
+		{
+			tAleatoire.creerTour();
+		}
+		
+		//Tant qu'il y a plus d'une équipe en jeu 
+		// = tant que le dernier tour de la liste de tours 
+		while (tAleatoire.getListeToursEliminatoires().getLast().getListeEquipesTour().size() < 2)
+		{
+			tAleatoire.creerTour();
+			ConsoleView.afficherMatchsJoues(tAleatoire.getListeMatchs());
+		}
+			
+
 	}
 	
 	public static void tirageMatchsGeneres(LinkedList<Match> listeMatchTournoi)
@@ -28,6 +41,7 @@ public class Randomator {
 				System.out.println("Match généré ! ");
 				matchTemp.setScoreAleatoire();
 				liMatch.set(matchTemp);
+				System.out.println(matchTemp.toString());
 			}
 		}
 	}

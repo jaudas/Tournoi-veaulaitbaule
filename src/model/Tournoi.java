@@ -35,6 +35,10 @@ public class Tournoi {
 	public void setListeEquipes(LinkedList<Equipe> listeEquipes) {
 		this.listeEquipes = listeEquipes;
 	}
+	
+	public LinkedList<TourEliminatoire> getListeToursEliminatoires() {
+		return this.listeToursEliminatoires;
+	}
 
 	public void addMatch(Match m) {
 		listeMatchs.add(m);
@@ -64,20 +68,20 @@ public class Tournoi {
 		// TODO Auto-generated method stub
 
 	}
-	public void creerTour()
+	
+	public void creerTour() 
 	{
-		TourEliminatoire tour;
-		if (this.listeToursEliminatoires == null)
+		TourEliminatoire tour = new TourEliminatoire();
+		if (this.listeToursEliminatoires.isEmpty() == true)
 		{
-			tour = new TourEliminatoire(this.listeEquipes);
+			tour.setListeEquipes(this.listeEquipes);
 		}
 
 		else 
 		{
 			LinkedList <Equipe> listetemp = new LinkedList<Equipe>();
 			listetemp = this.listeToursEliminatoires.getLast().equipesQualifiees();
-			
-			tour = new TourEliminatoire(listetemp);
+			tour.setListeEquipes(listetemp);
 		}
 
 		tour.setQualifOffice();
@@ -121,6 +125,8 @@ public class Tournoi {
 			j++;
 
 		}
+		//On ajoute le tour dans la liste des tours du tournoi.
+		this.listeToursEliminatoires.add(tour);
 
 
 	}
