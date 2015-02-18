@@ -7,7 +7,7 @@ public class Match {
 	private int scoreA;
 	private int scoreB;
 	private int type;
-	
+
 	final int FINALE = -1;
 	final int DEMIFINALE = -2;
 	final int QUARTDEFINALE = -3;
@@ -25,7 +25,7 @@ public class Match {
 		this.scoreB = 0;
 
 	}
-	
+
 	public Match(Equipe equipeA, Equipe equipeB, int type) {
 		this.equipeA = equipeA;
 		this.equipeA.ajouterMatchJoue();
@@ -62,9 +62,9 @@ public class Match {
 
 	public int getScoreA() {
 		return scoreA;
-		
+
 	}
-	
+
 	public int getType()
 	{
 		return type;
@@ -95,27 +95,41 @@ public class Match {
 
 
 	public void setScoreAleatoire() {
-		scoreA = (int) (Math.random() * 10);
-		scoreB = (int) (Math.random() * 10);
-	}
-
-	// Methodes
-	public String toString() {
-		return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
-				+ this.equipeB.getNom();//+"\nC'est un match de "+this.type;
+		double tirage = Math.random() * 4;
+		System.out.println("tirage = " + tirage);
 		
-	}
-
-	public void ajouterScore(int scoreA, int scoreB) {
-		this.scoreA = scoreA;
-		this.scoreB = scoreB;
-	}
-	
-	public boolean estJoue(){
-		if ((this.scoreA == 0) && (this.scoreB == 0)){
-			return false;
+		if (tirage < 1)//Entre O et 1
+			scoreA = 0;
+		
+		else if (tirage >= 1 && tirage<2)//Entre 1 et 2
+			scoreA = 1;
+		
+		else if (tirage >= 2 && tirage<3)//Entre 2 et 3
+			scoreA = 2;
+		
+		else if (tirage <= 4)//Entre 3 et 4
+			scoreA = 3;
+		
+		scoreB = (3 - scoreA);
 		}
-		return true;
-	}
 
-}
+		// Methodes
+		public String toString() {
+			return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
+					+ this.equipeB.getNom();//+"\nC'est un match de "+this.type;
+
+		}
+
+		public void ajouterScore(int scoreA, int scoreB) {
+			this.scoreA = scoreA;
+			this.scoreB = scoreB;
+		}
+
+		public boolean estJoue(){
+			if ((this.scoreA == 0) && (this.scoreB == 0)){
+				return false;
+			}
+			return true;
+		}
+
+	}

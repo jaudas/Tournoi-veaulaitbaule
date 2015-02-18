@@ -7,11 +7,12 @@ import java.util.Scanner;
 
 import controleur.InfoEquipes;
 import controleur.InfoMatch;
+import controleur.Randomator;
 import model.*;
 
 public class ConsoleView {
 	static Scanner sc = new Scanner(System.in);
-	static final int EXITMENU = 5;
+	static final int EXITMENU = 6;
 	
 	public static void accueil() {
 		System.out.println("Bonjour ! Bienvenue dans le logiciel de gestion de tournoi de volley-ball.\n"
@@ -134,35 +135,22 @@ public class ConsoleView {
 		System.out.println("From ConsoleView.afficherEquipesEnJeu");
 		
 	}
-	
-	public static void afficherMatchNonJoues(Tournoi t)
-	{	
-		ListIterator<Match> li = t.getListeMatchs().listIterator();	
-		Match matchTemp;
-		int i = 1;
 
-		System.out.println("-- Liste des matchs à jouer: --");
-		while(li.hasNext()){
-			matchTemp = li.next();
-			if (matchTemp.estJoue() == false){
-			System.out.println("Match "+i+" : "+matchTemp.toString());
-			}
-			i ++;
-		}
-	}
 
 	public static void menu(Tournoi tournoi, int type)
 	{
 		int choixMenu = 0;
 
 		do{
+			
 			System.out.println("\n-- Menu principal --");
 			System.out.println("Que souhaitez-vous faire ?");
 			System.out.println("1. Modifier les équipes");
 			System.out.println("2. Afficher les résultats des matchs");
 			System.out.println("3. Afficher/Modifier les équipes");
 			System.out.println("4. Saisir les résultats d'un match");
-			System.out.println("5. Exit");
+			System.out.println("5. Générer la suite du tournoi automatiquement");
+			System.out.println("6. Exit");
 
 			choixMenu=sc.nextInt();
 
@@ -185,10 +173,37 @@ public class ConsoleView {
 				afficherMatchNonJoues(tournoi);
 				InfoMatch.selectionnerMatch(tournoi.getListeMatchs());
 				break;
+				
+			case 5 : 
+				System.out.println("From consoleView : creer les fonctionnalités dans le randomator");
+				Randomator.finirtournoi(tournoi);
+				break;
 
 			}
 
 		}
 		while (choixMenu != EXITMENU); 
+	}
+
+	public static void afficherMatchNonJoues(Tournoi t)
+	{	
+		ListIterator<Match> li = t.getListeMatchs().listIterator();	
+		Match matchTemp;
+		int i = 1;
+
+		System.out.println("-- Liste des matchs à jouer: --");
+		while(li.hasNext()){
+			matchTemp = li.next();
+			if (matchTemp.estJoue() == false){
+			System.out.println("Match "+i+" : "+matchTemp.toString());
+			i ++;
+			}
+			
+		}
+		
+		if (i==1)
+		{
+			t.creerTour();
+		}
 	}
 }
