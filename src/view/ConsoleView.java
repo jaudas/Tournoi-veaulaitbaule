@@ -98,7 +98,7 @@ public class ConsoleView {
 					ConsoleView.afficherCategorieMatch(temp);
 				}
 				
-				System.out.println("Match "+i+" : "+listeMatchs.get(i).toString());
+				System.out.println("Match "+(i+1)+" : "+listeMatchs.get(i).toString());
 			}
 		}
 		
@@ -135,7 +135,30 @@ public class ConsoleView {
 		System.out.println("From ConsoleView.afficherEquipesEnJeu");
 		
 	}
+	
+	public static boolean afficherMatchNonJoues(Tournoi t)
+	{	
+		ListIterator<Match> li = t.getListeMatchs().listIterator();	
+		Match matchTemp;
+		int i = 1;
+		boolean flag = false;
 
+		System.out.println("-- Liste des matchs à jouer: --");
+		
+		while(li.hasNext()){
+			matchTemp = li.next();
+			if (matchTemp.estJoue() == false){
+			System.out.println("Match "+i+" : "+matchTemp.toString());
+			flag = true;
+			}
+			i ++;
+		}
+		//Dans le cas où tous les matchs ont été joués
+		if (flag == false){
+			System.out.println ("Tous les matchs ont été joués !");
+		}
+		return flag;
+	}
 
 	public static void menu(Tournoi tournoi, int type)
 	{
@@ -146,11 +169,12 @@ public class ConsoleView {
 			System.out.println("\n-- Menu principal --");
 			System.out.println("Que souhaitez-vous faire ?");
 			System.out.println("1. Modifier les équipes");
-			System.out.println("2. Afficher les résultats des matchs");
+			System.out.println("2. Afficher les résultats des matchs joués");
 			System.out.println("3. Afficher/Modifier les équipes");
 			System.out.println("4. Saisir les résultats d'un match");
 			System.out.println("5. Générer la suite du tournoi automatiquement");
 			System.out.println("6. Exit");
+
 
 			choixMenu=sc.nextInt();
 
@@ -171,7 +195,9 @@ public class ConsoleView {
 
 			case 4 : 
 				afficherMatchNonJoues(tournoi);
-				InfoMatch.selectionnerMatch(tournoi.getListeMatchs());
+				if (afficherMatchNonJoues(tournoi) == true){
+					InfoMatch.selectionnerMatch(tournoi.getListeMatchs());
+				}
 				break;
 				
 			case 5 : 

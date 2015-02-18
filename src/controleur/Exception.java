@@ -18,6 +18,6 @@ public class Exception {
 		    	}
 			num=Integer.parseInt(str);
 			return  num; 
-	  } 
+	  }
 	  
 }

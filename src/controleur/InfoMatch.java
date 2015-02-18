@@ -18,13 +18,28 @@ public class InfoMatch {
 	 
 	  public static void resultMatch(Match match){
 		  System.out.println("Ajouter le resultat du match:");
-		  System.out.println("Score de "+match.getEquipeA().getNom()+" :");
-		  String sA=sc.nextLine();
-		  int scoreA=Exception.mauvaisNumero(sA);
+		  int scoreA = 0;
+		  int scoreB = 0;
 		  
-		  System.out.println("Score de "+match.getEquipeB().getNom()+" :");
-		  String sB=sc.nextLine();
-		  int scoreB=Exception.mauvaisNumero(sB);
+		  do{
+			  System.out.println("Score de "+match.getEquipeA().getNom()+" :");
+			  String sA=sc.nextLine();
+			  scoreA=Exception.mauvaisNumero(sA);
+			  if (scoreA>3){
+				  System.out.println("Un score au volley-ball ne peut être supérieur à 3. Score incorrect.");
+			  }
+		  }while (scoreA>3);
+		  
+		  do{
+			  System.out.println("Score de "+match.getEquipeB().getNom()+" :");
+			  String sB=sc.nextLine();
+			  scoreB=Exception.mauvaisNumero(sB);
+			  if (scoreB>3){
+				  System.out.println("Un score au volley-ball ne peut être supérieur à 3. Score incorrect.");
+			  }
+		  }while (scoreB>3);
+		  
+		 
 		  
 		  if (scoreA==scoreB){
 			  System.out.println(" ! Les scores ne sont pas valides : égalité impossible au volley-ball.\nS'il vous plait ajoutez un autre resultat : ");
