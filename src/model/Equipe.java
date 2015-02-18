@@ -144,7 +144,7 @@ public class Equipe implements Comparable<Equipe> {
 	//Méthodes
 	@Override
 	public String toString(){
-		return "Equipe ID: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description;
+		return "Equipe n°: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description;
 
 	}
 

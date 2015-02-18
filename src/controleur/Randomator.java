@@ -75,6 +75,27 @@ public class Randomator {
 
 	}
 
+	/*public LinkedList<Equipe> equipesQualifieesAleatoire(TourEliminatoire t)
+	{
+		LinkedList<Equipe> listeEqQualif = new LinkedList<Equipe>();
+		int qualif = t.getQualifOffice();
+
+		//Si une equipe a ete qualifiée d'office, on l'ajoute à la liste des équipes qualifiées
+		if (qualif != -1)
+		{
+			listeEqQualif.add(t.getListeEquipesTour().get(qualif));
+		}
+
+		//Pour chaque match, on ajoute le gagnant à la liste des équipes qualifiées 
+		for(int i = 0; i < t.getListeMatchsTour().size(); i++)
+		{
+			System.out.println("\n C'est parti pour les matchs !");
+			listeMatchTour.get(i).setScoreAleatoire();
+			System.out.println(" >>> "+listeMatchTour.get(i).toString()+" <<< -- Gagnant : " + listeMatchTour.get(i).getGagnant().getNom());
+			listeEqQualif.add(listeMatchTour.get(i).getGagnant());
+		}
+		return listeEqQualif;
+	}*/
 	
 
 }

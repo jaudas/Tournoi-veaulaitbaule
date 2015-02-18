@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
-import controleur.Exception;
 import controleur.InfoEquipes;
 import controleur.InfoMatch;
 import model.*;
@@ -185,5 +184,9 @@ public class ConsoleView {
 			}
 			i ++;
 		}
+		
+		if (i==1)
+			t.creerTour();
+		
 	}
 }
