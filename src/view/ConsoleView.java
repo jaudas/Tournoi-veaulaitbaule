@@ -40,11 +40,16 @@ public class ConsoleView {
 		}
 	}
 	
-	public static void afficherEquipes(LinkedList<Equipe> listeEquipe){     
+	public static void afficherEquipes(Tournoi tournoi, int type){     
 		System.out.println("-- Equipes du tournoi : -- : ");
-		System.out.println(listeEquipe.size());
-		for(int i = 0; i< listeEquipe.size(); i++){
-			System.out.println(listeEquipe.get(i).toString());
+		if (type == 1){
+			System.out.println(tournoi.getListeEquipes().size());
+			for(int i = 0; i< tournoi.getListeEquipes().size(); i++){
+				System.out.println(tournoi.getListeEquipes().get(i).toString());				
+			}
+		}
+		else if (type == 2){
+			afficherPoules((TournoiParPoules)tournoi);
 		}
 	}
 	
@@ -129,8 +134,24 @@ public class ConsoleView {
 		System.out.println("From ConsoleView.afficherEquipesEnJeu");
 		
 	}
+	
+	public static void afficherMatchNonJoues(Tournoi t)
+	{	
+		ListIterator<Match> li = t.getListeMatchs().listIterator();	
+		Match matchTemp;
+		int i = 1;
 
-	public static void menu(Tournoi tournoi)
+		System.out.println("-- Liste des matchs à jouer: --");
+		while(li.hasNext()){
+			matchTemp = li.next();
+			if (matchTemp.estJoue() == false){
+			System.out.println("Match "+i+" : "+matchTemp.toString());
+			}
+			i ++;
+		}
+	}
+
+	public static void menu(Tournoi tournoi, int type)
 	{
 		int choixMenu = 0;
 
@@ -139,7 +160,7 @@ public class ConsoleView {
 			System.out.println("Que souhaitez-vous faire ?");
 			System.out.println("1. Modifier les équipes");
 			System.out.println("2. Afficher les résultats des matchs");
-			System.out.println("3. Afficher toutes les équipes");
+			System.out.println("3. Afficher/Modifier les équipes");
 			System.out.println("4. Saisir les résultats d'un match");
 			System.out.println("5. Exit");
 
@@ -156,7 +177,8 @@ public class ConsoleView {
 				break;
 
 			case 3 : 
-				afficherEquipes(tournoi.getListeEquipes());
+				afficherEquipes(tournoi, type);
+				InfoEquipes.questionModif(tournoi);
 				break;
 
 			case 4 : 
@@ -168,25 +190,5 @@ public class ConsoleView {
 
 		}
 		while (choixMenu != EXITMENU); 
-	}
-
-	public static void afficherMatchNonJoues(Tournoi t)
-	{	
-		ListIterator<Match> li = t.getListeMatchs().listIterator();	
-		Match matchTemp;
-		int i = 1;
-
-		System.out.println("-- Liste des matchs à jouer: --");
-		while(li.hasNext()){
-			matchTemp = li.next();
-			if (matchTemp.estJoue() == false){
-			System.out.println("Match "+i+" : "+matchTemp.toString());
-			}
-			i ++;
-		}
-		
-		if (i==1)
-			t.creerTour();
-		
 	}
 }

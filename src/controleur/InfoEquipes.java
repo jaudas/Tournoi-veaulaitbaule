@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 import tools.FilesTools;
 import model.Equipe;
 import model.Joueur;
+import model.Tournoi;
 
 public class InfoEquipes {
 	//Arraylist 
@@ -189,6 +190,16 @@ public class InfoEquipes {
 		}
 		return listeJoueurs;
 	}
+	
+	public static void questionModif(Tournoi tournoi){
+		int rep;
+		
+		System.out.println("Souhaitez-vous modifier une équipe ? : 0.NON - 1.OUI");
+		rep = sc.nextInt();		
+		if (rep == 1){
+			modifierEquipes(tournoi.getListeEquipes());
+		}		
+	}
 
 	public static void modifierEquipes(LinkedList<Equipe> listeEquipe){
 		int idEquipe ;
@@ -199,10 +210,10 @@ public class InfoEquipes {
 		System.out.println("Choisir l'equipe que vous voulez modifier:");
 		idEquipe=sc.nextInt();
 		System.out.println("Choisir l'information que vous voulez modifier:");
-		System.out.println("1. Nom: ");
-		System.out.println("2. Joueurs: ");
-		System.out.println("3. Description: ");
-		System.out.println("4. Eliminer equipe");
+		System.out.println("1. Nom ");
+		System.out.println("2. Joueurs ");
+		System.out.println("3. Description ");
+		System.out.println("4. Eliminer une équipe :");
 		int option=sc.nextInt();
 
 
@@ -216,7 +227,7 @@ public class InfoEquipes {
 			break;
 		case 2:
 			sc.nextLine();
-			System.out.println("Choisir l'action que vous interese:");
+			System.out.println("Choisir l'action qui vous interese:");
 			System.out.println("1. Ajouter un joueur: ");
 			System.out.println("2. Modifier un joueur: ");
 			System.out.println("3. Eliminer un joueur: ");
@@ -273,10 +284,7 @@ public class InfoEquipes {
 			System.out.println("Essayez une autre fois (Numero incorrecte)");
 			modifierEquipes(listeEquipe);
 			break;
-
 		}
-
-
 	}
 
 	public static void modifierJoueur(LinkedList<Joueur> listeJoueurs ){

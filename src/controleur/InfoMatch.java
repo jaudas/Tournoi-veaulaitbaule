@@ -38,14 +38,14 @@ public class InfoMatch {
 	  
 	  public static void selectionnerMatch(LinkedList<Match> listeMatchsTournoi){
 		  System.out.println("Saisissez le numéro du match auquel vous souhaitez ajouter le score:");
-		  String num=sc.nextLine();
+		  String num=sc.nextLine();//Ajouter vérification de saisie !!!
 		  int numero=Exception.mauvaisNumero(num);
 		  
 		  resultMatch(listeMatchsTournoi.get(numero-1));
 		  
 		  System.out.println("-- Match "+(numero)+" modifié : --");
 		  System.out.println(listeMatchsTournoi.get(numero-1).toString());
-		  System.out.println("Le gagnant du Match est : \n"+listeMatchsTournoi.get(numero).getGagnant().toString());		  
+		  System.out.println("Le gagnant du Match est : \n"+listeMatchsTournoi.get(numero-1).getGagnant().toString());		  
 		  
 	  }
 

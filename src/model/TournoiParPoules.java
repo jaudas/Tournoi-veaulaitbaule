@@ -71,6 +71,12 @@ public class TournoiParPoules extends Tournoi {
 			numPoule++;
 			cptPoules--;
 		}
+		//On remplit de nouveau la liste des équipes du tournoi
+		for (int cpt1 = 0; cpt1 <listePoules.size(); cpt1 ++){
+			for (int cpt2 =0; cpt2<listePoules.get(cpt1).getEquipesPoule().size(); cpt2 ++){
+				super.listeEquipes.add(listePoules.get(cpt1).getEquipesPoule().get(cpt2));
+			}
+		}		
 	}
 
 	// Ordonner les équipes qualifiées pour les phases éliminatoires dans une liste

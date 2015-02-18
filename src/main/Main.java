@@ -44,7 +44,7 @@ public class Main {
 
 		//ConsoleView.afficherEquipes(tournoi.getListeEquipes());
 		
-		ConsoleView.menu(tournoi);		
+		ConsoleView.menu(tournoi, tournoiType);		
 		
 		//ConsoleView.affichermenu();
 				
