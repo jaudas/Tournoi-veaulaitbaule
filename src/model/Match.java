@@ -92,7 +92,6 @@ public class Match {
 		}
 
 	}
-	
 
 
 	public void setScoreAleatoire() {
@@ -103,7 +102,7 @@ public class Match {
 	// Methodes
 	public String toString() {
 		return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
-				+ this.equipeB.getNom()+"C'est un match de ";
+				+ this.equipeB.getNom();//+"\nC'est un match de "+this.type;
 		
 	}
 

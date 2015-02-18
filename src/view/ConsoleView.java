@@ -5,12 +5,23 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
+import controleur.Exception;
 import controleur.InfoEquipes;
+import controleur.InfoMatch;
 import model.*;
 
 public class ConsoleView {
 	static Scanner sc = new Scanner(System.in);
 	static final int EXITMENU = 5;
+	
+	public static void accueil() {
+		System.out.println("Bonjour ! Bienvenue dans le logiciel de gestion de tournoi de volley-ball.\n"
+				+ "Ce programme vous permet de :"
+				+ "\n- saisir les équipes, joueurs et scores de votre tournoi de volley-ball "
+				+ "\n- gérer un tournoi par éliminations directes ou par phases de poules "
+				+ "\n- générer un tounoi avec des équipes aléatoires."
+				+ "\n C'est parti !\n"); 
+	}
 
 	public static int choixTournoi()
 	{
@@ -22,7 +33,8 @@ public class ConsoleView {
 	}
 
 
-	public static void afficherEquipesEtJoueurs(LinkedList<Equipe> listeEquipe){      
+	public static void afficherEquipesEtJoueurs(LinkedList<Equipe> listeEquipe){  
+		System.out.println("-- Voici les équipes du tournoi et leurs joueurs : --");
 		for(int i = 0; i< listeEquipe.size(); i++){
 			System.out.println(listeEquipe.get(i));
 			afficherJoueurs(i-1, listeEquipe.get(i).getListeJoueurs());
@@ -30,10 +42,10 @@ public class ConsoleView {
 	}
 	
 	public static void afficherEquipes(LinkedList<Equipe> listeEquipe){     
-		System.out.println("Affichage des équipes : ");
+		System.out.println("-- Equipes du tournoi : -- : ");
 		System.out.println(listeEquipe.size());
 		for(int i = 0; i< listeEquipe.size(); i++){
-			System.out.println(listeEquipe.get(i));
+			System.out.println(listeEquipe.get(i).toString());
 		}
 	}
 	
@@ -48,19 +60,10 @@ public class ConsoleView {
 			System.out.println(listeMatch.get(i)); 
 		}
 	}
-
-	public static void accueil() {
-		System.out.println("Bonjour ! Bienvenue dans le logiciel de gestion de tournoi de volley-ball.\n"
-				+ "Ce programme vous permet de :"
-				+ "\n- saisir les équipes, joueurs et scores de votre tournoi de volley-ball "
-				+ "\n- gérer un tournoi par éliminations directes ou par phases de poules "
-				+ "\n- générer un tounoi avec des équipes aléatoires."
-				+ "\n C'est parti !\n"); 
-	}
 	
 	//Afficher les poules et leurs équipes. Passer en paramètre la liste de poules d'un objet de type TournoiParPoules
 	public static void afficherPoules(TournoiParPoules tournoi) {
-		System.out.println("Les poules du tournoi sont :");
+		System.out.println("\n-- Les poules du tournoi sont : --");
 		
 		ArrayList<Poule> listePoules = tournoi.getListePoules();
 		
@@ -76,8 +79,7 @@ public class ConsoleView {
 	
 	public static void afficherMatchsJoues(LinkedList<Match> listeMatchs)
 	{
-		System.out.println("From ConsoleView.afficherMatchsJoués");
-		System.out.println("-- Match Joués --");	
+		System.out.println("\n---- Match Joués ----");	
 		
 		int temp = 0;
 		int i=0;
@@ -104,7 +106,7 @@ public class ConsoleView {
 	{
 		if (ID>0 && ID<10)
 		{
-			System.out.println("----- Matchs joués dans la Poule "+ID+" -----");
+			System.out.println("-- Matchs joués dans la Poule "+ID+" --");
 		}
 		
 		if (ID==-1)
@@ -135,10 +137,11 @@ public class ConsoleView {
 
 		do{
 			System.out.println("\n-- Menu principal --");
+			System.out.println("Que souhaitez-vous faire ?");
 			System.out.println("1. Modifier les équipes");
 			System.out.println("2. Afficher les résultats des matchs");
 			System.out.println("3. Afficher toutes les équipes");
-			System.out.println("4. Saisir des résultats d'un match");
+			System.out.println("4. Saisir les résultats d'un match");
 			System.out.println("5. Exit");
 
 			choixMenu=sc.nextInt();
@@ -158,8 +161,8 @@ public class ConsoleView {
 				break;
 
 			case 4 : 
-				System.out.println("Permettre la saisie des résultats d'un match, si il y en a plusieurs (dans InfoMatch)");
 				afficherMatchNonJoues(tournoi);
+				InfoMatch.selectionnerMatch(tournoi.getListeMatchs());
 				break;
 
 			}
@@ -172,14 +175,15 @@ public class ConsoleView {
 	{	
 		ListIterator<Match> li = t.getListeMatchs().listIterator();	
 		Match matchTemp;
+		int i = 1;
 
-		System.out.println("Liste des matchs à jouer ! ");
+		System.out.println("-- Liste des matchs à jouer: --");
 		while(li.hasNext()){
 			matchTemp = li.next();
 			if (matchTemp.estJoue() == false){
-			System.out.println(matchTemp.toString());
+			System.out.println("Match "+i+" : "+matchTemp.toString());
 			}
+			i ++;
 		}
 	}
-
 }

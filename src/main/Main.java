@@ -21,9 +21,7 @@ public class Main {
 		
 		//Demande le nombre d'équipes dans le tournoi
 		LinkedList<Equipe> listeEquipes=InfoEquipes.inscrireEquipes();
-		ConsoleView.afficherEquipesEtJoueurs(listeEquipes);
-		
-		System.out.println("LISTE DES EQUIPES ETABLIE !");		
+		ConsoleView.afficherEquipesEtJoueurs(listeEquipes);		
 		
 		//Si c'est un tournoi par élminitation directe
 		if (tournoiType == 1)
