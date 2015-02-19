@@ -95,7 +95,7 @@ public class Match {
 
 
 	public void setScoreAleatoire() {
-		int scoreA = (int)(Math.random() * 4);
+		scoreA = (int)(Math.random() * 4);
 /*		System.out.println("tirage = " + tirage);
 		
 		if (tirage < 1)//Entre O et 1
@@ -111,6 +111,8 @@ public class Match {
 			scoreA = 3;*/
 		
 		scoreB = (3 - scoreA);
+		System.out.println("Score A : "+ scoreA);
+		System.out.println("Score B : "+ scoreB);
 		}
 
 		// Methodes

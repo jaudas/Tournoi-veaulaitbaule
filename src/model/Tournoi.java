@@ -7,7 +7,7 @@ public class Tournoi {
 	protected int nbEquipesInit;
 	protected String description;
 	protected LinkedList<Equipe> listeEquipes;
-	protected LinkedList<TourEliminatoire> listeToursEliminatoires;
+	protected LinkedList<TourEliminatoire> listeToursEliminatoires = new LinkedList<TourEliminatoire>();
 	protected LinkedList<Match> listeMatchs = new LinkedList<Match>();
 
 	//Get & Set
@@ -72,11 +72,20 @@ public class Tournoi {
 	public void creerTour() 
 	{
 		TourEliminatoire tour = new TourEliminatoire();
-		if (this.listeToursEliminatoires.isEmpty() == true)
+		if (this instanceof TournoiParPoules)
 		{
+			System.out.println("Tournoi par poules ! ");
+			this.creerEqQualifiees();
+		}
+		
+		
+		
+		else if (this.listeToursEliminatoires.isEmpty() == true)
+		{
+			System.out.println("From Tournoi.java : Creation d'un premier tour ! ");
 			tour.setListeEquipes(this.listeEquipes);
 		}
-
+		
 		else 
 		{
 			LinkedList <Equipe> listetemp = new LinkedList<Equipe>();

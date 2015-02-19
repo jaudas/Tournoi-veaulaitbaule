@@ -14,19 +14,27 @@ public class Randomator {
 		//On complete les matchs non joués de la liste 
 		tirageMatchsGeneres(tAleatoire.getListeMatchs());
 		
-		if((tAleatoire.getListeToursEliminatoires() != null) && (tAleatoire.getListeEquipes().size()>2))
+		
+		if((tAleatoire.getListeToursEliminatoires().isEmpty() == true) && (tAleatoire.getListeEquipes().size()>=2))
 		{
+			System.out.println("From Randomator : Création du premier tour de jeu");
 			tAleatoire.creerTour();
+			tirageMatchsGeneres(tAleatoire.getListeMatchs());
 		}
 		
 		//Tant qu'il y a plus d'une équipe en jeu 
-		// = tant que le dernier tour de la liste de tours 
-		while (tAleatoire.getListeToursEliminatoires().getLast().getListeEquipesTour().size() < 2)
+		// = tant que le dernier tour de la liste de tours a plus de 1 équipe
+		while (tAleatoire.getListeToursEliminatoires().getLast().getListeEquipesTour().size() >= 2)
 		{
 			tAleatoire.creerTour();
+			tirageMatchsGeneres(tAleatoire.getListeMatchs());
 			ConsoleView.afficherMatchsJoues(tAleatoire.getListeMatchs());
 		}
-			
+		
+		System.out.println("Tournoi fini ! ");
+		Equipe gagnant = tAleatoire.getListeMatchs().getLast().getGagnant();
+		System.out.println("Gagnant : " + gagnant);
+		
 
 	}
 	
@@ -38,11 +46,12 @@ public class Randomator {
 		while(liMatch.hasNext()){
 			matchTemp = liMatch.next();
 			if (matchTemp.estJoue() == false){
-				System.out.println("Match généré ! ");
+				//System.out.println("Match généré ! ");
 				matchTemp.setScoreAleatoire();
 				liMatch.set(matchTemp);
 				System.out.println(matchTemp.toString());
 			}
 		}
 	}
+	
 }
