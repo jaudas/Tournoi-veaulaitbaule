@@ -2,7 +2,9 @@ package controleur;
 
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Scanner;
+
 
 
 
@@ -86,5 +88,20 @@ public class InfoMatch {
 		  
 		  match.getGagnant().setNbVictoire(match.getGagnant().getNbVictoire()+1);
 	  }
-	  
+		public static boolean matchaJouer(LinkedList<Match> listeMatch)
+		{
+			//Retourne  true si il y a des matchs à jouer
+			//Retourne false sinon
+			ListIterator<Match> li = listeMatch.listIterator();
+			Match matchTemp;
+			while (li.hasNext()) {
+				matchTemp = li.next();
+				if (matchTemp.estJoue() == false) {
+					return true;
+				}
+
+			}
+
+			return false;
+		}
 }

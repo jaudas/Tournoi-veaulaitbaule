@@ -3,26 +3,31 @@ package controleur;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
+import model.Equipe;
+import model.Match;
+import model.Tournoi;
+import model.TournoiParPoules;
 import view.ConsoleView;
-import model.*;
 
 public class Randomator {
-	// Classe fournissant une liste de fonction permettant de générer la fin du
-	// tournoi de façon aléatoire
+	// Classe fournissant une liste de fonction permettant de générer la fin du tournoi de façon aléatoire
 
 	public static void finirtournoi(Tournoi tAleatoire) {
-		if (tAleatoire.getListeEquipes().size() > 1) {// On complete les matchs
-														// non joués de la liste
+		//Verification du nombre d'équipes
+		if (tAleatoire.getListeEquipes().size() > 1) {
+			// On complete les matchs non joués de la liste de match
 			tirageMatchsGeneres(tAleatoire.getListeMatchs());
 
+			//Si c'est un tournoi par poules
 			if (tAleatoire instanceof TournoiParPoules) {
-
+				
 				((TournoiParPoules) tAleatoire).creerEqQualifiees();
-				ConsoleView
-						.afficherResultatPoules((TournoiParPoules) tAleatoire);
+				ConsoleView.afficherResultatPoules((TournoiParPoules) tAleatoire);
 				ConsoleView.afficherPoules((TournoiParPoules) tAleatoire);
 
-			} else {
+			} 
+			
+			else {
 				tAleatoire.nouveauTour();
 			}
 
@@ -35,8 +40,9 @@ public class Randomator {
 				tirageMatchsGeneres(tAleatoire.getListeMatchs());
 				tAleatoire.nouveauTour();
 			}
+			
+			System.out.println("Tournoi fini ! Récapiltulatif des matchs : ");
 			ConsoleView.afficherMatchsJoues(tAleatoire.getListeMatchs());
-			System.out.println("Tournoi fini ! ");
 			Equipe gagnant = tAleatoire.getListeMatchs().getLast().getGagnant();
 			System.out.println("Gagnant : " + gagnant);
 		} else

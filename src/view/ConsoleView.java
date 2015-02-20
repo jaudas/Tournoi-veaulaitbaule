@@ -30,18 +30,18 @@ public class ConsoleView {
 
 	public static void accueil() {
 		System.out
-				.println("Bonjour ! Bienvenue dans le logiciel de gestion de tournoi de volley-ball.\n"
-						+ "Ce programme vous permet de :"
-						+ "\n- saisir les équipes, joueurs et scores de votre tournoi de volley-ball "
-						+ "\n- gérer un tournoi par éliminations directes ou par phases de poules "
-						+ "\n- générer un tounoi avec des équipes aléatoires."
-						+ "\n C'est parti !\n");
+		.println("Bonjour ! Bienvenue dans le logiciel de gestion de tournoi de volley-ball.\n"
+				+ "Ce programme vous permet de :"
+				+ "\n- saisir les équipes, joueurs et scores de votre tournoi de volley-ball "
+				+ "\n- gérer un tournoi par éliminations directes ou par phases de poules "
+				+ "\n- générer un tounoi avec des équipes aléatoires."
+				+ "\n C'est parti !\n");
 	}
 
 	public static int choixTournoi() {
 		int choix;
 		System.out
-				.println("Souhaitez-vous un tournoi :\n- par éliminations directes (tapez 1)?\n- avec une phase de poules (tapez 2)? - ajouter exception");
+		.println("Souhaitez-vous un tournoi :\n- par éliminations directes (tapez 1)?\n- avec une phase de poules (tapez 2)? - ajouter exception");
 		// Ajouter exception et controle de la saisie
 		choix = sc.nextInt();
 		return choix;
@@ -49,7 +49,7 @@ public class ConsoleView {
 
 	public static void afficherEquipesEtJoueurs(LinkedList<Equipe> listeEquipe) {
 		System.out
-				.println("-- Voici les équipes du tournoi et leurs joueurs : --");
+		.println("-- Voici les équipes du tournoi et leurs joueurs : --");
 		for (int i = 0; i < listeEquipe.size(); i++) {
 			System.out.println("\n" + listeEquipe.get(i));
 			afficherJoueurs(i - 1, listeEquipe.get(i).getListeJoueurs());
@@ -156,15 +156,18 @@ public class ConsoleView {
 			System.out.println("2. Afficher les résultats des matchs joués");
 			System.out.println("3. Afficher/Modifier les équipes");
 			System.out
-					.println("4. Générer la suite du tournoi automatiquement");
+			.println("4. Générer la suite du tournoi automatiquement");
 			System.out.println("5. Exit");
 
 			choixMenu = sc.nextInt();
 
 			switch (choixMenu) {
 			case 1:
-				afficherMatchNonJoues(tournoi);
-				InfoMatch.selectionnerMatch(tournoi.getListeMatchs());
+				boolean fin = !afficherMatchNonJoues(tournoi);
+				if (fin == false)
+					InfoMatch.selectionnerMatch(tournoi.getListeMatchs());
+				else 
+					choixMenu = EXITMENU;
 				break;
 
 			case 2:
@@ -185,53 +188,73 @@ public class ConsoleView {
 		} while (choixMenu != EXITMENU);
 	}
 
-	public static void afficherMatchNonJoues(Tournoi t) {
-		ListIterator<Match> li = t.getListeMatchs().listIterator();
-		Match matchTemp;
-		int i = 1;
+	public static boolean afficherMatchNonJoues(Tournoi t) {
 
-		System.out.println("-- Liste des matchs à jouer: --");
-		while (li.hasNext()) {
-			matchTemp = li.next();
-			if (matchTemp.estJoue() == false) {
-				System.out.println("Match " + li.nextIndex() + " : "
-						+ matchTemp.toString());
-				i++;
-			}
-
-		}
-		if (i == 1
-				&& t.getListeToursEliminatoires().getLast()
-						.getListeEquipesTour().size() > 2) {
-			if (t.getListeToursEliminatoires().getLast().getListeEquipesTour()
-					.size() > 2) {
-				t.nouveauTour();
+		//Indiquons si il y a des matchs à jouer
+		boolean indic = InfoMatch.matchaJouer(t.getListeMatchs());
+		
+		
+		//Si il n'y a pas de match à jouer
+		if (indic == false)
+		{
+			// Si il faut creer le premier tour d'un tournoi par poules
+			if (t.getListeToursEliminatoires().size() == 0) {
+				System.out.println("Qualification des équipes");
+				((TournoiParPoules) t).creerEqQualifiees();
+				// On creer les rencontres en fonction des équipes du tour
 				t.remplirTour();
 			}
 
-			else {
-				System.out.println("Nombre d'équipe(s) dans le dernier tour : "
-						+ t.getListeToursEliminatoires().getLast()
-								.getListeEquipesTour().size());
-				System.out.println("Le tournoi est fini ! ");
+			// Si c'est un tour suivant
+			else if (t.getListeToursEliminatoires().getLast().getListeEquipesTour().size() > 2) {
+				t.nouveauTour();
+				//On creer les rencontres en fonction des équipes du tour
+				t.remplirTour();
 			}
+			indic = InfoMatch.matchaJouer(t.getListeMatchs());
 		}
 
+		//Si on a pu générer une liste de matchs
+		if (indic == true)
+		{
+			ListIterator<Match> li = t.getListeMatchs().listIterator();
+			Match matchTemp;
+			System.out.println("-- Liste des matchs à jouer --");
+			while (li.hasNext()) {
+				matchTemp = li.next();
+				if (matchTemp.estJoue() == false) {
+					System.out.println("Match " + li.nextIndex() + " : "
+							+ matchTemp.toString());
+				}
+
+			}
+		}
+		//Si on a pas pu générer de matchs
+		else {
+			System.out.println("Nombre d'équipe(s) dans le dernier tour : "
+					+ t.getListeToursEliminatoires().getLast()
+					.getListeEquipesTour().size());
+			System.out.println("Le tournoi est fini ! ");
+		}
+		return indic;
 	}
+
 
 	public static void affichagefin(Tournoi t) {
 		System.out
-				.println("Le Tournoi est terminé ! Voici la liste des matchs joués au cours du Tournoi : ");
+		.println("Le Tournoi est terminé ! Voici la liste des matchs joués au cours du Tournoi : ");
 		afficherMatch(t.getListeMatchs());
 
 	}
 
 	public static void afficherResultatPoules(TournoiParPoules tournoiPoules) {
 		System.out
-				.println("From ConsoleView.java : Afficher le tableau de résultat des poules (nb victoire, set gagnés & classement");
+		.println("From ConsoleView.java : Afficher le tableau de résultat des poules (nb victoire, set gagnés & classement");
 		System.out.println("Liste des équipes qualifiées : "
 				+ tournoiPoules.getListeToursEliminatoires().getFirst()
-						.getListeEquipesTour());
+				.getListeEquipesTour());
 	}
+
+
 
 }

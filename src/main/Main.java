@@ -30,15 +30,12 @@ public class Main {
 		if (tournoiType == 1)
 		{
 			tournoi = new TournoiEliminationDirecte(listeEquipes);
-			
-			
 		}
 		//Tournoi par poules
 		if (tournoiType == 2)
 		{
 			tournoi = new TournoiParPoules(listeEquipes);
 			ConsoleView.afficherPoules((TournoiParPoules)tournoi);
-
 		}
 
 		ConsoleView.afficherMatch(tournoi.getListeMatchs());
