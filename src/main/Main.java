@@ -46,7 +46,7 @@ public class Main {
 
 		ConsoleView.menu(tournoi, tournoiType);		
 
-		ConsoleView.affichagefin(tournoi);
+		//ConsoleView.affichagefin(tournoi);
 	}
 
 }

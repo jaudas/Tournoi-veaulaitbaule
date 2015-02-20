@@ -196,7 +196,6 @@ public class ConsoleView {
 			}
 
 		}
-		System.out.println("i=" + i);
 		if (i == 1
 				&& t.getListeToursEliminatoires().getLast()
 						.getListeEquipesTour().size() > 2) {

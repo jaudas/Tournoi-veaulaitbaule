@@ -20,18 +20,20 @@ public class Randomator {
 			((TournoiParPoules)tAleatoire).creerEqQualifiees();
 			ConsoleView.afficherResultatPoules((TournoiParPoules) tAleatoire);
 			ConsoleView.afficherPoules((TournoiParPoules) tAleatoire);
-			tAleatoire.remplirTour();
 			
 		}
-		
+		else 
+		{
+			tAleatoire.nouveauTour();
+		}
 
 		//Tant qu'il y a plus d'une équipe en jeu 
 		// = tant que le dernier tour de la liste de tours a plus de 1 équipe
 		while (tAleatoire.getListeToursEliminatoires().getLast().getListeEquipesTour().size() >= 2)
-		{			
+		{	
+			tAleatoire.remplirTour();
 			tirageMatchsGeneres(tAleatoire.getListeMatchs());
 			tAleatoire.nouveauTour();
-			tAleatoire.remplirTour();
 		}
 		ConsoleView.afficherMatchsJoues(tAleatoire.getListeMatchs());
 		System.out.println("Tournoi fini ! ");

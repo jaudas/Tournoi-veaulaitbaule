@@ -104,7 +104,7 @@ public class Match {
 	public String toString() {
 		if (this.estJoue() == true){
 		return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
-				+ this.equipeB.getNom();//+"\nC'est un match de "+this.type;
+				+ this.equipeB.getNom() + " --- Gagnant : " + getGagnant().getNom();
 		}
 		else
 			return this.equipeA.getNom() + " - " + this.equipeB.getNom();

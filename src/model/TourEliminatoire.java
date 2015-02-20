@@ -79,9 +79,6 @@ public class TourEliminatoire {
 		// Pour chaque match, on ajoute le gagnant à la liste des équipes
 		// qualifiées
 		for (int i = 0; i < listeMatchTour.size(); i++) {
-			System.out.println("\n From TourEliminatoire : Générons les équipes qualifiées en analysant les résultats de la manche!");
-			System.out.println(listeMatchTour.get(i).toString() + " -- Gagnant : "
-					+ listeMatchTour.get(i).getGagnant().getNom());
 			listeEqQualif.add(listeMatchTour.get(i).getGagnant());
 		}
 	
