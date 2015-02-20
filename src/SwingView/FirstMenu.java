@@ -3,16 +3,9 @@ package SwingView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
-
-
-
-
-
-
 
 import javax.swing.*;
 
@@ -75,18 +68,21 @@ public class FirstMenu{
 			 
             public void actionPerformed(ActionEvent e)
             {
-                //Execute when button is pressed
-                
+      
+            	//Execute when button is pressed
+            	int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog (null, "Vous voulez ajouter le premier equipe?","Warning",dialogButton);
+
+                if(dialogResult == JOptionPane.YES_OPTION){ 
                 LinkedList<Equipe> listeEquipes = new LinkedList<Equipe>();
                 frame.setVisible(false);
-                Equipe equipe= new Equipe();
-                LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur>();
-                Joueur joueur =new Joueur();
-                listeJoueurs.add(joueur);
-                equipe.setListeJoueurs(listeJoueurs);
-                listeEquipes.add(equipe);
-              
-                EquipesGUI.menuEquipes(listeEquipes);
+                
+                
+                EquipesGUI.newEquipe(listeEquipes);
+               
+                }else if(dialogResult==JOptionPane.NO_OPTION){
+                	bienvenu();
+                }
                 
             }
         });   
@@ -111,19 +107,12 @@ public class FirstMenu{
 			int i;
 			//On demande le nombre d'equipes à inscrire 
 			do {
-				  int numero1 = Integer.parseInt( JOptionPane.showInputDialog(
-					        null,"Combien d'équipes voulez-vous générer automatiquement ? (Max "+arrayNomsEquipe.size()+") : ",
-					        "Nombre d'Equipes",
-					        JOptionPane.QUESTION_MESSAGE) );
-			
-				NE = numero1;
+				NE = QuestionsDialogues.introNumero( "Combien d'équipes voulez-vous générer automatiquement ?: ");
 				
 				if (NE>arrayNomsEquipe.size()){
-					numero1 = Integer.parseInt( JOptionPane.showInputDialog(
-					        null,"Combien d'équipes voulez-vous générer automatiquement ? (Max "+arrayNomsEquipe.size()+") : ",
-					        "Nombre d'Equipes",
-					        JOptionPane.QUESTION_MESSAGE) );
-					NE = numero1;
+					
+					NE =QuestionsDialogues.introNumero( "Trop d'equipes. Combien d'équipes voulez-vous générer automatiquement ?: ");
+				
 				}
 			
 				
