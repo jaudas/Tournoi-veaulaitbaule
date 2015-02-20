@@ -87,6 +87,7 @@ public class TournoiParPoules extends Tournoi {
 	// Ordonner les équipes qualifiées pour les phases éliminatoires dans une
 	// liste
 	public void creerEqQualifiees() {
+			
 		this.classerEqPoules();
 		LinkedList<Equipe> eqPhaseEliminatoire = new LinkedList<Equipe>();
 		int ind = 0;
@@ -109,6 +110,7 @@ public class TournoiParPoules extends Tournoi {
 
 		TourEliminatoire tour1 = new TourEliminatoire(eqPhaseEliminatoire);
 		this.listeToursEliminatoires.add(tour1);
+		
 
 
 	}

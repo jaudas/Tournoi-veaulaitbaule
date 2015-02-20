@@ -29,7 +29,8 @@ public class ConsoleView {
 	final static int TRENTEDEUXIEMEDEFINALE = 6;
 
 	public static void accueil() {
-		System.out.println("Bonjour ! Bienvenue dans le logiciel de gestion de tournoi de volley-ball.\n"
+		System.out
+				.println("Bonjour ! Bienvenue dans le logiciel de gestion de tournoi de volley-ball.\n"
 						+ "Ce programme vous permet de :"
 						+ "\n- saisir les équipes, joueurs et scores de votre tournoi de volley-ball "
 						+ "\n- gérer un tournoi par éliminations directes ou par phases de poules "
@@ -39,7 +40,8 @@ public class ConsoleView {
 
 	public static int choixTournoi() {
 		int choix;
-		System.out.println("Souhaitez-vous un tournoi :\n- par éliminations directes (tapez 1)?\n- avec une phase de poules (tapez 2)? - ajouter exception");
+		System.out
+				.println("Souhaitez-vous un tournoi :\n- par éliminations directes (tapez 1)?\n- avec une phase de poules (tapez 2)? - ajouter exception");
 		// Ajouter exception et controle de la saisie
 		choix = sc.nextInt();
 		return choix;
@@ -153,7 +155,8 @@ public class ConsoleView {
 			System.out.println("1. Saisir les résultats d'un match");
 			System.out.println("2. Afficher les résultats des matchs joués");
 			System.out.println("3. Afficher/Modifier les équipes");
-			System.out.println("4. Générer la suite du tournoi automatiquement");
+			System.out
+					.println("4. Générer la suite du tournoi automatiquement");
 			System.out.println("5. Exit");
 
 			choixMenu = sc.nextInt();
@@ -191,7 +194,8 @@ public class ConsoleView {
 		while (li.hasNext()) {
 			matchTemp = li.next();
 			if (matchTemp.estJoue() == false) {
-				System.out.println("Match " + li.nextIndex() + " : "+ matchTemp.toString());
+				System.out.println("Match " + li.nextIndex() + " : "
+						+ matchTemp.toString());
 				i++;
 			}
 
@@ -199,8 +203,8 @@ public class ConsoleView {
 		if (i == 1
 				&& t.getListeToursEliminatoires().getLast()
 						.getListeEquipesTour().size() > 2) {
-			if (t.getListeToursEliminatoires().getLast().getListeEquipesTour().size() > 2)
-			{
+			if (t.getListeToursEliminatoires().getLast().getListeEquipesTour()
+					.size() > 2) {
 				t.nouveauTour();
 				t.remplirTour();
 			}
@@ -216,18 +220,18 @@ public class ConsoleView {
 	}
 
 	public static void affichagefin(Tournoi t) {
-		System.out.println("Le Tournoi est terminé ! Voici la liste des matchs joués au cours du Tournoi : ");
+		System.out
+				.println("Le Tournoi est terminé ! Voici la liste des matchs joués au cours du Tournoi : ");
 		afficherMatch(t.getListeMatchs());
 
 	}
-	
-	public static void afficherResultatPoules(TournoiParPoules tournoiPoules)
-	{
-		System.out.println("From ConsoleView.java : Afficher le tableau de résultat des poules (nb victoire, set gagnés & classement");
-		System.out.println("Liste des équipes qualifiées : " + tournoiPoules.getListeToursEliminatoires().getFirst().getListeEquipesTour());
+
+	public static void afficherResultatPoules(TournoiParPoules tournoiPoules) {
+		System.out
+				.println("From ConsoleView.java : Afficher le tableau de résultat des poules (nb victoire, set gagnés & classement");
+		System.out.println("Liste des équipes qualifiées : "
+				+ tournoiPoules.getListeToursEliminatoires().getFirst()
+						.getListeEquipesTour());
 	}
-
-	
-
 
 }

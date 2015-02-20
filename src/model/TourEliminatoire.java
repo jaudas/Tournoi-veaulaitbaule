@@ -5,7 +5,8 @@ import java.util.LinkedList;
 public class TourEliminatoire {
 	private LinkedList<Equipe> listeEquipesTour;
 	private int qualifOffice = -1;
-	private LinkedList<Match> listeMatchTour = new LinkedList<Match>();
+	// private LinkedList<Match> listeMatchTour = new LinkedList<Match>();
+	int type = -1;
 
 	// Constantes pour les phases d'un tournoi
 	final static int PHASEPOULE = 0;
@@ -22,6 +23,8 @@ public class TourEliminatoire {
 
 	public TourEliminatoire(LinkedList<Equipe> listeEq) {
 		listeEquipesTour = listeEq;
+		type = trouverPhaseTour(listeEq.size());
+
 	}
 
 	public LinkedList<Equipe> getListeEquipesTour() {
@@ -67,9 +70,9 @@ public class TourEliminatoire {
 
 	}
 
-	public LinkedList<Equipe> equipesQualifiees() {
+	public LinkedList<Equipe> equipesQualifiees(Tournoi t) {
 		LinkedList<Equipe> listeEqQualif = new LinkedList<Equipe>();
-
+		
 		// Si une equipe a ete qualifiée d'office, on l'ajoute à la liste des
 		// équipes qualifiées
 		if (this.qualifOffice != -1) {
@@ -77,20 +80,16 @@ public class TourEliminatoire {
 		}
 
 		// Pour chaque match, on ajoute le gagnant à la liste des équipes
-		// qualifiées
-		for (int i = 0; i < listeMatchTour.size(); i++) {
-			listeEqQualif.add(listeMatchTour.get(i).getGagnant());
+		for (int i = 0; i < t.listeMatchs.size(); i++) {
+			if (this.type == t.listeMatchs.get(i).getType())
+				listeEqQualif.add(t.listeMatchs.get(i).getGagnant());
 		}
-	
+
 		return listeEqQualif;
 	}
 
 	public int getQualifOffice() {
 		return qualifOffice;
-	}
-
-	public LinkedList<Match> getListeMatchsTour() {
-		return this.listeMatchTour;
 	}
 
 	public void setListeEquipes(LinkedList<Equipe> listeEquipes) {

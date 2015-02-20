@@ -105,7 +105,7 @@ public class Tournoi {
 			}
 			e2 = tour.getListeEquipesTour().get(j);
 			Match rencontre = new Match(e1, e2, tour.trouverPhaseTour(tour.getListeEquipesTour().size()));
-			tour.getListeMatchsTour().add(rencontre);
+		
 			this.addMatch(rencontre);
 			j++;
 
@@ -115,7 +115,7 @@ public class Tournoi {
 
 	public void nouveauTour()
 	{
-		LinkedList<Equipe> Equipequalif = this.listeToursEliminatoires.getLast().equipesQualifiees();
+		LinkedList<Equipe> Equipequalif = this.listeToursEliminatoires.getLast().equipesQualifiees(this);
 		TourEliminatoire nouveauTour = new TourEliminatoire(Equipequalif);
 		this.listeToursEliminatoires.add(nouveauTour);
 	}
