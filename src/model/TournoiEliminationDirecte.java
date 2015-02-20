@@ -14,7 +14,7 @@ public class TournoiEliminationDirecte extends Tournoi {
 		super.listeToursEliminatoires = new LinkedList <TourEliminatoire>();
 		
 		//Creation du premier tour de jeu
-		super.creerTour();
+		super.remplirTour();
 	}
 
 
@@ -23,8 +23,10 @@ public class TournoiEliminationDirecte extends Tournoi {
 		super.nbEquipesInit = listEq.size();
 		super.listeToursEliminatoires = new LinkedList <TourEliminatoire>();
 		
+		TourEliminatoire tour1 = new TourEliminatoire(listeEquipes);
+		listeToursEliminatoires.add(tour1);
 		//Creation du premier tour de jeu
-		super.creerTour();
+		super.remplirTour();
 	}
 	
 

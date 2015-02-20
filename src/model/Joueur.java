@@ -68,11 +68,11 @@ public class Joueur {
 
 
 
-	public Joueur(String prenom2, String nomj, String age2, String sexe) {
+	public Joueur(String prenom, String nomj, String age, String sexe) {
 		this.sexejoueur = convertSexe(sexe);
-		this.prenom = prenom2;
+		this.prenom = prenom;
 		this.nom=nomj;
-		this.age = age2;
+		this.age = age;
 	}
 
 
@@ -106,13 +106,14 @@ public class Joueur {
 		return sexejoueur;
 	}
 
-	public EnumSexe convertSexe(String sexe) {
-		if (sexe == "Homme")
+	public EnumSexe convertSexe(String saisieSexe) {
+		String sexe = saisieSexe.toLowerCase();
+		if (sexe == "homme" || sexe == "h")
 		{
 			this.sexejoueur = EnumSexe.Homme;
 		}
 
-		if (sexe == "Femme")
+		if (sexe == "femme"|| sexe == "f")
 		{
 			this.sexejoueur = EnumSexe.Femme;
 		}

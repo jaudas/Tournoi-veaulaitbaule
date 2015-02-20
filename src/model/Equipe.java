@@ -168,7 +168,7 @@ public class Equipe implements Comparable<Equipe> {
 	//Méthodes
 	@Override
 	public String toString(){
-		return "Equipe n°: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   Description: "+this.description;
+		return "Equipe n°: "+this.idEquipe +"   Nom: "+this.nom+"   Nombre de joueurs: "+this.nbJoueurs+"   \nDescription: "+this.description+".";
 
 	}
 
@@ -198,5 +198,6 @@ public class Equipe implements Comparable<Equipe> {
 		//Si les deux équipes ont le même nombre de victoires et de sets gagnés, on tire au sort l'équipe qui est classée avant l'autre
 		return( Math.random()>= 0.5 ? 1 : -1);
 	}
+
 
 }

@@ -14,7 +14,7 @@ public class Match {
 	final int QUARTDEFINALE = 3;
 	final int HUITIEMEDEFINALE = 4;
 	final int SEIZIEMEDEFINALE = 5;
-	final int TRENTEDEUXIEMEDEFINALE =6;
+	final int TRENTEDEUXIEMEDEFINALE = 6;
 
 	// Constructeurs
 	public Match(Equipe equipeA, Equipe equipeB) {
@@ -63,8 +63,7 @@ public class Match {
 		return scoreA;
 	}
 
-	public int getType()
-	{
+	public int getType() {
 		return type;
 	}
 
@@ -90,18 +89,11 @@ public class Match {
 	}
 
 	public void setScoreAleatoire() {
-		scoreA = (int)(Math.random() * 4);
-		this.equipeA.setNbSetGagne(this.equipeA.getNbSetGagne()+scoreA);
+		int scoreAaleatoire = (int)(Math.random() * 4);
+		int scoreBaleatoire = (3 - scoreA);
+
+		ajouterScore(scoreAaleatoire, scoreBaleatoire);
 		
-		scoreB = (3 - scoreA);
-		this.equipeB.setNbSetGagne(this.equipeB.getNbSetGagne()+scoreB);
-		
-		if (scoreA > scoreB){
-			this.equipeA.setNbVictoire(this.equipeA.getNbVictoire()+1);
-		}
-		else{
-			this.equipeB.setNbVictoire(this.equipeB.getNbVictoire()+1);
-		}
 	}
 
 	// Methodes
@@ -116,15 +108,27 @@ public class Match {
 
 	public void ajouterScore(int scoreA, int scoreB) {
 		this.scoreA = scoreA;
-		equipeA.setNbSetGagne(equipeA.getNbSetGagne()+1);
+		equipeA.setNbSetGagne(equipeA.getNbSetGagne()+scoreA);
 		this.scoreB = scoreB;
-	}
-
-	public boolean estJoue(){
-		if ((this.scoreA == 0) && (this.scoreB == 0)){
-			return false;
+		equipeB.setNbSetGagne(equipeA.getNbSetGagne()+scoreA);
+		
+		if (scoreA > scoreB){
+			this.equipeA.setNbVictoire(this.equipeA.getNbVictoire()+1);
 		}
-		return true;
+		else{
+			this.equipeB.setNbVictoire(this.equipeB.getNbVictoire()+1);
+		}
+		
 	}
 
+
+
+	public boolean estJoue() {
+		if ((this.scoreA == 0) && (this.scoreB == 0)) {
+			return false;
+		} else
+			return true;
+
 	}
+
+}

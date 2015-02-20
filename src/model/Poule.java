@@ -40,9 +40,7 @@ public class Poule {
 		this.equipesPoule = equipesPoule;
 	}
 	
-	/*public EnumTypeMatch attribuerType (int groupePoule){
-		while (groupePoule != )
-	}*/
+
 		
 	
 	//Création des matchs des poules. Les matchs seront stockés dans une liste de matchs qui est un attribut de la classe TournoiParPoules
@@ -57,15 +55,15 @@ public class Poule {
 		{
 			while (ind<equipesPoule.size()-1)
 			{									
-				Match match1 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+1), (ind+1));
+				Match match1 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+1), 0);
 				tournoi.addMatch(match1);
 				
 				if (ind+2<equipesPoule.size()){
-					Match match2 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+2), (ind+1));
+					Match match2 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+2), 0);
 					tournoi.addMatch(match2);
 				}
 				if (ind+3<equipesPoule.size()){
-					Match match3 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+3), (ind+1));
+					Match match3 = new Match (equipesPoule.get(ind), equipesPoule.get(ind+3), 0);
 					tournoi.addMatch(match3);
 				}
 				ind ++;						
@@ -75,7 +73,13 @@ public class Poule {
 	
 	//Classer les équipes d'une poule	
 	public ArrayList<Equipe> classerEquipes(){ 
+		for (int i = 0; i<equipesPoule.size(); i++)
+		{
+			System.out.println("equipe " + i +" score "+ equipesPoule.get(i).getScore());
+		}
+	
 		Collections.sort(equipesPoule);
+		System.out.println("Après classement :" +this.equipesPoule);
 		return equipesPoule;
 	}
 	
