@@ -12,7 +12,7 @@ import model.*;
 
 public class ConsoleView {
 	static Scanner sc = new Scanner(System.in);
-	static final int EXITMENU = 6;
+	static final int EXITMENU = 5;
 	
 	public static void accueil() {
 		System.out.println("Bonjour ! Bienvenue dans le logiciel de gestion de tournoi de volley-ball.\n"
@@ -135,30 +135,6 @@ public class ConsoleView {
 		System.out.println("From ConsoleView.afficherEquipesEnJeu");
 		
 	}
-	
-	public static boolean afficherMatchNonJoues(Tournoi t)
-	{	
-		ListIterator<Match> li = t.getListeMatchs().listIterator();	
-		Match matchTemp;
-		int i = 1;
-		boolean flag = false;
-
-		System.out.println("-- Liste des matchs à jouer: --");
-		
-		while(li.hasNext()){
-			matchTemp = li.next();
-			if (matchTemp.estJoue() == false){
-			System.out.println("Match "+i+" : "+matchTemp.toString());
-			flag = true;
-			}
-			i ++;
-		}
-		//Dans le cas où tous les matchs ont été joués
-		if (flag == false){
-			System.out.println ("Tous les matchs ont été joués !");
-		}
-		return flag;
-	}
 
 	public static void menu(Tournoi tournoi, int type)
 	{
@@ -168,20 +144,19 @@ public class ConsoleView {
 			
 			System.out.println("\n-- Menu principal --");
 			System.out.println("Que souhaitez-vous faire ?");
-			System.out.println("1. Modifier les équipes");
+			System.out.println("1. Saisir les résultats d'un match");
 			System.out.println("2. Afficher les résultats des matchs joués");
 			System.out.println("3. Afficher/Modifier les équipes");
-			System.out.println("4. Saisir les résultats d'un match");
-			System.out.println("5. Générer la suite du tournoi automatiquement");
-			System.out.println("6. Exit");
+			System.out.println("4. Générer la suite du tournoi automatiquement");
+			System.out.println("5. Exit");
 
 
 			choixMenu=sc.nextInt();
 
 			switch(choixMenu){
 			case 1 : 
-				InfoEquipes.modifierEquipes(tournoi.getListeEquipes());
-				System.out.println("Liste des équipes modifiée ! ");
+				afficherMatchNonJoues(tournoi);
+				InfoMatch.selectionnerMatch(tournoi.getListeMatchs());
 				break;
 
 			case 2 : 
@@ -194,17 +169,9 @@ public class ConsoleView {
 				break;
 
 			case 4 : 
-				afficherMatchNonJoues(tournoi);
-				if (afficherMatchNonJoues(tournoi) == true){
-					InfoMatch.selectionnerMatch(tournoi.getListeMatchs());
-				}
-				break;
-				
-			case 5 : 
 				System.out.println("From consoleView : creer les fonctionnalités dans le randomator");
 				Randomator.finirtournoi(tournoi);
-				break;
-
+				break;	
 			}
 
 		}

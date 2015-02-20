@@ -23,7 +23,6 @@ public class Match {
 		this.equipeB.ajouterMatchJoue();
 		this.scoreA = 0;
 		this.scoreB = 0;
-
 	}
 
 	public Match(Equipe equipeA, Equipe equipeB, int type) {
@@ -117,9 +116,12 @@ public class Match {
 
 		// Methodes
 		public String toString() {
+			if (this.estJoue() == true){
 			return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
 					+ this.equipeB.getNom();//+"\nC'est un match de "+this.type;
-
+			}
+			else
+				return this.equipeA.getNom() + "-" + this.equipeB.getNom();
 		}
 
 		public void ajouterScore(int scoreA, int scoreB) {
