@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import view.ConsoleView;
 
 public class TournoiParPoules extends Tournoi {
 	int nbPoules;
@@ -108,12 +107,9 @@ public class TournoiParPoules extends Tournoi {
 
 		eqPhaseEliminatoire.add(listePoules.get(0).getEquipesPoule().get(1));
 
-		ConsoleView.afficherPoules(this);
-		System.out.println("Liste des équipes qualifiées : "
-				+ eqPhaseEliminatoire);
-
 		TourEliminatoire tour1 = new TourEliminatoire(eqPhaseEliminatoire);
 		this.listeToursEliminatoires.add(tour1);
+
 
 	}
 

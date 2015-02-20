@@ -107,7 +107,7 @@ public class Match {
 				+ this.equipeB.getNom();//+"\nC'est un match de "+this.type;
 		}
 		else
-			return this.equipeA.getNom() + "-" + this.equipeB.getNom();
+			return this.equipeA.getNom() + " - " + this.equipeB.getNom();
 	}
 
 	public void ajouterScore(int scoreA, int scoreB) {

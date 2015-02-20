@@ -47,11 +47,7 @@ public class Poule {
 	public void creerTableauMatchs(Tournoi tournoi){
 		int ind = 0; //Indice de la poule
 		
-		if (equipesPoule.size() == 1){
-			System.out.println("Une seule équipe dans la poule. Pas de tableau de matchs.");
-		}
-		
-		else
+		if (equipesPoule.size() != 1)
 		{
 			while (ind<equipesPoule.size()-1)
 			{									
@@ -73,13 +69,7 @@ public class Poule {
 	
 	//Classer les équipes d'une poule	
 	public ArrayList<Equipe> classerEquipes(){ 
-		for (int i = 0; i<equipesPoule.size(); i++)
-		{
-			System.out.println("equipe " + i +" score "+ equipesPoule.get(i).getScore());
-		}
-	
 		Collections.sort(equipesPoule);
-		System.out.println("Après classement :" +this.equipesPoule);
 		return equipesPoule;
 	}
 	

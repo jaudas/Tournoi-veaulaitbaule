@@ -16,25 +16,23 @@ public class Randomator {
 		
 		if (tAleatoire instanceof TournoiParPoules)
 		{
-			((TournoiParPoules)tAleatoire).creerEqQualifiees();
 			
+			((TournoiParPoules)tAleatoire).creerEqQualifiees();
+			ConsoleView.afficherResultatPoules((TournoiParPoules) tAleatoire);
+			ConsoleView.afficherPoules((TournoiParPoules) tAleatoire);
 			
 		}
-		
-		System.out.println("test while : "+tAleatoire.getListeToursEliminatoires().getLast().getListeEquipesTour().size());
 
 		//Tant qu'il y a plus d'une équipe en jeu 
 		// = tant que le dernier tour de la liste de tours a plus de 1 équipe
 		while (tAleatoire.getListeToursEliminatoires().getLast().getListeEquipesTour().size() >= 2)
 		{
-			System.out.println("Nouveau tour ! ");
-			//tAleatoire.nouveauTour();
+		//	System.out.println("Nouveau tour ! ");
 			tAleatoire.remplirTour();
 			tirageMatchsGeneres(tAleatoire.getListeMatchs());
-			ConsoleView.afficherMatchsJoues(tAleatoire.getListeMatchs());
 			tAleatoire.nouveauTour();
 		}
-		
+		ConsoleView.afficherMatchsJoues(tAleatoire.getListeMatchs());
 		System.out.println("Tournoi fini ! ");
 		Equipe gagnant = tAleatoire.getListeMatchs().getLast().getGagnant();
 		System.out.println("Gagnant : " + gagnant);
@@ -46,6 +44,7 @@ public class Randomator {
 	{
 		ListIterator<Match> liMatch = listeMatchTournoi.listIterator();
 		Match matchTemp;
+		System.out.println("Tirage au sort des matchs : ");
 
 		while(liMatch.hasNext()){
 			matchTemp = liMatch.next();

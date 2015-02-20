@@ -40,7 +40,7 @@ public class Main {
 			ConsoleView.afficherPoules((TournoiParPoules)tournoi);
 
 		}
-		
+
 		ConsoleView.afficherMatch(tournoi.getListeMatchs());
 
 

@@ -75,6 +75,7 @@ public class ConsoleView {
 	}
 
 	public static void afficherMatch(LinkedList<Match> listeMatch) {
+		System.out.println("Liste des matchs : ");
 		for (int i = 0; i < listeMatch.size(); i++) {
 			System.out.println(listeMatch.get(i));
 		}
@@ -220,4 +221,14 @@ public class ConsoleView {
 		afficherMatch(t.getListeMatchs());
 
 	}
+	
+	public static void afficherResultatPoules(TournoiParPoules tournoiPoules)
+	{
+		System.out.println("From ConsoleView.java : Afficher le tableau de résultat des poules (nb victoire, set gagnés & classement");
+		System.out.println("Liste des équipes qualifiées : " + tournoiPoules.getListeToursEliminatoires().getFirst().getListeEquipesTour());
+	}
+
+	
+
+
 }

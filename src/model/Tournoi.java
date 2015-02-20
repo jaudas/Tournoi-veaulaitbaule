@@ -74,9 +74,9 @@ public class Tournoi {
 
 	public void remplirTour() {
 		TourEliminatoire tour = this.listeToursEliminatoires.getLast();
-		System.out.println("From Tournoi.remplirTour : Tour modifié avec "+tour.getListeMatchsTour().size()+" matchs, soit "+tour.getListeEquipesTour()+"équipes.");
-	
+		//System.out.println("From Tournoi.remplirTour : Tour à remplir avec "+tour.getListeMatchsTour().size()+" matchs, soit "+tour.getListeEquipesTour().size()+"équipes.");
 		tour.setQualifOffice();
+		
 		int qualif = tour.getQualifOffice();
 		// Le nombre de matchs correspond au nombre de paire(s) d'équipes
 		int nbmatchs = (int) tour.getListeEquipesTour().size() / 2;
@@ -104,20 +104,13 @@ public class Tournoi {
 				j++;
 			}
 			e2 = tour.getListeEquipesTour().get(j);
-			System.out.println("Phase du match :"
-					+ tour.trouverPhaseTour(tour.getListeEquipesTour().size()));
-			Match rencontre = new Match(e1, e2, tour.trouverPhaseTour(tour
-					.getListeEquipesTour().size()));
-			System.out.println(" >>> " + rencontre.toString() + " <<< ");
+			Match rencontre = new Match(e1, e2, tour.trouverPhaseTour(tour.getListeEquipesTour().size()));
 			tour.getListeMatchsTour().add(rencontre);
 			this.addMatch(rencontre);
 			j++;
 
 		}
 		
-		System.out.println("From Tournoi.nouveauTour : Nouveau tour créé avec "+tour.getListeMatchsTour().size()+" matchs, soit "+tour.getListeEquipesTour().size()+"équipes.");
-
-
 	}
 
 	public void nouveauTour()
@@ -125,7 +118,6 @@ public class Tournoi {
 		LinkedList<Equipe> Equipequalif = this.listeToursEliminatoires.getLast().equipesQualifiees();
 		TourEliminatoire nouveauTour = new TourEliminatoire(Equipequalif);
 		this.listeToursEliminatoires.add(nouveauTour);
-		System.out.println("From Tournoi.nouveauTour : Nouveau tour créé avec "+nouveauTour.getListeMatchsTour().size()+" matchs, soit "+nouveauTour.getListeEquipesTour()+"équipes.");
 	}
 
 }
