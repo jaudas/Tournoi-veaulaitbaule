@@ -36,7 +36,6 @@ public class Main {
 		if (tournoiType == 2)
 		{
 			tournoi = new TournoiParPoules(listeEquipes);
-			tournoi.creerPoules();
 			System.out.println("Tournoi par poules ! ");
 			ConsoleView.afficherPoules((TournoiParPoules)tournoi);
 			

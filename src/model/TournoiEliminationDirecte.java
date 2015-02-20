@@ -12,18 +12,21 @@ public class TournoiEliminationDirecte extends Tournoi {
 		super.listeEquipes = listEq;
 		super.listeMatchs = new LinkedList<Match>();
 		super.listeToursEliminatoires = new LinkedList <TourEliminatoire>();
+		
+		//Creation du premier tour de jeu
+		super.creerTour();
 	}
 
 
 	public TournoiEliminationDirecte(LinkedList<Equipe> listEq) {
 		super.listeEquipes = listEq;
+		super.nbEquipesInit = listEq.size();
 		super.listeToursEliminatoires = new LinkedList <TourEliminatoire>();
+		
+		//Creation du premier tour de jeu
+		super.creerTour();
 	}
 	
-	public TournoiEliminationDirecte() {
-		super();
-		super.listeToursEliminatoires = new LinkedList <TourEliminatoire>();
-	}
 
 	// Methode
 	@Override

@@ -136,6 +136,7 @@ public class ConsoleView {
 		
 	}
 
+
 	public static void menu(Tournoi tournoi, int type)
 	{
 		int choixMenu = 0;
@@ -168,7 +169,7 @@ public class ConsoleView {
 				InfoEquipes.questionModif(tournoi);
 				break;
 
-			case 4 : 
+			case 4 :
 				System.out.println("From consoleView : creer les fonctionnalités dans le randomator");
 				Randomator.finirtournoi(tournoi);
 				break;	
@@ -177,7 +178,7 @@ public class ConsoleView {
 		}
 		while (choixMenu != EXITMENU); 
 	}
-
+	
 	public static void afficherMatchNonJoues(Tournoi t)
 	{	
 		ListIterator<Match> li = t.getListeMatchs().listIterator();	
@@ -193,13 +194,18 @@ public class ConsoleView {
 			}
 			
 		}
-		
-		if (i==1 && t.getListeToursEliminatoires().getLast().getListeEquipesTour().size() < 2)
+		System.out.println("i="+i);
+		if (i==1 && t.getListeToursEliminatoires().getLast().getListeEquipesTour().size() > 2)
 		{
+			if(t.getListeToursEliminatoires().getLast().getListeEquipesTour().size() > 2)
 			t.creerTour();
+			
+			else 
+				{
+				System.out.println("Nombre d'équipe dans le dernier tour : "+t.getListeToursEliminatoires().getLast().getListeEquipesTour().size());
+				System.out.println("Le tournoi est fini ! ");
+				}
 		}
-		
-		else 
-			System.out.println("Le tournoi est fini ! ");
+
 	}
 }

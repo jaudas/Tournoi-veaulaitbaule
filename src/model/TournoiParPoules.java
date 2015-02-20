@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class TournoiParPoules extends Tournoi {
 	int nbPoules;
@@ -31,6 +30,8 @@ public class TournoiParPoules extends Tournoi {
 			this.nbPoules = nbpoul;
 		}
 		//System.out.println("Le nombre de poules à créer est : " + this.nbPoules);
+		
+		this.creerPoules();
 	}
 
 	// Méthodes
@@ -111,11 +112,6 @@ public class TournoiParPoules extends Tournoi {
 		this.listePoules = listePoules;
 	}
 
-	// Déroulement d'un tournoi lors des phases de poules
-	public void deroulementTournoiPoule() {
-
-	}
-
 	// Classer chaque poule du tournoi
 	public ArrayList<Poule> classerEqPoules() {
 		for (int ind = 0; ind < listePoules.size(); ind++) {
@@ -132,13 +128,13 @@ public class TournoiParPoules extends Tournoi {
 		this.eqPhaseEliminatoire = eqPhaseEliminatoire;
 	}
 
-	public static List<Equipe> getListEquipeDuTournoi(String...names) {//var-args
+/*	public static List<Equipe> getListEquipeDuTournoi(String...names) {//var-args
 		List<Equipe> eDT = new ArrayList<Equipe> ();
 		for(String name :names){
 			eDT.add(new Equipe (name, (int) (Math.random() * 10), (int) (Math.random() * 10)));
 		}
 		return eDT;
-	}
+	}*/
 
 	/*public static void main(String[] arg) {
 		List<Equipe> eDT = getListEquipeDuTournoi("Jaune","Bleu","Rouge","Vert","Cyan","Rose","Marron","Orange","Blanc","Noir");

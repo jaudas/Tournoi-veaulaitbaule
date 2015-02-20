@@ -107,22 +107,13 @@ public class InfoEquipes {
 					} while ((NE < 0) || (NE > arrayNomsEquipe.size()));
 	
 					for (i = 1; i <= NE; i++) {
-	
-						description = "Equipe de volley-ball";
 						nbJoueurs = 6;
 						listeJoueurs=inscrireJoueursAuto(nbJoueurs);
 						option=true;
 						//On cree l'objet temporaire "aux" de type Equipe pour aider a l'initialisation des valeurs
 						//On attribue un valor a chaque attribute
-						aux = new Equipe(arrayNomsEquipe);
-						aux.setIdEquipe(i);
-						//aux.setNom(nom); Le nom est donné directement dans la fonction
-						aux.setDescription(description);
-						aux.setNbJoueurs(nbJoueurs);
-						aux.setListeJoueurs(listeJoueurs);
+						aux = new Equipe(i,arrayNomsEquipe,nbJoueurs,listeJoueurs);
 						listeEquipe.add(aux);
-	
-						nom="";
 				}
 			} catch (IOException | ParseException e) {
 				e.printStackTrace();
@@ -134,7 +125,6 @@ public class InfoEquipes {
 				break;
 			}
 		}
-
 		return listeEquipe;
 	}  
 
@@ -162,12 +152,7 @@ public class InfoEquipes {
 				age = sc.nextLine(); 
 				System.out.println("Sexe: ");
 				sexe = sc.nextLine();
-				aux = new Joueur(); //On cree l'object de l'Equipe
-				//On attribue un valor a chaque attribute
-				aux.setNom(nomj);
-				aux.setPrenom(prenom);
-				aux.setAge(age);
-				aux.setSexe(sexe);  
+				aux = new Joueur(prenom, nomj, age, sexe); //On cree l'object de l'Equipe
 				listeJoueurs.add(aux);
 			}
 		}
@@ -244,14 +229,10 @@ public class InfoEquipes {
 				System.out.println("Age: ");
 				String age = sc.nextLine(); 
 				System.out.println("Sexe: ");
-				String sexe = sc.nextLine();  
-				Joueur aux = new Joueur(); //On cree l'object de l'Equipe
-				//On attribue un valor a chaque attribute
-				aux.setNom(nomj);
-				aux.setPrenom(prenom);
-				aux.setAge(age);
-				aux.setSexe(sexe);  
+				String sexe = sc.nextLine();
+				Joueur aux = new Joueur(prenom, nomj, age, sexe);
 				listeEquipe.get(idEquipe-1).getListeJoueurs().add(aux);
+				
 				break;
 			case 2:
 				modifierJoueur(listeEquipe.get(idEquipe).getListeJoueurs());
@@ -330,7 +311,7 @@ public class InfoEquipes {
 			sc.nextLine();
 			System.out.println("Sexe: ");
 			sexe=sc.nextLine();
-			listeJoueurs.get(nbJoueur-1).setSexe(sexe);
+			listeJoueurs.get(nbJoueur-1).convertSexe(sexe);
 			break;
 
 		default:

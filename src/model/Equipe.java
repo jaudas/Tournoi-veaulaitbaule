@@ -1,9 +1,15 @@
 package model;
 
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 
 import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import tools.FilesTools;
 
 
 public class Equipe implements Comparable<Equipe> {
@@ -40,6 +46,35 @@ public class Equipe implements Comparable<Equipe> {
 		this.nom = (String) (listeNom.get(idnom));
 		listeNom.remove(idnom);
 	}
+	public Equipe(int i, JSONArray listeNom, int nbJoueurs, LinkedList<Joueur> listeJoueurs) {
+		super();
+		this.nbVictoire = 0;
+		this.nbSetGagne = 0;
+		this.nbMatchJoue = 0;
+		this.idEquipe = i;
+		this.nbJoueurs = nbJoueurs;
+		this.listeJoueurs= listeJoueurs;
+
+		//Ajout du nom, depuis une liste de couleurs stockées dans un JSON
+		int idnom = (int)(Math.random()*listeNom.size());
+		this.nom = (String) (listeNom.get(idnom));
+		listeNom.remove(idnom);
+		
+		JSONParser parser=new JSONParser();
+		String stringFileNomsEquipes;
+		try {
+			stringFileNomsEquipes = FilesTools.readFile (System.getProperty("user.dir")+"//src//data//Embleme.json",StandardCharsets.UTF_8);
+			Object parsedFile = parser.parse(stringFileNomsEquipes);
+			JSONArray arrayEmblemes = (JSONArray)parsedFile;
+			
+			int embleme = (int) (Math.random()*arrayEmblemes.size());
+			this.description = (String)("L'embleme de cet équipe est : " + (arrayEmblemes.get(embleme)));	
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 	public Equipe(String nom) {
 		super();
@@ -61,16 +96,8 @@ public class Equipe implements Comparable<Equipe> {
 		this.listeJoueurs = listeJoueurs;
 	}
 
-	public Equipe(String nom,  int nbVictoire, int nbSets) {
-		super();
-		this.idEquipe = 0;
-		this.nom = nom;
-		this.description = "rien";
-		this.nbVictoire = nbVictoire;
-		this.nbSetGagne = nbSets;
-		this.nbMatchJoue = 0;
-		this.listeJoueurs = null;
-	}
+
+
 
 	public int getIdEquipe() {
 		return idEquipe;

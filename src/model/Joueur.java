@@ -59,21 +59,23 @@ public class Joueur {
 				e.printStackTrace();
 			}
 		}
+		
+		int age = (int) (Math.random()*50 + 15);
+		this.age = (""+age);
+		
+		
 	}
 
 
-	public Joueur(EnumSexe sexe){
 
-
+	public Joueur(String prenom2, String nomj, String age2, String sexe) {
+		this.sexejoueur = convertSexe(sexe);
+		this.prenom = prenom2;
+		this.nom=nomj;
+		this.age = age2;
 	}
 
-	public Joueur(String prenom, String nom, String age, EnumSexe sexe, Equipe equipe){
-		this.prenom=prenom;
-		this.nom=nom;
-		this.age=age;
-		this.sexejoueur=sexe;
 
-	}
 
 	//Getteur et Setteurs 
 	public String getPrenom() {
@@ -104,7 +106,7 @@ public class Joueur {
 		return sexejoueur;
 	}
 
-	public void setSexe(String sexe) {
+	public EnumSexe convertSexe(String sexe) {
 		if (sexe == "Homme")
 		{
 			this.sexejoueur = EnumSexe.Homme;
@@ -115,15 +117,14 @@ public class Joueur {
 			this.sexejoueur = EnumSexe.Femme;
 		}
 		else this.sexejoueur = EnumSexe.NA;
+		
+		return this.sexejoueur;
 	}
-
-
-
 
 	//Méthodes
 	@Override
 	public String toString(){
-		return "Joueur: "+this.prenom+" "+this.nom+" Age: "+this.age+" Sexe: "+this.sexejoueur;
+		return "Joueur: "+this.prenom+" "+this.nom+" Age: "+this.age+" ans Sexe: "+this.sexejoueur;
 	}
 
 
