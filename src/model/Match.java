@@ -89,10 +89,14 @@ public class Match {
 	}
 
 	public void setScoreAleatoire() {
-		int scoreAaleatoire = (int)(Math.random() * 4);
-		int scoreBaleatoire = (3 - scoreA);
+		int score1 = (int)(Math.random() * 3);
+		int score2 = 3;
 
-		ajouterScore(scoreAaleatoire, scoreBaleatoire);
+		boolean tirage = Math.random() >= 0.5;
+		if (tirage == true)
+			ajouterScore(score1, score2);
+		else
+			ajouterScore(score2, score1);
 		
 	}
 
