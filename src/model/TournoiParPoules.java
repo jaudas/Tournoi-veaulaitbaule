@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -127,44 +128,36 @@ public class TournoiParPoules extends Tournoi {
 	public void setEqPhaseEliminatoire(LinkedList<Equipe> eqPhaseEliminatoire) {
 		this.eqPhaseEliminatoire = eqPhaseEliminatoire;
 	}
-
-/*	public static List<Equipe> getListEquipeDuTournoi(String...names) {//var-args
-		List<Equipe> eDT = new ArrayList<Equipe> ();
-		for(String name :names){
-			eDT.add(new Equipe (name, (int) (Math.random() * 10), (int) (Math.random() * 10)));
-		}
-		return eDT;
-	}*/
-
+	
 	/*public static void main(String[] arg) {
-		List<Equipe> eDT = getListEquipeDuTournoi("Jaune","Bleu","Rouge","Vert","Cyan","Rose","Marron","Orange","Blanc","Noir");
+		LinkedList<Equipe> eDT = getListEquipeDuTournoi("Jaune","Bleu","Rouge","Vert","Cyan","Rose","Marron","Orange","Blanc","Noir");
 		TournoiParPoules tournoi = new TournoiParPoules(eDT);
-
+	
 		tournoi.creerPoules(eDT);
 		System.out.println("Fin création des poules.");
 		tournoi.classerEqPoules();
 		Poule pouleTest = tournoi.listePoules.get(0);
 		Poule pouleTest2 = tournoi.listePoules.get(1);
 		Poule pouleTest3 = tournoi.listePoules.get(2);
-
+	
 		System.out.println("Poule 1");
 		for (int i = 0; i < pouleTest.getEquipesPoule().size(); i++) {
 			System.out.println("Equipe " + i + ": "
 					+ pouleTest.getEquipesPoule().get(i).getNom());
 		}
-
+	
 		System.out.println("\nPoule 2");
 		for (int i = 0; i < pouleTest2.getEquipesPoule().size(); i++) {
 			System.out.println("Equipe " + i + ": "
 					+ pouleTest2.getEquipesPoule().get(i).getNom());
 		}
-
+	
 		System.out.println("\nPoule 3");
 		for (int i = 0; i < pouleTest3.getEquipesPoule().size(); i++) {
 			System.out.println("Equipe " + i + ": "
 					+ pouleTest3.getEquipesPoule().get(i).getNom());
 		}
-
+	
 		tournoi.creerEqQualifiees();
 		System.out.println("\n--------------------------------\n");
 		System.out.println("Equipes qualifiées : ");
@@ -173,15 +166,15 @@ public class TournoiParPoules extends Tournoi {
 					+ tournoi.getEqPhaseEliminatoire().get(i).getIdEquipe()
 					+ ": " + tournoi.getEqPhaseEliminatoire().get(i).getNom());
 		}
-
+	
 		TourEliminatoire tourJeu;
 		int compteurtour = 0;
-
+	
 		while (getEqPhaseEliminatoire().size() != 1) // Tant qu'il y a plus
 														// d'une équipe en
 		// jeu, alors on effectue un tournoi
 		{
-
+	
 			// Creation d'un tour
 			tourJeu = new TourEliminatoire(getEqPhaseEliminatoire());
 			compteurtour++;
@@ -191,19 +184,19 @@ public class TournoiParPoules extends Tournoi {
 				System.out.println(i + "=>"
 						+ tourJeu.getListeEquipesTour().get(i));
 			}
-
+	
 			// On définit le qualifié d'office si il existe
 			tourJeu.setQualifOffice();
-
+	
 			// On cree le tour de jeu
 			System.out.println("C'est parti pour la création des matchs ! ");
 			tourJeu.creerTour();
 			System.out.println("Matchs générés ! ");
-
+	
 			// On mets à jour la liste des équipes en jeu
 			setEqPhaseEliminatoire(tourJeu.equipesQualifiees());
 			System.out.println("\nFin du tour " + compteurtour);
-
+	
 		}
 		System.out.println("Le super gagnant est : "
 				+ getEqPhaseEliminatoire().getFirst());

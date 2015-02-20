@@ -19,8 +19,9 @@ public class Equipe implements Comparable<Equipe> {
 	private String description;
 	private int nbJoueurs;
 	private int nbVictoire;
-	private int nbMatchJoue;
+	
 	private int nbSetGagne;
+	private int nbMatchJoue;
 	private LinkedList <Joueur> listeJoueurs;
 
 	//Constructeurs
@@ -46,6 +47,7 @@ public class Equipe implements Comparable<Equipe> {
 		this.nom = (String) (listeNom.get(idnom));
 		listeNom.remove(idnom);
 	}
+	
 	public Equipe(int i, JSONArray listeNom, int nbJoueurs, LinkedList<Joueur> listeJoueurs) {
 		super();
 		this.nbVictoire = 0;
@@ -73,7 +75,6 @@ public class Equipe implements Comparable<Equipe> {
 			e.printStackTrace();
 		}
 		
-		
 	}
 
 	public Equipe(String nom) {
@@ -95,9 +96,6 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbMatchJoue = 0;
 		this.listeJoueurs = listeJoueurs;
 	}
-
-
-
 
 	public int getIdEquipe() {
 		return idEquipe;
@@ -167,7 +165,6 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbMatchJoue++;
 	}
 
-
 	//Méthodes
 	@Override
 	public String toString(){
@@ -176,31 +173,30 @@ public class Equipe implements Comparable<Equipe> {
 	}
 
 	//Calculer le score de chaque équipe selon le nombre de victoires
-	public int getScore (){
-
+	public int getScore (){ 
 		return  nbVictoire*3;			
 	}
 
 	@Override
 	public int compareTo(Equipe eq2) {
 		//Comparaion des équipes selon leurs nombres de victoire
-		if (getScore() > eq2.getScore()){
+		if (this.getScore() > eq2.getScore()){
 			return -1;
 		}
-		else if (getScore() < eq2.getScore()){
+		else if (this.getScore() < eq2.getScore()){
 			return 1;
 		}
-		else if (getScore() == eq2.getScore()){
+		else if (this.getScore() == eq2.getScore()){
 			//Comparaison des équipes selon leurs nombres de sets gagnés
-			if (getNbSetGagne() > eq2.getNbSetGagne()){
+			if (this.getNbSetGagne() > eq2.getNbSetGagne()){
 				return -1;
 			}
-			else if (getNbSetGagne() < eq2.getNbSetGagne()){
+			else if (this.getNbSetGagne() < eq2.getNbSetGagne()){
 				return 1;
 			}
-			return 0;
 		}
-		return 0;
+		//Si les deux équipes ont le même nombre de victoires et de sets gagnés, on tire au sort l'équipe qui est classée avant l'autre
+		return( Math.random()>= 0.5 ? 1 : -1);
 	}
 
 }

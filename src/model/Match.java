@@ -43,7 +43,6 @@ public class Match {
 	}
 
 	// Get et Set
-
 	public Equipe getEquipeA() {
 		return equipeA;
 	}
@@ -62,7 +61,6 @@ public class Match {
 
 	public int getScoreA() {
 		return scoreA;
-
 	}
 
 	public int getType()
@@ -82,47 +80,51 @@ public class Match {
 		this.scoreB = scoreB;
 	}
 
-
 	public Equipe getGagnant() {
-		// Pas d'égalité possible au volley
+		// Pas d'égalité possible au volley, donc il y a toujours un gagnant dans un match
 		if (scoreA > scoreB) {
-			return equipeA;
+			return this.equipeA;
 		} else {
-			return equipeB;
+			return this.equipeB;
 		}
-
 	}
-
 
 	public void setScoreAleatoire() {
 		scoreA = (int)(Math.random() * 4);
-
+		this.equipeA.setNbSetGagne(this.equipeA.getNbSetGagne()+scoreA);
 		
 		scoreB = (3 - scoreA);
-		System.out.println("Score A : "+ scoreA);
-		System.out.println("Score B : "+ scoreB);
+		this.equipeB.setNbSetGagne(this.equipeB.getNbSetGagne()+scoreB);
+		
+		if (scoreA > scoreB){
+			this.equipeA.setNbVictoire(this.equipeA.getNbVictoire()+1);
 		}
+		else{
+			this.equipeB.setNbVictoire(this.equipeB.getNbVictoire()+1);
+		}
+	}
 
-		// Methodes
-		public String toString() {
-			if (this.estJoue() == true){
-			return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
-					+ this.equipeB.getNom();//+"\nC'est un match de "+this.type;
-			}
-			else
-				return this.equipeA.getNom() + "-" + this.equipeB.getNom();
+	// Methodes
+	public String toString() {
+		if (this.estJoue() == true){
+		return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
+				+ this.equipeB.getNom();//+"\nC'est un match de "+this.type;
 		}
+		else
+			return this.equipeA.getNom() + "-" + this.equipeB.getNom();
+	}
 
-		public void ajouterScore(int scoreA, int scoreB) {
-			this.scoreA = scoreA;
-			this.scoreB = scoreB;
-		}
+	public void ajouterScore(int scoreA, int scoreB) {
+		this.scoreA = scoreA;
+		equipeA.setNbSetGagne(equipeA.getNbSetGagne()+1);
+		this.scoreB = scoreB;
+	}
 
-		public boolean estJoue(){
-			if ((this.scoreA == 0) && (this.scoreB == 0)){
-				return false;
-			}
-			return true;
+	public boolean estJoue(){
+		if ((this.scoreA == 0) && (this.scoreB == 0)){
+			return false;
 		}
+		return true;
+	}
 
 	}
