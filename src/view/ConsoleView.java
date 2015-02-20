@@ -10,9 +10,20 @@ import controleur.InfoMatch;
 import controleur.Randomator;
 import model.*;
 
+
+
 public class ConsoleView {
 	static Scanner sc = new Scanner(System.in);
 	static final int EXITMENU = 5;
+	
+	//Constantes pour les phases d'un tournoi
+	final static int PHASEPOULE = 0;
+	final static int FINALE = 1;
+	final static int DEMIFINALE = 2;
+	final static int QUARTDEFINALE = 3;
+	final static int HUITIEMEDEFINALE = 4;
+	final static int SEIZIEMEDEFINALE = 5;
+	final static int TRENTEDEUXIEMEDEFINALE = 6;
 	
 	public static void accueil() {
 		System.out.println("Bonjour ! Bienvenue dans le logiciel de gestion de tournoi de volley-ball.\n"
@@ -108,26 +119,19 @@ public class ConsoleView {
 	}
 	
 	public static void afficherCategorieMatch(int ID)
-	{
-		if (ID>0 && ID<10)
-		{
-			System.out.println("-- Matchs joués dans la Poule "+ID+" --");
-		}
-		
-		if (ID==-1)
+	{		
+		if (ID == FINALE)
 			System.out.println("----- FINALE -----");
-		if (ID==-2)
+		else if (ID== DEMIFINALE)
 			System.out.println("----- DEMI-FINALE -----");
-		if (ID==-3)
+		else if (ID== QUARTDEFINALE)
 			System.out.println("----- QUART DE FINALE -----");
-		if (ID==-4)
+		else if (ID== HUITIEMEDEFINALE)
 			System.out.println("----- HUITIEME DE FINALE -----");
-		if (ID==-5)
-			System.out.println("----- SEIXIEME DE FINALE -----");
-		if (ID==-6)
+		else if (ID== SEIZIEMEDEFINALE)
+			System.out.println("----- SEIZIEME DE FINALE -----");
+		else if (ID== TRENTEDEUXIEMEDEFINALE)
 			System.out.println("----- TRENTE DEUXIEME DE FINALE -----");
-		
-		else System.out.println("Catégorie de Match imcomprise :(");
 	}
 
 	public static void afficherEquipesEnJeu()
@@ -189,8 +193,8 @@ public class ConsoleView {
 		while(li.hasNext()){
 			matchTemp = li.next();
 			if (matchTemp.estJoue() == false){
-			System.out.println("Match "+i+" : "+matchTemp.toString());
-			i ++;
+				System.out.println("Match "+li.nextIndex()+" : "+matchTemp.toString());
+				i ++;
 			}
 			
 		}
@@ -202,7 +206,7 @@ public class ConsoleView {
 			
 			else 
 				{
-				System.out.println("Nombre d'équipe dans le dernier tour : "+t.getListeToursEliminatoires().getLast().getListeEquipesTour().size());
+				System.out.println("Nombre d'équipe(s) dans le dernier tour : "+t.getListeToursEliminatoires().getLast().getListeEquipesTour().size());
 				System.out.println("Le tournoi est fini ! ");
 				}
 		}

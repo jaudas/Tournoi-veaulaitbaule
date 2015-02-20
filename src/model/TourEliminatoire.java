@@ -7,13 +7,14 @@ public class TourEliminatoire {
 	private int qualifOffice = -1;
 	private LinkedList<Match> listeMatchTour = new LinkedList<Match>();
 	
-	
-	final int FINALE = -1;
-	final int DEMIFINALE = -2;
-	final int QUARTDEFINALE = -3;
-	final int HUITIEMEDEFINALE = -4;
-	final int SEIZIEMEDEFINALE = -5;
-	final int TRENTEDEUXIEMEDEFINALE =-6;
+	//Constantes pour les phases d'un tournoi
+	final static int PHASEPOULE = 0;
+	final static int FINALE = 1;
+	final static int DEMIFINALE = 2;
+	final static int QUARTDEFINALE = 3;
+	final static int HUITIEMEDEFINALE = 4;
+	final static int SEIZIEMEDEFINALE = 5;
+	final static int TRENTEDEUXIEMEDEFINALE = 6;
 
 	public TourEliminatoire()
 	{
@@ -36,7 +37,7 @@ public class TourEliminatoire {
 		//Indique la parité de la liste d'équipes 
 		int parite = this.listeEquipesTour.size()%2;
 
-		if(parite!=0)
+		if(parite!=0) 
 		{
 			indexEquipe = (int) (Math.random()*listeEquipesTour.size());
 			System.out.println("L'équipe qualifiée d'office est : " + listeEquipesTour.get(indexEquipe).getNom());

@@ -8,12 +8,13 @@ public class Match {
 	private int scoreB;
 	private int type;
 
-	final int FINALE = -1;
-	final int DEMIFINALE = -2;
-	final int QUARTDEFINALE = -3;
-	final int HUITIEMEDEFINALE = -4;
-	final int SEIZIEMEDEFINALE = -5;
-	final int TRENTEDEUXIEMEDEFINALE =-6;
+	final int POULE = 0;
+	final int FINALE = 1;
+	final int DEMIFINALE = 2;
+	final int QUARTDEFINALE = 3;
+	final int HUITIEMEDEFINALE = 4;
+	final int SEIZIEMEDEFINALE = 5;
+	final int TRENTEDEUXIEMEDEFINALE =6;
 
 	// Constructeurs
 	public Match(Equipe equipeA, Equipe equipeB) {

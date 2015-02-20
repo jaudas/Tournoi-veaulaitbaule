@@ -38,9 +38,7 @@ public class InfoMatch {
 				  System.out.println("Un score au volley-ball ne peut être supérieur à 3. Score incorrect.");
 			  }
 		  }while (scoreB>3);
-		  
-		 
-		  
+		  		  
 		  if (scoreA==scoreB){
 			  System.out.println(" ! Les scores ne sont pas valides : égalité impossible au volley-ball.\nS'il vous plait ajoutez un autre resultat : ");
 			  resultMatch(match);

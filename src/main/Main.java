@@ -29,8 +29,6 @@ public class Main {
 			tournoi = new TournoiEliminationDirecte(listeEquipes);
 			System.out.println("Tournoi par élimination ! ");
 			//TourEliminatoire tourInitial = new TourEliminatoire(tournoi.getListeEquipes());
-			tournoi.creerTour();
-			
 		}
 		//Tournoi par poules
 		if (tournoiType == 2)

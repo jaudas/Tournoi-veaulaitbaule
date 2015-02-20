@@ -76,9 +76,7 @@ public class Tournoi {
 		{
 			System.out.println("Tournoi par poules ! ");
 			this.creerEqQualifiees();
-		}
-		
-		
+		}		
 		
 		else if (this.listeToursEliminatoires.isEmpty() == true)
 		{
@@ -125,8 +123,8 @@ public class Tournoi {
 				j++;
 			}
 			e2 = tour.getListeEquipesTour().get(j);
-
-			Match rencontre = new Match(e1,e2);
+			System.out.println("Phase du match :"+tour.trouverPhaseTour(tour.getListeEquipesTour().size()));
+			Match rencontre = new Match(e1,e2, tour.trouverPhaseTour(tour.getListeEquipesTour().size()));
 			System.out.println(" >>> "+rencontre.toString()+" <<< ");
 			tour.getListeMatchsTour().add(rencontre);
 			this.addMatch(rencontre);
