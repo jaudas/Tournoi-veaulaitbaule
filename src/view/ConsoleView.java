@@ -120,15 +120,18 @@ public class ConsoleView {
 
 		for (i = 0; i < listeMatchs.size(); i++) {
 			if (listeMatchs.get(i).estJoue() == true) {
-
 				if (temp != listeMatchs.get(i).getType()) {
 					temp = listeMatchs.get(i).getType();
 					ConsoleView.afficherCategorieMatch(temp);
 					System.out.println("Match " + (i + 1) + " : "
 							+ listeMatchs.get(i).toString());
-				}
-				else {
+				}				
+				else if (temp == PHASEPOULE) {
 					i = afficherMatchsJouesPoules((TournoiParPoules) tournoi);
+				}
+				else{
+					System.out.println("Match " + (i + 1) + " : "
+							+ listeMatchs.get(i).toString());
 				}
 			}
 		}
