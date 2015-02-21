@@ -6,7 +6,6 @@ public class Exception {
 	 static Scanner sc = new Scanner(System.in);
 	
 	  public static int mauvaisNumero(String str){
-		  
 		  int num=0;
 			try{
 		        	num=Integer.parseInt(str);

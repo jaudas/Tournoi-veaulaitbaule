@@ -110,9 +110,6 @@ public class TournoiParPoules extends Tournoi {
 
 		TourEliminatoire tour1 = new TourEliminatoire(eqPhaseEliminatoire);
 		this.listeToursEliminatoires.add(tour1);
-		
-
-
 	}
 
 	public ArrayList<Poule> getListePoules() {

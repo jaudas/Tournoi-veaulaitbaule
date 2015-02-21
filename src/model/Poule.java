@@ -40,8 +40,6 @@ public class Poule {
 		this.equipesPoule = equipesPoule;
 	}
 	
-
-		
 	
 	//Création des matchs des poules. Les matchs seront stockés dans une liste de matchs qui est un attribut de la classe TournoiParPoules
 	public void creerTableauMatchs(Tournoi tournoi){

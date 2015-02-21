@@ -42,7 +42,7 @@ public class Randomator {
 			}
 			
 			System.out.println("Tournoi fini ! Récapiltulatif des matchs : ");
-			ConsoleView.afficherMatchsJoues(tAleatoire.getListeMatchs());
+			ConsoleView.afficherMatchsJoues(tAleatoire);
 			Equipe gagnant = tAleatoire.getListeMatchs().getLast().getGagnant();
 			System.out.println("Gagnant : " + gagnant);
 		} else
