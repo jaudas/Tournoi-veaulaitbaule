@@ -5,7 +5,6 @@ import java.util.LinkedList;
 public class TourEliminatoire {
 	private LinkedList<Equipe> listeEquipesTour;
 	private int qualifOffice = -1;
-	// private LinkedList<Match> listeMatchTour = new LinkedList<Match>();
 	int type = -1;
 
 	// Constantes pour les phases d'un tournoi

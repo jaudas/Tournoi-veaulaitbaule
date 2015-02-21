@@ -15,7 +15,7 @@ public class Exception {
 		        	str=sc.nextLine();
 		        	mauvaisNumero(str);
 		    	}
-			num=Integer.parseInt(str);
+			//num=Integer.parseInt(str);
 			return  num; 
 	  }
 	  
