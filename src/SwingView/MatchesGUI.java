@@ -22,7 +22,7 @@ import model.Equipe;
 
 
 
-public class EquipesGUI{
+public class MatchesGUI{
 
 public static void menuEquipes(LinkedList<Equipe> listeEquipes) {
 	 

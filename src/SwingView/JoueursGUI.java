@@ -24,6 +24,11 @@ import javax.swing.border.TitledBorder;
 
 
 
+
+
+
+
+import model.EnumSexe;
 import model.Equipe;
 import model.Joueur;
 
@@ -127,7 +132,7 @@ public static void newJoueur(LinkedList<Equipe> listeEquipes, int chEqp) {
 	// Buttons
 	 JButton create = new JButton("Create");
 	 JButton cancel = new JButton("Cancel");
-	 String[] bookTitles = new String[] {"Femme", "Homme"};
+	 String[] bookTitles = new String[] {"femme", "homme", "N/A"};
 
 	 JComboBox<String> chSexe = new JComboBox<>(bookTitles);
 
@@ -181,7 +186,7 @@ public static void newJoueur(LinkedList<Equipe> listeEquipes, int chEqp) {
 	 
 		 	public void actionPerformed(ActionEvent e2){
 		 		LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur> ();
-		 		listeJoueurs = listeEquipes.get(chEqp-1).getListeJoueurs();
+		 		 	listeJoueurs=listeEquipes.get(chEqp-1).getListeJoueurs();
 		 			createJoueur(listeJoueurs, prenom, nom, age, chSexe);
 		 			addframe.setVisible(false);
 		 			listeEquipes.get(chEqp-1).setListeJoueurs(listeJoueurs);
@@ -209,13 +214,9 @@ private static void createJoueur(LinkedList <Joueur> listeJoueurs, JTextField pr
 String prenomj = prenom.getText();
 String nomj = nom.getText();
 String agej = age.getText();
-	int ageJnb = QuestionsDialogues.mauvaisNumero(agej, "Age incorrect");
+	String ageJnb = Integer.toString(QuestionsDialogues.mauvaisNumero(agej, "Age incorrect"));
 String selectSexe = (String) chSexe.getSelectedItem();
-Joueur joueur = new Joueur();
-joueur.setPrenom(prenomj);
-joueur.setNom(nomj);
-joueur.setSexe(selectSexe);
-joueur.setAge(Integer.toString(ageJnb));
+Joueur joueur = new Joueur(prenomj,nomj,ageJnb,selectSexe);
 
 listeJoueurs.add(joueur);
 
@@ -243,15 +244,29 @@ public static void modifierJoueurs(LinkedList <Equipe> listeEquipes, int idEnb, 
 	JTextField prenom = new JTextField();
 	 JTextField nom = new JTextField();
 	 JTextField age = new JTextField();
-	 String[] bookTitles = new String[] {"Femme", "Homme"};
+	
+	 String[] bookTitles = new String[] {"femme", "homme", "N/A"};
 
 	 JComboBox<String> chSexe = new JComboBox<>(bookTitles);
 	 
 	 nom.setText(listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getNom());
 	 prenom.setText(listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getPrenom());
 	 age.setText(listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getAge());
-	
 	 
+		if (listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getSexe()== EnumSexe.Femme)
+		{
+			chSexe.setSelectedItem("femme");
+		}
+
+		if (listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getSexe()== EnumSexe.Homme)
+		{
+			chSexe.setSelectedItem("homme");
+		}
+		if (listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getSexe()== EnumSexe.NA)
+		{
+			chSexe.setSelectedItem("N/A");
+		}
+		
 	// Buttons
 	 JButton create = new JButton("Save");
 	 JButton cancel = new JButton("Cancel");
@@ -312,13 +327,15 @@ public static void modifierJoueurs(LinkedList <Equipe> listeEquipes, int idEnb, 
 		 		String nomj = nom.getText();
 		 		String prenomj = prenom.getText();
 		 		String agej = age.getText();
-		 		int ageJnb = QuestionsDialogues.mauvaisNumero(agej, "Age incorrect");
-		 		String selecteSexe =(String) chSexe.getSelectedItem();
-		 		listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).setNom(nomj);
-		 		listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).setPrenom(prenomj);
-		 		listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).setAge(Integer.toString(ageJnb));
-		 		listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).setSexe(null);
-		 		listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).setSexe(selecteSexe);
+		 		String selecteSexe=(String) chSexe.getSelectedItem();
+		 		System.out.println(selecteSexe);
+		 		
+		 		String ageJnb = Integer.toString(QuestionsDialogues.mauvaisNumero(agej, "Age incorrect"));
+		 		
+
+		 		listeEquipes.get(idEnb-1).getListeJoueurs().remove(NJj-1);
+		 		listeEquipes.get(idEnb-1).getListeJoueurs().add(NJj-1, new Joueur(nomj,prenomj,ageJnb,selecteSexe));
+		 		
 		 		addframe.setVisible(false);
 		 		JOptionPane.showMessageDialog(null,"Your entry is successfully added");
 		 		menuJoueurs(listeEquipes, idEnb);
