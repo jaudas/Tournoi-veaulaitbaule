@@ -90,7 +90,7 @@ public class InfoEquipes {
 				JSONParser parser=new JSONParser();
 				String stringFileNomsEquipes;
 				try {
-					stringFileNomsEquipes = FilesTools.readFile(System.getProperty("user.dir")+"//src//data//nomequipe.json",StandardCharsets.UTF_8);
+					stringFileNomsEquipes = FilesTools.readFile(System.getProperty("user.dir")+"//src//data//nomequipes.json",StandardCharsets.UTF_8);
 					Object parsedFile = parser.parse(stringFileNomsEquipes);
 					JSONArray arrayNomsEquipe = (JSONArray)parsedFile;
 					

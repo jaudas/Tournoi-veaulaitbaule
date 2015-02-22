@@ -309,14 +309,14 @@ public class ConsoleView {
 	}
 
 	public static void afficherStatEquipes(Tournoi t) {
-		System.out.println("    Equipe        | Victoires | Sets Gagnés |  Goal Average ");
+		System.out.println("     Equipe          | Joués | Victoires | Sets Gagnés |  Goal Average ");
 		LinkedList<Equipe> eqTriees = t.getListeEquipes();
 		Collections.sort(eqTriees);
 
 		for (int cptEq = 0; cptEq <t.getListeEquipes().size(); cptEq ++){
 			Equipe eqTemp = eqTriees.get(cptEq);
-			System.out.print((cptEq+1)+"     "+eqTemp.getNom()+"\t\t"+eqTemp.getNbVictoire()+"          "
-					+eqTemp.getNbSetGagne()+ "            " + eqTemp.calculGoalAverage() + "\n") ;
+			System.out.print((cptEq+1)+"     "+eqTemp.getNom()+"\t\t "+eqTemp.getNbMatchJoue()+"\t  "+eqTemp.getNbVictoire()+"           "
+					+eqTemp.getNbSetGagne()+ "              " + eqTemp.calculGoalAverage() + "\n") ;
 		}
 	}
 }
