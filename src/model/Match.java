@@ -114,7 +114,8 @@ public class Match {
 		this.scoreA = scoreA;
 		equipeA.setNbSetGagne(equipeA.getNbSetGagne()+scoreA);
 		this.scoreB = scoreB;
-		
+		equipeB.setNbSetGagne(equipeB.getNbSetGagne()+scoreB);
+			
 		if (scoreA > scoreB){
 			this.equipeA.setNbVictoire(this.equipeA.getNbVictoire()+1);
 		}

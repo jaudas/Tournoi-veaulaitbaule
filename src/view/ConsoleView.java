@@ -128,10 +128,12 @@ public class ConsoleView {
 				}				
 				else if (temp == PHASEPOULE) {
 					i = afficherMatchsJouesPoules((TournoiParPoules) tournoi);
+					temp = 1;
 				}
 				else{
 					System.out.println("Match " + (i + 1) + " : "
 							+ listeMatchs.get(i).toString());
+					temp = temp = listeMatchs.get(i).getType();
 				}
 			}
 		}
@@ -153,7 +155,7 @@ public class ConsoleView {
 				System.out.println("Aucun match : une seule équipe dans cette poule.");
 			}
 			else {
-				while ((cptPP <6)&&(tPP.getListeMatchs().get(cptMatch).getType() == 0)){
+				while ((cptPP <6)&&(cptMatch < tPP.getListeMatchs().size())&&(tPP.getListeMatchs().get(cptMatch).estJoue()==true)&&(tPP.getListeMatchs().get(cptMatch).getType() == 0)){
 					System.out.println("Match "+(cptMatch+1)+" : "+tPP.getListeMatchs().get(cptMatch).toString());
 					cptPP ++;
 					cptMatch ++;
