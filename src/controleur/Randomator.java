@@ -20,11 +20,8 @@ public class Randomator {
 
 			//Si c'est un tournoi par poules
 			if (tAleatoire instanceof TournoiParPoules) {
-				
 				((TournoiParPoules) tAleatoire).creerEqQualifiees();
 				ConsoleView.afficherResultatPoules((TournoiParPoules) tAleatoire);
-				ConsoleView.afficherPoules((TournoiParPoules) tAleatoire);
-
 			} 
 			
 			else {

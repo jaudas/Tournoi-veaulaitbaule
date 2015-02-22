@@ -75,13 +75,14 @@ public class Tournoi {
 	public void remplirTour() {
 		TourEliminatoire tour = this.listeToursEliminatoires.getLast();
 		//System.out.println("From Tournoi.remplirTour : Tour à remplir avec "+tour.getListeMatchsTour().size()+" matchs, soit "+tour.getListeEquipesTour().size()+"équipes.");
-		tour.setQualifOffice();
 		
-		int qualif = tour.getQualifOffice();
+		
 		// Le nombre de matchs correspond au nombre de paire(s) d'équipes
 		int nbmatchs = (int) tour.getListeEquipesTour().size() / 2;
 
-		System.out.println("Il y aura " + nbmatchs + " matchs dans ce tour : ");
+		System.out.println("\nIl y aura " + nbmatchs + " matchs dans ce tour ! ");
+		tour.setQualifOffice();
+		int qualif = tour.getQualifOffice();
 		int j = 0;
 
 		for (int i = 0; i < nbmatchs; i++) {

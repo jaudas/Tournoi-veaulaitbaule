@@ -103,8 +103,8 @@ public class Match {
 	// Methodes
 	public String toString() {
 		if (this.estJoue() == true){
-		return this.equipeA.getNom() + " " + this.scoreA + "-" + this.scoreB + " "
-				+ this.equipeB.getNom() + " --- Gagnant : " + getGagnant().getNom();
+		return this.equipeA.getNom() + "  " + this.scoreA + "-" + this.scoreB + "  "
+				+ this.equipeB.getNom() + " \t--- Gagnant : " + getGagnant().getNom();
 		}
 		else
 			return this.equipeA.getNom() + " - " + this.equipeB.getNom();
@@ -113,9 +113,11 @@ public class Match {
 	public void ajouterScore(int scoreA, int scoreB) {
 		this.scoreA = scoreA;
 		equipeA.setNbSetGagne(equipeA.getNbSetGagne()+scoreA);
+		equipeA.setNbSetPerdu(equipeA.getNbSetPerdu()+scoreB);
 		this.scoreB = scoreB;
 		equipeB.setNbSetGagne(equipeB.getNbSetGagne()+scoreB);
-			
+		equipeB.setNbSetPerdu(equipeB.getNbSetPerdu()+scoreB);
+
 		if (scoreA > scoreB){
 			this.equipeA.setNbVictoire(this.equipeA.getNbVictoire()+1);
 		}

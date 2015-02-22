@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
@@ -42,7 +43,7 @@ public class ConsoleView {
 	public static int choixTournoi() {
 		String CH;
 		int choix=0;
-		
+
 		do{
 			System.out
 			.println("Souhaitez-vous un tournoi :\n- par éliminations directes (tapez 1)?\n- avec une phase de poules (tapez 2)?");
@@ -52,9 +53,9 @@ public class ConsoleView {
 				System.out.println("Saisie incorrecte !");
 			}
 		}while ((choix != 1)&&(choix != 2));
-		
+
 		return choix;
-		
+
 	}
 
 	public static void afficherEquipesEtJoueurs(LinkedList<Equipe> listeEquipe) {
@@ -113,7 +114,7 @@ public class ConsoleView {
 
 	public static void afficherMatchsJoues(Tournoi tournoi) {
 		System.out.println("\n---- Match Joués ----");
-		
+
 		LinkedList<Match> listeMatchs = tournoi.getListeMatchs();		
 		int temp = 0;
 		int i = 0;
@@ -133,7 +134,7 @@ public class ConsoleView {
 				else{
 					System.out.println("Match " + (i + 1) + " : "
 							+ listeMatchs.get(i).toString());
-					temp = temp = listeMatchs.get(i).getType();
+					temp = listeMatchs.get(i).getType();
 				}
 			}
 		}
@@ -142,13 +143,13 @@ public class ConsoleView {
 			System.out.println("Aucun match n'a été joué pour le moment :(");
 
 	}
-	
+
 	public static int afficherMatchsJouesPoules(TournoiParPoules tPP){
-		
+
 		afficherCategorieMatch(0);
 		int cptMatch=0;
 		int cptPP = 0;
-		
+
 		for (int cptPoule = 0 ; cptPoule< tPP.getListePoules().size(); cptPoule ++){
 			System.out.println("-- Poule "+(cptPoule+1)+" --");
 			if (tPP.getListePoules().get(cptPoule).getEquipesPoule().size() == 1){
@@ -163,26 +164,26 @@ public class ConsoleView {
 				cptPP = 0;
 			}
 		}
-		
+
 		return cptMatch;
-		
+
 	}
 
 	public static void afficherCategorieMatch(int ID) {
 		if (ID == PHASEPOULE) 
-			System.out.println("----- PHASE DE POULES ------");
+			System.out.println("\n----- PHASE DE POULES ------");
 		else if (ID == FINALE)
-			System.out.println("----- FINALE -----");
+			System.out.println("\n----- FINALE -----");
 		else if (ID == DEMIFINALE)
-			System.out.println("----- DEMI-FINALE -----");
+			System.out.println("\n----- DEMI-FINALE -----");
 		else if (ID == QUARTDEFINALE)
-			System.out.println("----- QUART DE FINALE -----");
+			System.out.println("\n----- QUART DE FINALE -----");
 		else if (ID == HUITIEMEDEFINALE)
-			System.out.println("----- HUITIEME DE FINALE -----");
+			System.out.println("\n----- HUITIEME DE FINALE -----");
 		else if (ID == SEIZIEMEDEFINALE)
-			System.out.println("----- SEIZIEME DE FINALE -----");
+			System.out.println("\n----- SEIZIEME DE FINALE -----");
 		else if (ID == TRENTEDEUXIEMEDEFINALE)
-			System.out.println("----- TRENTE DEUXIEME DE FINALE -----");
+			System.out.println("\n----- TRENTE DEUXIEME DE FINALE -----");
 	}
 
 	public static void menu(Tournoi tournoi, int type) {
@@ -231,8 +232,8 @@ public class ConsoleView {
 	public static boolean afficherMatchNonJoues(Tournoi t) {
 		//Indiquons si il y a des matchs à jouer
 		boolean indic = InfoMatch.matchaJouer(t.getListeMatchs());
-		
-		
+
+
 		//Si il n'y a pas de match à jouer
 		if (indic == false)
 		{
@@ -284,21 +285,19 @@ public class ConsoleView {
 		.println("Le Tournoi est terminé ! Voici la liste des matchs joués au cours du Tournoi : ");
 		afficherMatch(t.getListeMatchs());
 
+		System.out.println("Voici des statistiques sur les équipes : ");
+		afficherStatEquipes(t);
+
 	}
 
 	public static void afficherResultatPoules(TournoiParPoules tPP) {
-		System.out.println("From ConsoleView.java : Afficher le tableau de résultat des poules (nb victoire, set gagnés & classement");
-		System.out.println("Liste des équipes qualifiées : " );
-				//+ tournoiPoules.getListeToursEliminatoires().getFirst()
-				//.getListeEquipesTour());
-		
 		for (int cptPoule = 0; cptPoule< tPP.getListePoules().size(); cptPoule++){
 			System.out.println("-- Poule "+(cptPoule+1)+" --");
-			System.out.println(" Classement |     Nom Equipe       | Points | Victoires | Sets Gagnés |");
+			System.out.println(" Classement |        Equipe        | Points | Victoires | Sets Gagnés |  Goal Average ");
 			for (int cptEq = 0; cptEq <tPP.getListePoules().get(cptPoule).getEquipesPoule().size(); cptEq ++){
 				Equipe eqTemp = tPP.getListePoules().get(cptPoule).getEquipesPoule().get(cptEq);
-				System.out.print("      "+(cptEq+1)+"             "+eqTemp.getNom()+"              "+eqTemp.getScore()+"          "+eqTemp.getNbVictoire()+"          "
-				+eqTemp.getNbSetGagne()+ "            ");
+				System.out.print("      "+(cptEq+1)+"             "+eqTemp.getNom()+"\t\t"+eqTemp.getScore()+"          "+eqTemp.getNbVictoire()+"          "
+						+eqTemp.getNbSetGagne()+ "            " + eqTemp.calculGoalAverage() + "            ") ;
 				if ((cptEq == 0)||(cptEq == 1))	{	
 					System.out.print("Qualifiée\n");
 				}
@@ -309,6 +308,15 @@ public class ConsoleView {
 		}
 	}
 
+	public static void afficherStatEquipes(Tournoi t) {
+		System.out.println("    Equipe        | Victoires | Sets Gagnés |  Goal Average ");
+		LinkedList<Equipe> eqTriees = t.getListeEquipes();
+		Collections.sort(eqTriees);
 
-
+		for (int cptEq = 0; cptEq <t.getListeEquipes().size(); cptEq ++){
+			Equipe eqTemp = eqTriees.get(cptEq);
+			System.out.print((cptEq+1)+"     "+eqTemp.getNom()+"\t\t"+eqTemp.getNbVictoire()+"          "
+					+eqTemp.getNbSetGagne()+ "            " + eqTemp.calculGoalAverage() + "\n") ;
+		}
+	}
 }
