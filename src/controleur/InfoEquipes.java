@@ -36,14 +36,21 @@ public class InfoEquipes {
 		//On demande l'information de chaque equipe
 		//On demande la creation automatique des equipes ou l'option d'introduir l'information de caque equipe
 		int opt;
+		String OPT;
 		boolean option=false;
 
 		//System.out.println("Vous voulez introduir l'information de chaque equipe(1) ou utilizer les equipes pour defaut(2)?");
 		//opt=sc.nextInt();//Ajouter vérif saisie
 
 		while (option==false){ 
-			System.out.println("Voulez-vous introduire les informations de chaque équipe (tapez 1) ou utiliser les équipes par défaut (tapez 2)?");
-			opt=sc.nextInt();//Ajouter vérif saisie
+			do{
+				System.out.println("Voulez-vous :\n - introduire les informations de chaque équipe manuellement (tapez 1) \n- utiliser les équipes par défaut (tapez 2)?");
+				OPT=sc.nextLine();
+				opt = Exception.mauvaisNumero(OPT);
+				if ((opt != 1)&&(opt != 2)){
+					System.out.println("Saisie incorrecte !");
+				}					
+			}while ((opt != 1)&&(opt != 2));
 
 			switch (opt){
 			case 1:
