@@ -12,11 +12,11 @@ public class QuestionsDialogues{
 			        null, text,
 			        "Question",
 			        JOptionPane.QUESTION_MESSAGE) );
-				if (num <= 0){JOptionPane.showMessageDialog(new JFrame(), "Mauvais numero!", "Question",
+				if (num <= 0){JOptionPane.showMessageDialog(new JFrame(), "Valeur incorrecte!", "Question",
 			    		JOptionPane.QUESTION_MESSAGE);	
 			    		introNumero(text);}
 		    	}catch(NumberFormatException ex){
-		    		JOptionPane.showMessageDialog(new JFrame(), "Mauvais numero!", "Error",
+		    		JOptionPane.showMessageDialog(new JFrame(), "Valeur incorrecte!", "Erreur",
 		    		JOptionPane.QUESTION_MESSAGE);	
 		    		introNumero(text);
 		    	}
@@ -33,9 +33,9 @@ public class QuestionsDialogues{
 				    		JOptionPane.QUESTION_MESSAGE);	
 				    		introNumero(text);}
 		    	}catch(NumberFormatException ex){
-		    		JOptionPane.showMessageDialog(new JFrame(), text,"Error",
+		    		JOptionPane.showMessageDialog(new JFrame(), text,"Erreur",
 				    JOptionPane.QUESTION_MESSAGE);	
-				    String text2= "Introduir le numero un autre fois";
+				    String text2= "Veuillez saisir à nouveau ";
 		        	num=introNumero(text2);
 		    	}
 			
