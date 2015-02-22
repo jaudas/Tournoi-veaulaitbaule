@@ -186,7 +186,7 @@ public static void newJoueur(LinkedList<Equipe> listeEquipes, int chEqp) {
 	 
 		 	public void actionPerformed(ActionEvent e2){
 		 		LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur> ();
-		 		 	listeJoueurs=listeEquipes.get(chEqp-1).getListeJoueurs();
+		 		 	
 		 			createJoueur(listeJoueurs, prenom, nom, age, chSexe);
 		 			addframe.setVisible(false);
 		 			listeEquipes.get(chEqp-1).setListeJoueurs(listeJoueurs);

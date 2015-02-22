@@ -130,7 +130,7 @@ public static void menuEquipes(LinkedList<Equipe> listeEquipes) {
 	 });
 	 gtournoi.addActionListener(new ActionListener(){
 		 public void actionPerformed(ActionEvent e)
-		 { Menus.menuTournoi();
+		 { Menus.menuTournoi(listeEquipes);
 		 frame2.setVisible(false);
 		 }
 	 });
