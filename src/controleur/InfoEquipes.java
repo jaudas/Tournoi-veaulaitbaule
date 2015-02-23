@@ -4,14 +4,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import model.Equipe;
+import model.Joueur;
+import model.Tournoi;
+
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import tools.FilesTools;
-import model.Equipe;
-import model.Joueur;
-import model.Tournoi;
 
 public class InfoEquipes {
 	//Arraylist 
