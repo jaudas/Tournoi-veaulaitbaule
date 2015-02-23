@@ -240,6 +240,7 @@ public class ConsoleView {
 			// Si il faut creer le premier tour d'un tournoi par poules
 			if (t.getListeToursEliminatoires().size() == 0) {
 				System.out.println("Qualification des équipes");
+				afficherResultatPoules((TournoiParPoules) t);
 				((TournoiParPoules) t).creerEqQualifiees();
 				// On creer les rencontres en fonction des équipes du tour
 				t.remplirTour();
@@ -247,6 +248,7 @@ public class ConsoleView {
 
 			// Si c'est un tour suivant
 			else if (t.getListeToursEliminatoires().getLast().getListeEquipesTour().size() > 2) {
+				System.out.println("Tour Suivant !");
 				t.nouveauTour();
 				//On creer les rencontres en fonction des équipes du tour
 				t.remplirTour();
