@@ -37,7 +37,6 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbMatchJoue = 0;
 		this.nbJoueurs = 0;
 		this.listeJoueurs = null;
-
 		this.histoNbSetGagne = 0;
 		this.histoNbSetPerdu = 0;
 		this.histoNbMatchJoue = 0;
@@ -52,7 +51,7 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbMatchJoue = 0;
 		this.nbJoueurs = 0;
 		this.listeJoueurs = null;
-		
+
 		this.histoNbSetGagne = 0;
 		this.histoNbSetPerdu = 0;
 		this.histoNbMatchJoue = 0;
@@ -74,11 +73,12 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbSetPerdu = 0;
 		this.nbJoueurs = nbJoueurs;
 		this.listeJoueurs = listeJoueurs;
-		
+
 		this.histoNbSetGagne = 0;
 		this.histoNbSetPerdu = 0;
 		this.histoNbMatchJoue = 0;
 		this.histoNbVictoire = 0;
+
 
 		// Ajout du nom, depuis une liste de couleurs stockées dans un JSON
 		int idnom = (int) (Math.random() * listeNom.size());
@@ -201,6 +201,7 @@ public class Equipe implements Comparable<Equipe> {
 		this.nbSetPerdu = i;
 	}
 
+
 	public int getHistoNbSetGagne() {
 		return histoNbSetGagne;
 	}
@@ -275,7 +276,6 @@ public class Equipe implements Comparable<Equipe> {
 				}
 			}
 		}
-
 		// Si les deux équipes ont le même nombre de victoires et de sets
 		// gagnés, ainsi quele meme goal average on tire au sort l'équipe qui est classée avant l'autre
 		return (Math.random() >= 0.5 ? 1 : -1);

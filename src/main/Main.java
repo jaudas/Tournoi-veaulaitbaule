@@ -8,6 +8,10 @@ import org.json.simple.parser.ParseException;
 
 import model.Equipe;
 import model.SaveList;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+import model.Equipe;
 import model.Tournoi;
 import model.TournoiEliminationDirecte;
 import model.TournoiParPoules;
@@ -18,6 +22,7 @@ public class Main {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException, ParseException, java.text.ParseException {
+
 
 		ConsoleView.accueil(); 
 
@@ -30,7 +35,6 @@ public class Main {
 		LinkedList<Equipe> listeEquipes=InfoEquipes.inscrireEquipes();
 		ConsoleView.afficherEquipesEtJoueurs(listeEquipes);	
 		SaveList.save("Tournoi 1", listeEquipes);
-
 		//Si c'est un tournoi par élminitation directe
 		if (tournoiType == 1)
 		{
