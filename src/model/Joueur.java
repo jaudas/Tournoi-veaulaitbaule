@@ -14,7 +14,8 @@ public class Joueur {
 	private String prenom;
 	private String nom;
 	private String age;
-	private EnumSexe sexejoueur;
+
+	public EnumSexe sexejoueur;
 
 	//public boolean capitaine;
 
@@ -106,21 +107,23 @@ public class Joueur {
 		return sexejoueur;
 	}
 
-	public EnumSexe convertSexe(String saisieSexe) {
-		String sexe = saisieSexe.toLowerCase();
-		if (sexe == "homme" || sexe == "h")
+	public EnumSexe convertSexe(String sexe) {
+		//String sexe = saisieSexe.toLowerCase();
+		if (sexe == "homme" || sexe == "h" || sexe == "Homme")
 		{
 			this.sexejoueur = EnumSexe.Homme;
 		}
 
-		if (sexe == "femme"|| sexe == "f")
+		else if (sexe == "femme"|| sexe == "f" || sexe == "Femme")
 		{
 			this.sexejoueur = EnumSexe.Femme;
 		}
-		else this.sexejoueur = EnumSexe.NA;
 		
+		else{this.sexejoueur = EnumSexe.NA;
+		}
 		return this.sexejoueur;
 	}
+
 
 	//Méthodes
 	@Override
