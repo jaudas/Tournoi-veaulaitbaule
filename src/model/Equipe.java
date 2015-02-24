@@ -277,7 +277,8 @@ public class Equipe implements Comparable<Equipe> {
 			}
 		}
 		// Si les deux équipes ont le même nombre de victoires et de sets
-		// gagnés, ainsi quele meme goal average on tire au sort l'équipe qui est classée avant l'autre
+		// gagnés, ainsi quele meme goal averag
+		// on tire au sort l'équipe qui est classée avant l'autre
 		return (Math.random() >= 0.5 ? 1 : -1);
 	}
 

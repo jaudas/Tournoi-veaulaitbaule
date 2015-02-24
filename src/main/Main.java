@@ -8,10 +8,7 @@ import org.json.simple.parser.ParseException;
 
 import model.Equipe;
 import model.SaveList;
-import java.util.LinkedList;
-import java.util.Scanner;
 
-import model.Equipe;
 import model.Tournoi;
 import model.TournoiEliminationDirecte;
 import model.TournoiParPoules;
