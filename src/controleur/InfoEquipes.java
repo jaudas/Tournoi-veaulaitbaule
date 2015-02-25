@@ -45,7 +45,7 @@ public class InfoEquipes {
 
 		while (option==false){ 
 			do{
-				System.out.println("Voulez-vous :\n - introduire les informations de chaque équipe manuellement (tapez 1) \n- utiliser les équipes par défaut (tapez 2)?");
+				System.out.println("Voulez-vous :\n- introduire les informations de chaque équipe manuellement (tapez 1) \n- utiliser les équipes par défaut (tapez 2)?");
 				OPT=sc.nextLine();
 				opt = Exception.mauvaisNumero(OPT);
 				if ((opt != 1)&&(opt != 2)){
@@ -94,7 +94,7 @@ public class InfoEquipes {
 
 			case 2: System.out.println("-- Création automatique des Equipes -- ");
 				
-				sc.nextLine();
+				
 				JSONParser parser=new JSONParser();
 				String stringFileNomsEquipes;
 				try {
