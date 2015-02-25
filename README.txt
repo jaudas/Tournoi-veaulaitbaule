@@ -5,7 +5,11 @@ CORDIER Diane
 EPF Promotion 2016 - Filière TIC
 Projet JAVA
 
-Le programme que nous avons créé permet de gérer un tounoi de volley-ball uniquement.
+
+|| Postulat ||
+ - Le programme que nous avons créé permet de gérer un tounoi de volley-ball uniquement.
+ - Avant de démarrer le programme il faut installer la librairie JSON.1-1-1. En effet, nous l'avons utilisée pour créer une base de données permettant de créer des équipes par défaut.
+
 
 || Fonctionnalités implémentées ||
       --Les types de tournoi --
@@ -27,11 +31,11 @@ Le nombre maximum d'équipes qui peut être créé est, dans chaque cas, égal au nom
 
 Remarque : les équipes générées par le programme sont différentes à chaque fois.
 En effet, pour chaque champ d'information de chaque équipe, le programme tire au sort	une valeur dans une base de données:
-- Le nom de l'équipe est toujours une couleur, tirée au sort dans une base de données de noms de couleur
-- La description consiste à indiquer l'emblème de l'équipe. Cet emblème est toujours un animal, tiré au sort parmi une liste d'animaux.
-- Le sexe de chaque joueur est tiré au sort. 
-- Le prénom d'un joueur est tiré au sort parmi une liste de prénoms correspondant à son sexe
-- Le nom de famille du joueur est tiré au sort parmi une liste de fruits et légumes.
+- Le nom de l'équipe est toujours une couleur
+- La description consiste à indiquer l'emblème de l'équipe. Cet emblème est toujours un animal.
+- Le sexe de chaque joueur
+- Le prénom d'un joueur, parmi une liste de prénoms correspondant à son sexe
+- Le nom de famille du joueur, parmi une liste de fruits et légumes.
 - L'âge d'un joueur est tiré au sort entre 15 et 65 ans.
 ******/// Expliquer JSON et tirage au sort du sexe (Enum)	
 
@@ -45,11 +49,18 @@ L'utilisateur peut:
       -- Les matchs --
 Un match de volley-ball se joue en 3 sets gagnants (5 sets maximums en jeu), aucune égalité n'est possible.
 L'utilisateur peut:
- - saisir le score de chaque équipe pour un match non joué. Une fois que tous les matchs de poules ou d'un tour ont été joués, on passe au tour suivant.
+ - saisir le score de chaque équipe pour un match non joué uniquement. Une fois que tous les matchs de poules ou d'un tour ont été joués, on passe au tour suivant.
  - afficher tous les matchs qui ont été joués et les scores de chaque équipe. 
 
-     -- Le goal average --
+     -- Les statistiques --
+A la fin d'un tournoi, le goal average et le pourcentage de victoires de chaque équipe sont affichés. 
+Le goal average correspond à la différence entre le nombre de sets gagnés et le nombre de sets perdus par une équipe au cours du tournoi.
 
+
+|| Client ||
+Les deux interfaces disponibles pour ce programme ont été codées avec :
+- la classe Scanner (client console)
+- la librairie Swing (client graphique)
 
 || BONUS ||
 Nous avons ajouté une fonction qui permet à l'utilisateur de générer la suite du tournoi automatiquement.
@@ -57,8 +68,6 @@ Autrement dit, lorsque l'utilisateur choisit cette option dans le menu principal
 Ainsi, on obtient un gagnant aléatoire du tournoi.
 Nous avons nous-mêmes utilisé ce mode en s'amusant à parier sur l'équipe gagnante parmi les équipes que nous avions saisies auparavant.
 
-Fonctionnalités non implémentées :
 
-Informations pour démarrer le projet:
 
 Remarques : 
