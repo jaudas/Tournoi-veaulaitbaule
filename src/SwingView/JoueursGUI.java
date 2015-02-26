@@ -35,7 +35,7 @@ public class JoueursGUI{
 		JButton addJoueur = new JButton ("Ajouter un joueur");
 		JButton modJoueur = new JButton ("Modifier le joueur");
 		JButton elimJoueur = new JButton ("Eliminer le joueur");
-		JButton returnEqp = new JButton ("Returner à l'info d'equipe");
+		JButton returnEqp = new JButton ("Retourner aux informations des équipes");
 		returnEqp.setBackground(Color.BLUE);
 		returnEqp.setForeground(Color.white);
 		JPanel panel1 = new JPanel(new GridLayout(2,1));
@@ -136,8 +136,8 @@ public class JoueursGUI{
 			});
 	
 		// Buttons
-		JButton create = new JButton("Creer Joueur");
-		JButton cancel = new JButton("Canceler");
+		JButton create = new JButton("Créer Joueur");
+		JButton cancel = new JButton("Annuler");
 		create.setBackground(Color.LIGHT_GRAY); // background and colour for
 		create.setForeground(Color.black);
 		cancel.setBackground(Color.LIGHT_GRAY); // background and colour for
@@ -152,11 +152,11 @@ public class JoueursGUI{
 	//Panel pour l'introduction d'info
 		 JPanel panel2 = new JPanel(new GridLayout(4, 2));
 		 panel2.setBorder(new TitledBorder("Inscrire un Joueur"));
-		 panel2.add(new JLabel("Prenom"));
+		 panel2.add(new JLabel("Prénom"));
 		 panel2.add(prenom);
 		 panel2.add(new JLabel("Nom"));
 		 panel2.add(nom);
-		 panel2.add(new JLabel("Age"));
+		 panel2.add(new JLabel("Âge"));
 		 panel2.add(age);
 		 panel2.add(new JLabel("Sexe"));
 		 panel2.add(chSexe);
@@ -171,7 +171,7 @@ public class JoueursGUI{
 		 cancel.addActionListener(new ActionListener() {
 			 
 			 	public void actionPerformed(ActionEvent e2){
-			 			JOptionPane.showMessageDialog(null, "your information will be lost");
+			 			JOptionPane.showMessageDialog(null, "Votre information ne sera pas ajoutée !");
 			 			frame.setVisible(false);
 			 			menuJoueurs(listeEquipes, chEqp,elimEqp);}
 		 		});
@@ -189,7 +189,7 @@ public class JoueursGUI{
 			 			listeEquipes.get(chEqp).setListeJoueurs(listeJoueurs);
 			 		    }
 			 			menuJoueurs(listeEquipes,chEqp,elimEqp);			 			
-			 			JOptionPane.showMessageDialog(null,"Your entry is successfully added");
+			 			JOptionPane.showMessageDialog(null,"Information correctement ajoutée !");
 			 			
 			 			}
 		 		});
@@ -273,8 +273,8 @@ public class JoueursGUI{
 			}
 			
 		// Buttons
-		 JButton create = new JButton("Save");
-		 JButton cancel = new JButton("Cancel");
+		 JButton create = new JButton("Ajouter");
+		 JButton cancel = new JButton("Annuler");
 		 create.setBackground(Color.LIGHT_GRAY); 
 		 create.setForeground(Color.black);
 		 cancel.setBackground(Color.LIGHT_GRAY); 
@@ -307,7 +307,7 @@ public class JoueursGUI{
 		 cancel.addActionListener(new ActionListener() {
 			 
 			 	public void actionPerformed(ActionEvent e2){
-			 			JOptionPane.showMessageDialog(null, "Votre information ne sera pas ajouté!");
+			 			JOptionPane.showMessageDialog(null, "Votre information ne sera pas ajoutée!");
 			 			frame.setVisible(false);
 			 			menuJoueurs(listeEquipes, idEnb,elimEqp);
 			 			}

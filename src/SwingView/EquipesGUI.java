@@ -40,15 +40,15 @@ public class EquipesGUI{
 	 */
 	public static void menuEquipes(LinkedList<Equipe> listeEquipes, boolean elimEqp) {
 		 
-		JButton addequipe = new JButton ("Ajouter un equipe");
-		JButton modfequipe = new JButton ("Modifier l'equipe");
-		JButton elimequipe = new JButton ("Eliminer l'equipe");
-		JButton affjequipe = new JButton ("Afficher les joueurs de l'equipe");
-		JButton gtournoi = new JButton ("Generer tournois");
+		JButton addequipe = new JButton ("Ajouter une équipe");
+		JButton modfequipe = new JButton ("Modifier l'équipe");
+		JButton elimequipe = new JButton ("Eliminer l'équipe");
+		JButton affjequipe = new JButton ("Afficher les joueurs de l'équipe");
+		JButton gtournoi = new JButton ("Générer tournoi");
 		gtournoi.setBackground(Color.BLUE);
 		gtournoi.setForeground(Color.white);
 		
-		JLabel chequipe = new JLabel ("Choisir un equipe");
+		JLabel chequipe = new JLabel ("Choisir une équipe");
 		JPanel panel1 = new JPanel();
 		
 		String[] bookTitles = new String[listeEquipes.size()];
@@ -115,7 +115,7 @@ public class EquipesGUI{
 	     		
 	        	if(listeEquipes.get(idE).getNbJoueurs()==0){   	//Execute when button is pressed
 	         		int dialogButton = JOptionPane.YES_NO_OPTION;
-	         		int dialogResult = JOptionPane.showConfirmDialog (null, "Vous voulez ajouter le premier joueur?","Warning",dialogButton);
+	         		int dialogResult = JOptionPane.showConfirmDialog (null, "Voulez-vous ajouter le premier joueur?","Warning",dialogButton);
 	         		if(dialogResult == JOptionPane.YES_OPTION){ 
 	         			JoueursGUI.newJoueur(listeEquipes,idE,true,elimEqp);
 	     
@@ -155,18 +155,18 @@ public class EquipesGUI{
 
 		// Buttons
 		 JButton create = new JButton("Ajouter");
-		 JButton cancel = new JButton("Cancel");
-		 create.setBackground(Color.LIGHT_GRAY); // background and colour for
+		 JButton cancel = new JButton("Annuler");
+		 create.setBackground(Color.LIGHT_GRAY); // background and color for
 		 create.setForeground(Color.black);
-		 cancel.setBackground(Color.LIGHT_GRAY); // background and colour for
+		 cancel.setBackground(Color.LIGHT_GRAY); // background and color for
 		 cancel.setForeground(Color.black);
 		 create.setFocusable(false); // disable auto focus
 		 cancel.setFocusable(false);
 
 		 JPanel panel1 = new JPanel();
-		 //Panel pour l'introducition des donnés
+		 //Panel pour l'introduction des données
 		 JPanel panel2 = new JPanel(new GridLayout(3, 2));
-		 panel2.setBorder(new TitledBorder("Inscrire un Equipe"));
+		 panel2.setBorder(new TitledBorder("Inscrire une équipe"));
 		 panel2.add(new JLabel("Nom"));
 		 panel2.add(nom);
 		 panel2.add(new JLabel("Description"));
@@ -184,7 +184,7 @@ public class EquipesGUI{
 		 cancel.addActionListener(new ActionListener() {
 			 
 			 	public void actionPerformed(ActionEvent e2){
-			 			JOptionPane.showMessageDialog(null, "Votre information ne sera pas ajouté!");
+			 			JOptionPane.showMessageDialog(null, "Votre information ne sera pas ajoutée!");
 			 			frame.setVisible(false);
 			 			menuEquipes(listeEquipes,elimEqp);}
 		 		});
@@ -194,7 +194,7 @@ public class EquipesGUI{
 			 			createEquipe(listeEquipes, nom, description);
 			 			frame.setVisible(false);
 			 			menuEquipes(listeEquipes,elimEqp);
-			 			JOptionPane.showMessageDialog(null,"Information correctement ajouté!");
+			 			JOptionPane.showMessageDialog(null,"Information correctement ajoutée!");
 			 			}
 		 		});
 	
@@ -246,7 +246,7 @@ public class EquipesGUI{
 		
 		// Buttons
 		 JButton create = new JButton("Modifier");
-		 JButton cancel = new JButton("Canceler");
+		 JButton cancel = new JButton("Annuler");
 		 create.setBackground(Color.LIGHT_GRAY); 
 		 create.setForeground(Color.black);
 		 cancel.setBackground(Color.LIGHT_GRAY); 
@@ -257,7 +257,7 @@ public class EquipesGUI{
 		 JPanel panel1 = new JPanel();
 		 //Panel pour l'introduction des donnes
 		 JPanel panel2 = new JPanel(new GridLayout(3, 2));
-		 panel2.setBorder(new TitledBorder("Modifier un Equipe"));
+		 panel2.setBorder(new TitledBorder("Modifier une équipe"));
 		 panel2.add(new JLabel("Nom"));
 		 panel2.add(nom);
 		 panel2.add(new JLabel("Description"));
@@ -319,7 +319,7 @@ public class EquipesGUI{
 			  boolean numOK=false;
 			  do{
 				  try{
-					  NE=Integer.parseInt(JOptionPane.showInputDialog( new JFrame(),"Combien d'equipes vous voulez génerer?","Question", JOptionPane.QUESTION_MESSAGE));
+					  NE=Integer.parseInt(JOptionPane.showInputDialog( new JFrame(),"Combien d'équipes voulez-vous générer?","Question", JOptionPane.QUESTION_MESSAGE));
 					  numOK=true;
 				  }
 				  catch(NumberFormatException e){
@@ -332,11 +332,11 @@ public class EquipesGUI{
 					numOK=false;
 				  do{
 					  try{
-						  NE=Integer.parseInt(JOptionPane.showInputDialog( new JFrame(),"Trop d'equipes! Combien d'equipes vous voulez génerer?","Question", JOptionPane.QUESTION_MESSAGE));
+						  NE=Integer.parseInt(JOptionPane.showInputDialog( new JFrame(),"Trop d'équipes! Combien d'équipes voulez-vous générer?","Question", JOptionPane.QUESTION_MESSAGE));
 						  numOK=true;
 					  }
 					  catch(NumberFormatException e){
-						JOptionPane.showMessageDialog(null, "Mauvais num!");
+						JOptionPane.showMessageDialog(null, "Numéro incorrect!");
 						numOK=false;
 					  }
 				  }while(!numOK);

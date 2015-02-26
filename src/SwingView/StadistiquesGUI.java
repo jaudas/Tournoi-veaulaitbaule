@@ -41,18 +41,18 @@ public class StadistiquesGUI {
 		}
 
 		else if (nbequipes <= 4){
-			phTour="DEMIFINALE";
+			phTour="Demi-finale";
 		}
 		else if(nbequipes <= 8){
-			phTour="QUARTDEFINALE";
+			phTour="Quart de finale";
 		}
 		else if (nbequipes <= 16){
-			phTour="HUITIEMEDEFINALE";
+			phTour="Huitième de finale";
 		}
 		else if (nbequipes <= 32){
-			phTour="SEIZIEMEDEFINALE";
+			phTour="Seixième de finale";
 		}
-		else {phTour=" TRENTEDEUXIEMEDEFINALE";
+		else {phTour="Trente-deuxième de finale";
 		}
 	}
 	
@@ -61,8 +61,8 @@ public class StadistiquesGUI {
 	itournoi.setFont(new Font("Microsoft Tai Le", Font.BOLD, 20));
 	JLabel phasetournoi = new JLabel("Phase tournoi:"+phTour);
 	
-	JLabel equipestour = new JLabel("Equipes dans cette tour:"+nbequipes);
-	JLabel equipestotals = new JLabel("Total d'equipes inscrits:"+t.getListeEquipes().size());
+	JLabel equipestour = new JLabel("Equipes dans ce tour:"+nbequipes);
+	JLabel equipestotals = new JLabel("Total d'équipes inscrites:"+t.getListeEquipes().size());
 	JButton infoEquipes = new JButton("Afficher/Modifier des Equipes");
 	infoEquipes.addActionListener(new ActionListener() {
 		 
@@ -78,7 +78,7 @@ public class StadistiquesGUI {
 	if(poule==false){infoTournoi.add(equipestour);}
 	infoTournoi.add(equipestotals);
 	if(poule==false){int parite = t.getListeToursEliminatoires().getLast().getListeEquipesTour().size() % 2;
-		if ((parite != 0)){JLabel eqQoffice= new JLabel("Equipes Qualifies d'office: "+t.getListeToursEliminatoires().getLast().getListeEquipesTour().get(t.getListeToursEliminatoires().getLast().getQualifOffice()).getNom());
+		if ((parite != 0)){JLabel eqQoffice= new JLabel("Equipe qualifiée d'office: "+t.getListeToursEliminatoires().getLast().getListeEquipesTour().get(t.getListeToursEliminatoires().getLast().getQualifOffice()).getNom());
 			infoTournoi.add(eqQoffice);}
 	}
 
@@ -91,16 +91,18 @@ public class StadistiquesGUI {
 	LinkedList<Equipe> eqTriees = t.getListeEquipes();
 	Collections.sort(eqTriees);
 	
-	 Object[][] data = new Object[t.getListeEquipes().size()][6];
-	 String[] columnNames = {"Classement", "Nom", "Matches"," Victoires","Sets gagnés", "Gol Average"};
+	 Object[][] data = new Object[t.getListeEquipes().size()][7];
+	 String[] columnNames = {"Classement", "Nom", "Matchs"," Victoires", "Pourcentage vicoitre","Sets gagnés", "Goal Average"};
 	 for (int i = 0; i < t.getListeEquipes().size(); i++){
 		 Equipe eqTemp = eqTriees.get(i);
 		 data[i][0]= i+1;
 		 data[i][1]= eqTemp.getNom();
 		 data[i][2]= eqTemp.getNbMatchJoue();
 		 data[i][3]=eqTemp.getNbVictoire();
-		 data[i][4]=eqTemp.getNbSetGagne();
-		 data[i][5]=eqTemp.calculGoalAverage();
+		 data[i][4]=eqTemp.calculerPourcentageVictoire();
+		 data[i][5]=eqTemp.getNbSetGagne();
+		 data[i][6]=eqTemp.calculGoalAverage();
+		 
 		
 	 }
 	 JTable table = new JTable(data, columnNames);

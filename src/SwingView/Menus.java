@@ -20,7 +20,7 @@ public class Menus{
 
 public static void menuBienvenue() {
 		
-		JFrame frame = new JFrame("Tournoi du veaulait");
+		JFrame frame = new JFrame("Tournoi de volley-ball");
 		frame.setPreferredSize(new Dimension(500, 500));
 		frame.setMinimumSize(new Dimension(500, 500));
 		frame.setMaximumSize(new Dimension(500, 500));
@@ -41,7 +41,7 @@ public static void menuBienvenue() {
 		label.setFont(new Font("Microsoft Tai Le", Font.BOLD, 40));
 		label.setBackground(Color.WHITE);
 		
-		JLabel instruction= new JLabel("<html><div style=\"text-align: left;\"><html>Bienvenue dans le logiciel de gestion de tournoi de volley-ball. <P><html> Ce programme vous permet de : <P><html>- saisir les \u00E9quipes, joueurs et scores de votre tournoi de volley-ball  <P><html>- g\u00E9rer un tournoi par \u00E9limination directes ou par phase de poules  <P><html>- g\u00E9n\u00E9rer un tournoi avec des \u00E9quipes al\u00E9atoire <P>");
+		JLabel instruction= new JLabel("<html><div style=\"text-align: left;\"><html>Bienvenue dans le logiciel de gestion de tournoi de volley-ball. <P><html> Ce programme vous permet de : <P><html>- saisir les \u00E9quipes, joueurs et scores de votre tournoi de volley-ball  <P><html>- g\u00E9rer un tournoi par \u00E9limination directe ou par phase de poules  <P><html>- g\u00E9n\u00E9rer un tournoi avec des \u00E9quipes al\u00E9atoires <P>");
 		instruction.setBounds(6, 183, 572, 192);
 		instruction.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -77,7 +77,7 @@ public static void menuBienvenue() {
 
 	public static void menuInscription() {
 		
-		JFrame frame = new JFrame("Tournoi du veaulait");
+		JFrame frame = new JFrame("Tournoi de volley-ball");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
 		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,7 +95,7 @@ public static void menuBienvenue() {
 		instruction.setFont(new Font("Microsoft Tai Le", Font.BOLD, 24));
 		p.setLayout(null);
 		
-		JLabel label = new JLabel("Inscription des equipes");
+		JLabel label = new JLabel("Inscription des équipes");
 		label.setBounds(70, 112, 434, 50);
 		p.add(label);
 		label.setHorizontalAlignment(0);
@@ -109,7 +109,7 @@ public static void menuBienvenue() {
 		
 		frame.getContentPane().add(buttons);
 		
-		JButton b1 = new JButton("Creation automatique des equipes");
+		JButton b1 = new JButton("Création automatique des équipes");
 		b1.addActionListener(new ActionListener() {
 			 
             public void actionPerformed(ActionEvent e)
@@ -121,13 +121,13 @@ public static void menuBienvenue() {
             }
         });   
 	
-	    JButton b2 = new JButton("Inscription manuel des equipes");
+	    JButton b2 = new JButton("Inscription manuelle des équipes");
 	   
 	    b2.addActionListener(new ActionListener() {
 			 
             public void actionPerformed(ActionEvent e)
             {   int dialogButton = JOptionPane.YES_NO_OPTION;
-                int dialogResult = JOptionPane.showConfirmDialog (null, "Vous voulez ajouter le premier equipe?","Warning",dialogButton);
+                int dialogResult = JOptionPane.showConfirmDialog (null, "Voulez-vous ajouter la première équipe?","Warning",dialogButton);
                 if(dialogResult == JOptionPane.YES_OPTION){ 
                 	LinkedList<Equipe> listeEquipes = new LinkedList<Equipe>();
                 	frame.setVisible(false);
@@ -149,7 +149,7 @@ public static void menuBienvenue() {
 
 public static void menuTournoi(LinkedList<Equipe> listeEquipes) {
 		
-		JFrame frame = new JFrame("Tournoi du veaulait");
+		JFrame frame = new JFrame("Tournoi de volley-ball");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
 		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -158,7 +158,7 @@ public static void menuTournoi(LinkedList<Equipe> listeEquipes) {
 		PanelImagen1 p = new PanelImagen1();
 		p.setBorder(new EmptyBorder(0, 0, 0, 0));
 		frame.setContentPane(p);
-		JLabel label = new JLabel("Creation du tornoi");
+		JLabel label = new JLabel("Création du tournoi");
 		label.setBounds(112, 106, 348, 110);
 		label.setHorizontalAlignment(0);
 		label.setFont(new Font("Microsoft Tai Le", Font.BOLD, 38));
@@ -177,7 +177,7 @@ public static void menuTournoi(LinkedList<Equipe> listeEquipes) {
 		JPanel buttons = new JPanel(new GridLayout(3,1));
 		buttons.setBounds(164, 398, 275, 124);
 		buttons.setOpaque(false);
-		JButton b1 = new JButton("Retourner a l'info d'equipes");
+		JButton b1 = new JButton("Retourner aux informations des équipes");
 		b1.setMinimumSize(new Dimension(200, 30));
 		b1.setMaximumSize(new Dimension(200, 30));
 		b1.setPreferredSize(new Dimension(200, 30));

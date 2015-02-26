@@ -55,7 +55,7 @@ public class TournoiGUI {
 	
 	public static void gestionTournoi(Tournoi tournoi, int matchesphant) {
 		
-		JFrame frame = new JFrame("Tournoi du veaulait");
+		JFrame frame = new JFrame("Tournoi de volley-ball");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(TournoiGUI.class.getResource("/images/Volleyball.jpg")));
 		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,7 +99,7 @@ public class TournoiGUI {
 			 scrollPane.setViewportView(table); 
 			 JPanel infoMatches= new JPanel();
 			 infoMatches.setLayout(new BoxLayout(infoMatches, BoxLayout.Y_AXIS));
-			 JLabel titre = new JLabel ("Liste de matches dans cette tour");
+			 JLabel titre = new JLabel ("Liste des matchs dans ce tour");
 			 infoMatches.add(titre);
 			 infoMatches.add(scrollPane);
 			 main.add(infoMatches);
@@ -115,7 +115,7 @@ public class TournoiGUI {
 			 scrollPane2.setViewportView(table2); 
 			 JPanel infoEquipes= new JPanel();
 			 infoEquipes.setLayout(new BoxLayout(infoEquipes, BoxLayout.Y_AXIS));
-			 JLabel titre2 = new JLabel ("Liste d'equipes dans cette tour");
+			 JLabel titre2 = new JLabel ("Liste des équipes dans ce tour");
 			 infoEquipes.add(titre2);
 			 infoEquipes.add(scrollPane2);
 			 main.add(infoEquipes);
@@ -126,7 +126,7 @@ public class TournoiGUI {
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 	
-		JButton b5 = new JButton("Génere des resultats automatiquement");
+		JButton b5 = new JButton("Générer des résultats automatiquement");
 		b5.addActionListener(new ActionListener() {
 			 
 	        public void actionPerformed(ActionEvent e)
@@ -145,7 +145,7 @@ public class TournoiGUI {
 		}
 		}
 		if(matchesjoues1 == tournoi.getListeMatchs().size()){
-			JButton b4 = new JButton ("Generer la prochain phase du tournoi");
+			JButton b4 = new JButton ("Générer la prochaine phase du tournoi");
 			b4.addActionListener(new ActionListener() {
 				 
 		        public void actionPerformed(ActionEvent e){		        
@@ -166,7 +166,7 @@ public class TournoiGUI {
 			buttons.add(b4);
 		}
 		if(fin==true){
-			JButton b4 = new JButton ("Fin tournoi");
+			JButton b4 = new JButton ("Fin du tournoi");
 			b4.addActionListener(new ActionListener() {
 				 
 		        public void actionPerformed(ActionEvent e)
@@ -197,7 +197,7 @@ public class TournoiGUI {
 
 	public static void gestionTournoiParPoules(TournoiParPoules tournoi) {
 		
-		JFrame frame = new JFrame("Tournoi du veaulait");
+		JFrame frame = new JFrame("Tournoi de volley-ball");
 		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(1200,600,1200,600);
@@ -294,7 +294,7 @@ public class TournoiGUI {
 	
 	
 	
-		JButton b5 = new JButton("Génere des résultats de cette phase automatiquement");
+		JButton b5 = new JButton("Générer automatiquement les résultats des poules");
 		b5.addActionListener(new ActionListener() {
 			 
 	        public void actionPerformed(ActionEvent e)
@@ -442,7 +442,7 @@ public class TournoiGUI {
 
 public static void finTournoi(Tournoi tournoi) {
 		
-		JFrame frame = new JFrame("Tournoi du veaulait");
+		JFrame frame = new JFrame("Tournoi de volley-ball");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(TournoiGUI.class.getResource("/images/Volleyball.jpg")));
 		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -486,7 +486,7 @@ public static void finTournoi(Tournoi tournoi) {
 	
 	
 
-		JButton b5 = new JButton("Noveau tornoi");
+		JButton b5 = new JButton("Nouveau tournoi");
 		b5.addActionListener(new ActionListener() {
 			 
 	        public void actionPerformed(ActionEvent e)

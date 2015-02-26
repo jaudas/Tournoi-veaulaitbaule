@@ -253,6 +253,11 @@ public class Equipe implements Comparable<Equipe> {
 		return this.nbSetGagne - this.nbSetPerdu;
 	}
 
+	public double calculerPourcentageVictoire(){
+		double pVict = (Double.valueOf(this.nbVictoire)/Double.valueOf(this.nbMatchJoue));
+		return (pVict*100);
+	}
+	
 	@Override
 	public int compareTo(Equipe eq2) {
 		// Comparaion des équipes selon leurs nombres de victoire

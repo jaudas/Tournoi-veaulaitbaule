@@ -295,11 +295,11 @@ public class ConsoleView {
 	public static void afficherResultatPoules(TournoiParPoules tPP) {
 		for (int cptPoule = 0; cptPoule< tPP.getListePoules().size(); cptPoule++){
 			System.out.println("-- Poule "+(cptPoule+1)+" --");
-			System.out.println(" Classement |        Equipe        | Points | Victoires | Sets Gagnés |  Goal Average ");
+			System.out.println(" Classement |        Equipe        | Points | Victoires | Pourcentage victoire | Sets Gagnés |  Goal Average ");
 			for (int cptEq = 0; cptEq <tPP.getListePoules().get(cptPoule).getEquipesPoule().size(); cptEq ++){
 				Equipe eqTemp = tPP.getListePoules().get(cptPoule).getEquipesPoule().get(cptEq);
 				System.out.print("      "+(cptEq+1)+"             "+eqTemp.getNom()+"\t\t"+eqTemp.getScore()+"          "+eqTemp.getNbVictoire()+"          "
-						+eqTemp.getNbSetGagne()+ "            " + eqTemp.calculGoalAverage() + "            ") ;
+				+eqTemp.calculerPourcentageVictoire()+"\t\t\t"+eqTemp.getNbSetGagne()+ "            " + eqTemp.calculGoalAverage() + "            ") ;
 				if ((cptEq == 0)||(cptEq == 1))	{	
 					System.out.print("Qualifiée\n");
 				}
