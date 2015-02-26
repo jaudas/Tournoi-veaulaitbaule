@@ -8,9 +8,13 @@ Projet JAVA
 
 || Postulat ||
  - Le programme que nous avons créé permet de gérer un tournoi de volley-ball uniquement.
- - Avant de lancer le programme, il faut installer la librairie JSON.1-1-1. Nous l'avons utilisée pour créer une base de données permettant de générer des équipes par défaut.
-Lien pour télécharger JSON : https://code.google.com/p/json-simple/downloads/detail?name=json-simple-1.1.1.jar&can=2&q=
-Importer le fichier .jar dans Eclipse en allant dans Project -> Propertoes -> Build path -> Add external JARS 
+ - Avant de lancer le programme, il faut installer 
+	- la librairie JSON.1-1-1. Nous l'avons utilisée pour créer une base de données permettant de générer des équipes par défaut.
+	  Lien pour télécharger JSON : https://code.google.com/p/json-simple/downloads/detail?name=json-simple-1.1.1.jar&can=2&q=
+	- la librairie Gson 2.3.1. Utilisée pour lire et écrire dans des fichiers. 
+	  Lien pour télécharger : http://l.facebook.com/lsr.php?u=http%3A%2F%2Fsearch.maven.org%2F%23artifactdetails%257Ccom.google.code.gson%257Cgson%257C2.3.1%257Cjar&ext=1424967631&hash=AcnHHPG6BH2beQ2EIxz35yXloAWUu2PvchQu70mhzrEzPQ 
+ Importer les fichiers .jar dans Eclipse en allant dans Project -> Propertoes -> Build path -> Add external JARS 
+
 
 
 || Fonctionnalités implémentées ||
@@ -32,6 +36,7 @@ Chaque joueur possède un nom, prénom, âge et sexe.
 L'utilisateur a la possibilité de générer des équipes de deux façons :
  - soit il saisit manuellement les informations de chaque équipe
  - soit il utilise les équipes générées automatiquement par le programme. 
+ - soit il utilise une liste d'équipes qu'il a créée et enregistrée auparavant
 Le nombre maximum d'équipes qui peut être créé est, dans chaque cas, égal au nombre de noms différents disponibles pour une équipe dans la liste des couleurs.
 
 Remarque : les équipes générées par le programme sont différentes à chaque fois.
@@ -50,6 +55,7 @@ L'utilisateur peut:
 - ajouter un ou plusieurs joueurs dans une équipe
 - modifier les informations d'un ou plusieurs joueurs d'une équipe
 - afficher les informations concernant les équipes et les joueurs qui la composent
+- enregistrer une liste d'équipeset l'utiliser ultérieurement
 
 
       -- Les matchs --
@@ -60,7 +66,7 @@ L'utilisateur peut:
 
 
       -- Les statistiques --
-A la fin d'un tournoi, le goal average et le pourcentage de victoires de chaque équipe sont affichés. 
+Au cours du tournoi, le goal average et le pourcentage de victoires de chaque équipe sont affichés. 
 Le goal average correspond à la différence entre le nombre de sets gagnés et le nombre de sets perdus par une équipe au cours du tournoi.
 Le pourcentage de victoire est donné en fonction d'une nombre de victoires par rapport au nombre de matchs joués par une équipe.
 
