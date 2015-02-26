@@ -73,8 +73,8 @@ Le pourcentage de victoire est donné en fonction d'une nombre de victoires par r
 
 || Client ||
 Les deux interfaces disponibles pour ce programme ont été implémentées avec :
-- la classe Scanner (client console)
-- la librairie Swing (client graphique)
+- la classe Scanner (client console) disponible depuis le fichier Main/Main.java
+- la librairie Swing (client graphique) disponible depuis le fichier SwingView/MainSwingView.java
 Ces deux clients disposent des mêmes fonctionnalités. 
 
 
