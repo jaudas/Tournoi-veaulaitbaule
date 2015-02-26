@@ -1,16 +1,20 @@
 package SwingView;
 
+import java.awt.Font;
 import java.awt.GridLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
-
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 import java.util.Collections;
+
 import model.Equipe;
 import model.Tournoi;
 
@@ -20,6 +24,7 @@ public class StadistiquesGUI {
 	
 	
 	JPanel main = new JPanel(new GridLayout(2,1));
+	
 	String phTour;
 	int nbequipes=0;
 	if(poule == true){
@@ -52,14 +57,33 @@ public class StadistiquesGUI {
 	}
 	
 	
-	
+	JLabel itournoi = new JLabel("Information tournoi");
+	itournoi.setFont(new Font("Microsoft Tai Le", Font.BOLD, 20));
 	JLabel phasetournoi = new JLabel("Phase tournoi:"+phTour);
+	
 	JLabel equipestour = new JLabel("Equipes dans cette tour:"+nbequipes);
 	JLabel equipestotals = new JLabel("Total d'equipes inscrits:"+t.getListeEquipes().size());
-	JPanel infoTournoi = new JPanel (new GridLayout(3,1));
+	JButton infoEquipes = new JButton("Afficher/Modifier des Equipes");
+	infoEquipes.addActionListener(new ActionListener() {
+		 
+        public void actionPerformed(ActionEvent e)
+        {	EquipesGUI.menuEquipes(t.getListeEquipes(),false);
+        	
+        }
+	});
+	JPanel infoTournoi = new JPanel ();
+	infoTournoi.setLayout(new BoxLayout(infoTournoi, BoxLayout.Y_AXIS));
+	infoTournoi.add(itournoi);
 	infoTournoi.add(phasetournoi);
-	infoTournoi.add(equipestour);
+	if(poule==false){infoTournoi.add(equipestour);}
 	infoTournoi.add(equipestotals);
+	if(poule==false){int parite = t.getListeToursEliminatoires().getLast().getListeEquipesTour().size() % 2;
+		if ((parite != 0)){JLabel eqQoffice= new JLabel("Equipes Qualifies d'office: "+t.getListeToursEliminatoires().getLast().getListeEquipesTour().get(t.getListeToursEliminatoires().getLast().getQualifOffice()).getNom());
+			infoTournoi.add(eqQoffice);}
+	}
+
+	
+	infoTournoi.add(infoEquipes);
 	main.add(infoTournoi);
 	
 	 //Creation du tableu pour afficher info equipes

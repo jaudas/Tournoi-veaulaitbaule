@@ -3,9 +3,13 @@ package SwingView;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
@@ -19,41 +23,42 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-
-
-
-
-
-
-
-
-
 import model.EnumSexe;
 import model.Equipe;
 import model.Joueur;
 
 public class JoueursGUI{
 
-	public static void menuJoueurs(LinkedList<Equipe> listeEquipes, int chEqp) {
+	public static void menuJoueurs(LinkedList<Equipe> listeEquipes, int chEqp,boolean elimEqp) {
 		LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur> ();
-		listeJoueurs=listeEquipes.get(chEqp-1).getListeJoueurs();
+		listeJoueurs=listeEquipes.get(chEqp).getListeJoueurs();
 		JButton addJoueur = new JButton ("Ajouter un joueur");
 		JButton modJoueur = new JButton ("Modifier le joueur");
 		JButton elimJoueur = new JButton ("Eliminer le joueur");
 		JButton returnEqp = new JButton ("Returner à l'info d'equipe");
-		JLabel chequipe = new JLabel ("Choisir un joueur");
-		JTextField idJoueur= new JTextField();
-		JPanel panel1 = new JPanel();
+		returnEqp.setBackground(Color.BLUE);
+		returnEqp.setForeground(Color.white);
+		JPanel panel1 = new JPanel(new GridLayout(2,1));
+		JLabel nomEquipe = new JLabel("Equipe: "+listeEquipes.get(chEqp).getNom());
+		nomEquipe.setHorizontalAlignment(0);
+		nomEquipe.setFont(new Font("Microsoft Tai Le", Font.BOLD, 22));
+
 		
+		String[] bookTitles = new String[listeEquipes.get(chEqp).getListeJoueurs().size()];
+		for(int i=0; i<listeEquipes.get(chEqp).getListeJoueurs().size(); i++){
+		bookTitles[i]=listeEquipes.get(chEqp).getListeJoueurs().get(i).getPrenom()+' '+listeEquipes.get(chEqp).getListeJoueurs().get(i).getNom();
+		
+		}
+		 JComboBox<String> chJoueur = new JComboBox<>(bookTitles);
 		 //Creation de tablau avec les joueurs
-		 Object[][] data = new Object[listeJoueurs.size()][5];
-		 String[] columnNames = {"IdJoueur", "Prenom", "Nom","Age","Sexe"};
+		 Object[][] data = new Object[listeJoueurs.size()][4];
+		 String[] columnNames = { "Prenom", "Nom","Age","Sexe"};
 		 for (int i = 0; i < listeJoueurs.size(); i++){
-			 data[i][0]= i+1;
-			 data[i][1]= listeJoueurs.get(i).getPrenom();
-			 data[i][2]= listeJoueurs.get(i).getNom();
-			 data[i][3]= listeJoueurs.get(i).getAge();
-			 data[i][4]= listeJoueurs.get(i).getSexe();
+			
+			 data[i][0]= listeJoueurs.get(i).getPrenom();
+			 data[i][1]= listeJoueurs.get(i).getNom();
+			 data[i][2]= listeJoueurs.get(i).getAge();
+			 data[i][3]= listeJoueurs.get(i).getSexe();
 			 
 		 }
 		 final JTable table = new JTable(data, columnNames);
@@ -62,9 +67,10 @@ public class JoueursGUI{
 		 JScrollPane scrollPane = new JScrollPane();
 		 scrollPane.setViewportView(table); 
 		 JPanel panel3 = new JPanel(new GridLayout(2,3));
-		 panel3.add(chequipe);
-		 panel3.add(idJoueur);
+		 panel3.add(chJoueur);
+		 panel1.add(nomEquipe);
 		 panel1.add(addJoueur);
+		 
 		 panel3.add(modJoueur);
 		 panel3.add(elimJoueur);
 		 panel3.add(returnEqp);
@@ -76,6 +82,7 @@ public class JoueursGUI{
 		 frame.getContentPane().add(panel1,BorderLayout.PAGE_START);
 		 frame.getContentPane().add(scrollPane,BorderLayout.CENTER);
 		 frame.getContentPane().add(panel3,BorderLayout.PAGE_END);
+		 frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
 		 frame.setLocationRelativeTo(null);
 		 frame.setVisible(true);
 		 
@@ -83,7 +90,7 @@ public class JoueursGUI{
 		 addJoueur.addActionListener(new ActionListener() { 
 	         public void actionPerformed(ActionEvent e)
 	         {
-	             newJoueur(listeEquipes,chEqp);
+	             newJoueur(listeEquipes,chEqp,false,elimEqp);
 	             frame.setVisible(false);             
 	         }
 	     });   
@@ -91,32 +98,42 @@ public class JoueursGUI{
 		 modJoueur.addActionListener(new ActionListener(){
 			 public void actionPerformed(ActionEvent e)
 	         {   
-	             modifierJoueurs(listeEquipes, chEqp,idJoueur);
+	             modifierJoueurs(listeEquipes, chEqp, chJoueur,elimEqp);
 	          }
 		 });
 		 elimJoueur.addActionListener(new ActionListener(){
 			 public void actionPerformed(ActionEvent e)
-	         {	 eliminerJoueur(listeEquipes, chEqp, idJoueur);
+	         {	 eliminerJoueur(listeEquipes, chEqp, chJoueur);
 	             frame.setVisible(false);
-	             menuJoueurs(listeEquipes, chEqp);
+	             menuJoueurs(listeEquipes, chEqp,elimEqp);
 	          }
 		 });
 		 
 		 returnEqp.addActionListener(new ActionListener(){
 			 public void actionPerformed(ActionEvent e)
 			 { frame.setVisible(false);
-			   EquipesGUI.menuEquipes(listeEquipes);
+			   EquipesGUI.menuEquipes(listeEquipes,elimEqp);
 			 }
 		 });
 		
 		 
 	}
 	
-	public static void newJoueur(LinkedList<Equipe> listeEquipes, int chEqp) {
+	public static void newJoueur(LinkedList<Equipe> listeEquipes, int chEqp, boolean premier,boolean elimEqp) {
 		
 		JTextField prenom = new JTextField();
 		JTextField nom = new JTextField();
 		JTextField age = new JTextField();
+		age.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+			char caracter = e.getKeyChar();
+
+			// Verifier si c'est un numero
+			if (((caracter < '0') || (caracter > '9')) && (caracter != '\b' )) {
+			e.consume(); // ignorer le clavier
+			}
+			}
+			});
 	
 		// Buttons
 		JButton create = new JButton("Creer Joueur");
@@ -156,18 +173,24 @@ public class JoueursGUI{
 			 	public void actionPerformed(ActionEvent e2){
 			 			JOptionPane.showMessageDialog(null, "your information will be lost");
 			 			frame.setVisible(false);
-			 			menuJoueurs(listeEquipes, chEqp);}
+			 			menuJoueurs(listeEquipes, chEqp,elimEqp);}
 		 		});
 		 create.addActionListener(new ActionListener() {
 		 
 			 	public void actionPerformed(ActionEvent e2){
-			 		LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur> ();
+			 		    if(premier==true){
+			 		    	premierJoueur(listeEquipes,chEqp,prenom, nom, age, chSexe);
+			 		    }else{
+			 		    			
+			 		    			LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur> ();
 			 		 	listeJoueurs=listeEquipes.get(chEqp).getListeJoueurs();
 			 			createJoueur(listeJoueurs, prenom, nom, age, chSexe);
 			 			frame.setVisible(false);
-			 			listeEquipes.get(chEqp-1).setListeJoueurs(listeJoueurs);
-			 			menuJoueurs(listeEquipes,chEqp);			 			
+			 			listeEquipes.get(chEqp).setListeJoueurs(listeJoueurs);
+			 		    }
+			 			menuJoueurs(listeEquipes,chEqp,elimEqp);			 			
 			 			JOptionPane.showMessageDialog(null,"Your entry is successfully added");
+			 			
 			 			}
 		 		});
 		 frame.add(panel1, BorderLayout.NORTH);
@@ -175,40 +198,54 @@ public class JoueursGUI{
 		 frame.add(panel3, BorderLayout.SOUTH);
 		 frame.setBackground(Color.WHITE);
 	     frame.setBounds(500, 500, 500, 300);
+	     frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
 	     frame.setLocationRelativeTo(null);
 		 frame.setVisible(true);
 		 
 		 
 	}
 	
+	private static void premierJoueur(LinkedList <Equipe> listeEquipes, int chEp, JTextField prenom, JTextField nom, JTextField age, JComboBox<String> chSexe) {
+		LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur> ();
+		String prenomj = prenom.getText();
+		String nomj = nom.getText();
+		String agej = age.getText();
+		
+		//Age seulment numeros
+
+		String selectSexe = (String) chSexe.getSelectedItem();
+		Joueur joueur = new Joueur(prenomj,nomj,agej,selectSexe);
+		listeJoueurs.add(joueur);
+		listeEquipes.get(chEp).setListeJoueurs(listeJoueurs);
+	
+	}
 
 	private static void createJoueur(LinkedList <Joueur> listeJoueurs, JTextField prenom, JTextField nom, JTextField age, JComboBox<String> chSexe) {
 		String prenomj = prenom.getText();
 		String nomj = nom.getText();
 		String agej = age.getText();
-			String ageJnb = Integer.toString(QuestionsDialogues.mauvaisNumero(agej, "Age incorrect"));
-		String selectSexe = (String) chSexe.getSelectedItem();
 		
-		Joueur joueur = new Joueur(prenomj,nomj,ageJnb,selectSexe);
+		//Age seulment numeros
+
+		String selectSexe = (String) chSexe.getSelectedItem();
+		Joueur joueur = new Joueur(prenomj,nomj,agej,selectSexe);
 		listeJoueurs.add(joueur);
 	
 	}
 	
 	
-	private static void eliminerJoueur(LinkedList <Equipe> listeEquipes, int idEnb, JTextField idJoueur) {
-		String NJ= idJoueur.getText();
-		int NJj= QuestionsDialogues.mauvaisNumero(NJ, "Choisir l'equipe à eliminer!");
-	
-		listeEquipes.get(idEnb-1).getListeJoueurs().remove(NJj-1);
+	private static void eliminerJoueur(LinkedList <Equipe> listeEquipes, int idE, JComboBox<String> chJoueur) {
+		int NJ= chJoueur.getSelectedIndex();
+		listeEquipes.get(idE).getListeJoueurs().remove(NJ);
 
 	}
 	
 	
 	
 	
-	public static void modifierJoueurs(LinkedList <Equipe> listeEquipes, int idEnb, JTextField idJoueur) {
-		String NJ= idJoueur.getText();
-		int NJj= QuestionsDialogues.mauvaisNumero(NJ, "Choisir l'equipe à eliminer!");
+	public static void modifierJoueurs(LinkedList <Equipe> listeEquipes, int idEnb, JComboBox<String> idJoueur,boolean elimEqp) {
+		int NJ= idJoueur.getSelectedIndex();
+	
 
 		JTextField prenom = new JTextField();
 		JTextField nom = new JTextField();
@@ -217,20 +254,20 @@ public class JoueursGUI{
 		String[] bookTitles = new String[] {"Femme", "Homme", "N/A"};
 		JComboBox<String> chSexe = new JComboBox<>(bookTitles);
 		 
-		nom.setText(listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getNom());
-		prenom.setText(listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getPrenom());
-		age.setText(listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getAge());
+		nom.setText(listeEquipes.get(idEnb).getListeJoueurs().get(NJ).getNom());
+		prenom.setText(listeEquipes.get(idEnb).getListeJoueurs().get(NJ).getPrenom());
+		age.setText(listeEquipes.get(idEnb).getListeJoueurs().get(NJ).getAge());
 		
-			if (listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getSexe()== EnumSexe.Femme)
+			if (listeEquipes.get(idEnb).getListeJoueurs().get(NJ).getSexe()== EnumSexe.Femme)
 			{
 				chSexe.setSelectedItem("Femme");
 			}
 	
-			if (listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getSexe()== EnumSexe.Homme)
+			if (listeEquipes.get(idEnb).getListeJoueurs().get(NJ).getSexe()== EnumSexe.Homme)
 			{
 				chSexe.setSelectedItem("Homme");
 			}
-			if (listeEquipes.get(idEnb-1).getListeJoueurs().get(NJj-1).getSexe()== EnumSexe.NA)
+			if (listeEquipes.get(idEnb).getListeJoueurs().get(NJ).getSexe()== EnumSexe.NA)
 			{
 				chSexe.setSelectedItem("N/A");
 			}
@@ -270,9 +307,9 @@ public class JoueursGUI{
 		 cancel.addActionListener(new ActionListener() {
 			 
 			 	public void actionPerformed(ActionEvent e2){
-			 			JOptionPane.showMessageDialog(null, "your information will be lost");
+			 			JOptionPane.showMessageDialog(null, "Votre information ne sera pas ajouté!");
 			 			frame.setVisible(false);
-			 			menuJoueurs(listeEquipes, idEnb);
+			 			menuJoueurs(listeEquipes, idEnb,elimEqp);
 			 			}
 		 		});
 		 create.addActionListener(new ActionListener() {
@@ -280,22 +317,33 @@ public class JoueursGUI{
 			 	public void actionPerformed(ActionEvent e2){
 			 		String nomj = nom.getText();
 			 		String prenomj = prenom.getText();
-			 		String agej = age.getText();
-			 		String selecteSexe= (String) chSexe.getSelectedItem();	 		
-			 		String ageJnb = Integer.toString(QuestionsDialogues.mauvaisNumero(agej, "Age incorrect"));
 			 		
-			 		listeEquipes.get(idEnb-1).getListeJoueurs().remove(NJj-1);
-			 		listeEquipes.get(idEnb-1).getListeJoueurs().add(NJj-1, new Joueur(nomj,prenomj,ageJnb,selecteSexe));
+			 		String selecteSexe= (String) chSexe.getSelectedItem();	 		
+			 		age.addKeyListener(new KeyAdapter() {
+			 			public void keyTyped(KeyEvent e) {
+			 			char caracter = e.getKeyChar();
+
+			 			
+			 			if (((caracter < '0') || (caracter > '9')) && (caracter != '\b' )) {
+			 			e.consume(); 
+			 			}
+			 			}
+			 			});
+
+			 		String agej = age.getText();
+			 		listeEquipes.get(idEnb).getListeJoueurs().remove(NJ);
+			 		listeEquipes.get(idEnb).getListeJoueurs().add(NJ, new Joueur(nomj,prenomj,agej,selecteSexe));
 			 		
 			 		frame.setVisible(false);
-			 		JOptionPane.showMessageDialog(null,"Your entry is successfully added");
-			 		menuJoueurs(listeEquipes, idEnb);
+			 		JOptionPane.showMessageDialog(null,"Information correctement ajoutée!");
+			 		menuJoueurs(listeEquipes, idEnb,elimEqp);
 			 		}
 		 		});
 		 frame.add(panel1, BorderLayout.NORTH);
 		 frame.add(panel2, BorderLayout.CENTER);
 		 frame.add(panel3, BorderLayout.SOUTH);
 		 frame.setBackground(Color.WHITE);
+		 frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
 	     frame.setBounds(500, 500, 500, 300);
 	     frame.setLocationRelativeTo(null);
 		 frame.setVisible(true);

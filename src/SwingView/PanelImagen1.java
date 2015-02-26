@@ -1,9 +1,13 @@
 package SwingView;
 import java.awt.Dimension;
 import java.awt.Graphics;
+
 import javax.swing.ImageIcon;
-public class PanelImagen extends javax.swing.JPanel {
-	public PanelImagen(){
+import javax.swing.JPanel;
+public class PanelImagen1 extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	public PanelImagen1(){
 			this.setSize(400,280);
 		}
 	@Override
