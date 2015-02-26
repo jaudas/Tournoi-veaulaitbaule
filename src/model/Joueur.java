@@ -17,8 +17,6 @@ public class Joueur {
 
 	public EnumSexe sexejoueur;
 
-	//public boolean capitaine;
-
 	//Constructeurs
 	public Joueur(){
 		sexejoueur = Math.random()>= 0.5 ? EnumSexe.Femme : EnumSexe.Homme;

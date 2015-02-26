@@ -271,7 +271,7 @@ public class ConsoleView {
 
 			}
 		}
-		//Si on a pas pu générer de matchs
+		//Si on n'a pas pu générer de matchs
 		else {
 			System.out.println("Nombre d'équipe(s) dans le dernier tour : "
 					+ t.getListeToursEliminatoires().getLast()
@@ -292,14 +292,16 @@ public class ConsoleView {
 
 	}
 
+	
+	//Afficher les équipes de chaque poules et leurs statistiques
 	public static void afficherResultatPoules(TournoiParPoules tPP) {
 		for (int cptPoule = 0; cptPoule< tPP.getListePoules().size(); cptPoule++){
 			System.out.println("-- Poule "+(cptPoule+1)+" --");
 			System.out.println(" Classement |        Equipe        | Points | Victoires | Pourcentage victoire | Sets Gagnés |  Goal Average ");
 			for (int cptEq = 0; cptEq <tPP.getListePoules().get(cptPoule).getEquipesPoule().size(); cptEq ++){
 				Equipe eqTemp = tPP.getListePoules().get(cptPoule).getEquipesPoule().get(cptEq);
-				System.out.print("      "+(cptEq+1)+"             "+eqTemp.getNom()+"\t\t"+eqTemp.getScore()+"          "+eqTemp.getNbVictoire()+"          "
-				+eqTemp.calculerPourcentageVictoire()+"\t\t\t"+eqTemp.getNbSetGagne()+ "            " + eqTemp.calculGoalAverage() + "            ") ;
+				System.out.print("      "+(cptEq+1)+"             "+eqTemp.getNom()+"\t\t"+eqTemp.getScore()+"         "+eqTemp.getNbVictoire()+"          "
+				+eqTemp.calculerPourcentageVictoire()+"%\t\t\t"+eqTemp.getNbSetGagne()+ "            " + eqTemp.calculGoalAverage() + "            ") ;
 				if ((cptEq == 0)||(cptEq == 1))	{	
 					System.out.print("Qualifiée\n");
 				}
@@ -310,14 +312,15 @@ public class ConsoleView {
 		}
 	}
 
+	
 	public static void afficherStatEquipes(Tournoi t) {
-		System.out.println("     Equipe          | Joués | Victoires | Sets Gagnés |  Goal Average ");
+		System.out.println("     Equipe          | Joués | Victoires | Pourcentage Victoire | Sets Gagnés |  Goal Average ");
 		LinkedList<Equipe> eqTriees = t.getListeEquipes();
 		Collections.sort(eqTriees);
 
 		for (int cptEq = 0; cptEq <t.getListeEquipes().size(); cptEq ++){
 			Equipe eqTemp = eqTriees.get(cptEq);
-			System.out.print((cptEq+1)+"     "+eqTemp.getNom()+"\t\t "+eqTemp.getNbMatchJoue()+"\t  "+eqTemp.getNbVictoire()+"           "
+			System.out.print((cptEq+1)+"     "+eqTemp.getNom()+"\t\t "+eqTemp.getNbMatchJoue()+"\t  "+eqTemp.getNbVictoire()+"           "+eqTemp.calculerPourcentageVictoire()+"%\t\t\t"
 					+eqTemp.getNbSetGagne()+ "              " + eqTemp.calculGoalAverage() + "\n") ;
 		}
 	}

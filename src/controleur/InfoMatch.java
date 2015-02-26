@@ -88,7 +88,6 @@ public class InfoMatch {
 		  
 		  match.getGagnant().setNbVictoire(match.getGagnant().getNbVictoire()+1);
 	  }
-	  
 		public static boolean matchaJouer(LinkedList<Match> listeMatch)
 		{
 			//Retourne  true si il y a des matchs à jouer

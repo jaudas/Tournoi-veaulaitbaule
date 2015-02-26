@@ -8,8 +8,6 @@ public class TournoiParPoules extends Tournoi {
 	int nbPoules;
 	private ArrayList<Poule> listePoules = new ArrayList<Poule>();
 
-	// Liste des équipes qualifiées
-
 	// Constructeur
 	public TournoiParPoules() {
 		super();
@@ -28,8 +26,6 @@ public class TournoiParPoules extends Tournoi {
 		} else {
 			this.nbPoules = nbpoul;
 		}
-		// System.out.println("Le nombre de poules à créer est : " +
-		// this.nbPoules);
 
 		this.creerPoules();
 	}

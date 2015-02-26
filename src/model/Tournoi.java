@@ -73,9 +73,7 @@ public class Tournoi {
 	}
 
 	public void remplirTour() {
-		TourEliminatoire tour = this.listeToursEliminatoires.getLast();
-		//System.out.println("From Tournoi.remplirTour : Tour à remplir avec "+tour.getListeMatchsTour().size()+" matchs, soit "+tour.getListeEquipesTour().size()+"équipes.");
-		
+		TourEliminatoire tour = this.listeToursEliminatoires.getLast();		
 		
 		// Le nombre de matchs correspond au nombre de paire(s) d'équipes
 		int nbmatchs = (int) tour.getListeEquipesTour().size() / 2;

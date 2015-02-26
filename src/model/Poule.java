@@ -17,10 +17,8 @@ public class Poule {
 		super();
 		this.nom = nom;
 		this.equipesPoule = equipesPoule;
-		//this.type = 
 		
 		creerTableauMatchs(tournoi);
-		//creerClassement();
 	}
 
 	//Méthodes

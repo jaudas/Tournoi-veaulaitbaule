@@ -254,8 +254,9 @@ public class Equipe implements Comparable<Equipe> {
 	}
 
 	public double calculerPourcentageVictoire(){
-		double pVict = (Double.valueOf(this.nbVictoire)/Double.valueOf(this.nbMatchJoue));
-		return (pVict*100);
+		double pVict = (Double.valueOf(this.nbVictoire)/Double.valueOf(this.nbMatchJoue))*100;
+		double pVictFinal = Math.round(pVict);
+		return (pVictFinal);
 	}
 	
 	@Override

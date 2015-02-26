@@ -10,7 +10,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 
 import javax.swing.BoxLayout;
@@ -36,16 +35,11 @@ import javax.swing.JTable;
 
 
 
-
-
 import controleur.Randomator;
-import model.Equipe;
 import model.Match;
 import model.Poule;
 import model.Tournoi;
 import model.TournoiParPoules;
-
-
 
 
 
@@ -153,9 +147,8 @@ public class TournoiGUI {
 		if (tournoi.getListeMatchs().get(i).estJoue()==true){
 			matchesjoues1++;
 		}
-		}
 
-		if(matchesjoues1 == tournoi.getListeMatchs().size() && fin==false){
+		if(matchesjoues1 == tournoi.getListeMatchs().size()){
 			JButton b4 = new JButton ("Générer la prochaine phase du tournoi");
 			b4.setBackground(Color.BLUE);
 			b4.setForeground(Color.white);
@@ -208,6 +201,7 @@ public class TournoiGUI {
 		
 	    frame.setVisible(true);
 	    
+	}
 	}
 
 
@@ -463,10 +457,10 @@ public static void finTournoi(Tournoi tournoi) {
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(TournoiGUI.class.getResource("/images/Volleyball.jpg")));
 		frame.setBackground(Color.WHITE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(600,600,600,600);
+		frame.setBounds(1200,600,1200,600);
 		frame.setLocationRelativeTo(null);
 
-		JPanel main = new JPanel(new GridLayout(3,1));
+		JPanel main = new JPanel(new BorderLayout());
 		
 		//array bidimencional de objetos con los datos de la tabla
 	  	LinkedList <Match> listeMatchs = new LinkedList <Match>();
@@ -501,24 +495,12 @@ public static void finTournoi(Tournoi tournoi) {
 			 titre.setFont(new Font("Microsoft Tai Le", Font.BOLD, 20));
 			 infoMatches.add(titre);
 			 infoMatches.add(scrollPane);
-			 main.add(infoMatches);
+			 main.add(infoMatches,BorderLayout.PAGE_START);
 			 
 			 //Tablaux d'equipes qualifiés
 
-		JPanel buttons = new JPanel(new FlowLayout());
-		JButton b4 = new JButton("Afficher les informations des équipes");
-		b4.addActionListener(new ActionListener() {
-			 
-	        public void actionPerformed(ActionEvent e)
-	        {	frame.dispose();
-	        	EquipesGUI.menuEquipes(tournoi.getListeEquipes(),false);
-    			}
+		JPanel buttons = new JPanel();
 
-		});
-		
-	
-	
-		buttons.add(b4);
 		JButton b5 = new JButton("Nouveau tournoi");
 		b5.addActionListener(new ActionListener() {
 			 
@@ -532,39 +514,8 @@ public static void finTournoi(Tournoi tournoi) {
 	
 	
 		buttons.add(b5);
-        
-		
-		LinkedList<Equipe> eqTriees = tournoi.getListeEquipes();
-		Collections.sort(eqTriees);
-		//Classification
-		 Object[][] dataC = new Object[tournoi.getListeEquipes().size()][7];
-		 String[] columnNamesC = {"Classement", "Nom", "Matchs"," Victoires", "Pourcentage vicoitre","Sets gagnés", "Goal Average"};
-		 for (int i = 0; i < tournoi.getListeEquipes().size(); i++){
-			 Equipe eqTemp = eqTriees.get(i);
-			 dataC[i][0]= i+1;
-			 dataC[i][1]= eqTemp.getNom();
-			 dataC[i][2]= eqTemp.getNbMatchJoue();
-			 dataC[i][3]=eqTemp.getNbVictoire();
-			 dataC[i][4]=eqTemp.calculerPourcentageVictoire();
-			 dataC[i][5]=eqTemp.getNbSetGagne();
-			 dataC[i][6]=eqTemp.calculGoalAverage();
-			 
-			
-		 }
-		 JTable table2 = new JTable(dataC, columnNamesC);
-		 table2.setEnabled(false); //Table non editable
-		 //On ajoute la table à un scrollePane
-		 JScrollPane scrollPane2 = new JScrollPane();
-		 scrollPane2.setViewportView(table2); 
-		 JPanel infoC= new JPanel();
-		 infoC.setLayout(new BoxLayout(infoC, BoxLayout.Y_AXIS));
-		 JLabel titre2 = new JLabel ("Classification ");
-		 titre2.setFont(new Font("Microsoft Tai Le", Font.BOLD, 20));
-		 infoC.add(titre2);
-		 infoC.add(scrollPane2);
-		 main.add(infoC);
-		
-		
+
+		main.add(StadistiquesGUI.afficherStatTournoi(tournoi, false),BorderLayout.CENTER);
 		
 		JPanel butEtGagnant = new JPanel(new GridLayout(2,1));
 		
