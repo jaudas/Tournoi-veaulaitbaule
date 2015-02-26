@@ -20,7 +20,7 @@ public class InfoEquipes {
 
 	static Scanner sc = new Scanner(System.in);
 
-	public static LinkedList<Equipe> inscrireEquipes(){
+	public static LinkedList<Equipe> inscrireEquipes() throws IOException{
 		LinkedList<Equipe> listeEquipe = new LinkedList<Equipe>();
 		LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur>();   
 		//Attributes
@@ -132,8 +132,9 @@ public class InfoEquipes {
 
 
 			case 3:
-				System.out.println("liste des équipes déja existantes");
+				System.out.println("Chargement des listes d'équipes déja existantes ! ");
 			//	System.out.println(SaveList.getListeGroupeEquipes());
+				listeEquipe = InfoEquipes.choixListeEquipe();
 				
 				option=true;
 
@@ -342,9 +343,27 @@ public class InfoEquipes {
 
 	}
 
-	public static void choixListeEquipe()
+	public static LinkedList<Equipe> choixListeEquipe() throws IOException
 	{
+		LinkedList<Equipe> listeEquipeschargee = new LinkedList<Equipe>();
+		String[] listeDocuments = SaveList.getListeGroupeEquipes();
+	
+		for (int i=0; i<listeDocuments.length; i++)
+            System.out.println(i+" : "+listeDocuments[i]);
 		
+		int choix = -1;
+		do {
+			System.out.println("Veuillez saisir le numero de la liste à charger : ");
+			choix = sc.nextInt();
+		}
+		while (choix < 0 && choix >listeDocuments.length);
+
+		System.out.println("Vous allez charger la liste : "+listeDocuments[choix]);
+		
+		listeEquipeschargee = SaveList.loadTeams(listeDocuments[choix]);
+		
+		
+		return listeEquipeschargee;
 	}
 
 

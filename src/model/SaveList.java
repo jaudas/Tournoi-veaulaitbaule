@@ -1,6 +1,5 @@
 package model;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,12 +13,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import tools.FileFiltrage;
-import view.ConsoleView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import controleur.InfoEquipes;
 
 public class SaveList {
 
@@ -39,15 +36,17 @@ public class SaveList {
 	public static LinkedList<Equipe> loadTeams (String nomListe) throws IOException
 	{
 		String fileNameHisto = System.getProperty("user.dir")
-				+ "//src//data//historique//"+nomListe+".json";
+				+ "//src//data//historique//"+nomListe;
 
 		Gson gson = new Gson();
 
-		Type listOfTestObject = new TypeToken<LinkedList<Equipe>>(){}.getType();
+		Type listOfTeams = new TypeToken<LinkedList<Equipe>>(){}.getType();
+		
+		System.out.println(fileNameHisto);
 		//Eat Serial
 
 		Reader isReader = new InputStreamReader(new FileInputStream(fileNameHisto));
-		LinkedList<Equipe> listFromJson = gson.fromJson(isReader, listOfTestObject);
+		List<Equipe> listFromJson = gson.fromJson(isReader, listOfTeams);
 		List<Equipe> list2 = Collections.synchronizedList(listFromJson);
 		isReader.close();
 
@@ -89,47 +88,15 @@ public class SaveList {
 	}
 
 	public static String[] getListeGroupeEquipes()
-	{
-		File repertoire = new File(System.getProperty("user.dir")+ "//src//data//historique//");
-		File[] files=repertoire.listFiles();
-	
-		// obtenir la liste de contenu du répertoire courany
-        String[] dir = new java.io.File(".").list(new FileFiltrage( ));
+	{	
+		// obtenir la liste de contenu du répertoire courat
+        String[] dir = new java.io.File(System.getProperty("user.dir")+ "//src//data//historique//").list(new FileFiltrage( ));
 
         // Trier le résultat
         java.util.Arrays.sort(dir);
  
-        // Afficher la liste
-        for (int i=0; i<dir.length; i++)
-            System.out.println(dir[i]);
-        
-        System.out.println("Nombre de liste enregistrées : " + dir.length);
         return dir;
 		
 	}
-
-	
-
-
-	public static void main(final String[] args) throws IOException{
-		getListeGroupeEquipes();
-		LinkedList<Equipe> liste = InfoEquipes.inscrireEquipes();
-
-		String s = "patate";
-		save(s,liste);
-
-		LinkedList<Equipe> listeapres = new LinkedList<Equipe>();
-
-		listeapres = loadTeams(s);
-
-		System.out.println("Avant : " );
-
-		ConsoleView.afficherEquipesEtJoueurs(liste);
-		System.out.println("Après : ");
-		ConsoleView.afficherEquipesEtJoueurs(listeapres);
-
-	}
-
-
 
 }

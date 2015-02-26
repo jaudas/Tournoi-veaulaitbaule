@@ -259,6 +259,17 @@ public class Equipe implements Comparable<Equipe> {
 		return (pVictFinal);
 	}
 	
+	public int calculGoalAverageHisto()
+	{
+		return this.histoNbSetGagne - this.histoNbSetPerdu;
+	}
+
+	public double calculerPourcentageVictoireHisto(){
+		double pVict = (Double.valueOf(this.histoNbVictoire)/Double.valueOf(this.histoNbMatchJoue))*100;
+		double pVictFinal = Math.round(pVict);
+		return (pVictFinal);
+	}
+	
 	@Override
 	public int compareTo(Equipe eq2) {
 		// Comparaion des équipes selon leurs nombres de victoire

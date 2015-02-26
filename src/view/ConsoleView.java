@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -10,6 +11,7 @@ import model.Equipe;
 import model.Joueur;
 import model.Match;
 import model.Poule;
+import model.SaveList;
 import model.Tournoi;
 import model.TournoiParPoules;
 import controleur.Exception;
@@ -29,6 +31,7 @@ public class ConsoleView {
 	final static int HUITIEMEDEFINALE = 4;
 	final static int SEIZIEMEDEFINALE = 5;
 	final static int TRENTEDEUXIEMEDEFINALE = 6;
+	private static Scanner sc2;
 
 	public static void accueil() {
 		System.out
@@ -282,17 +285,42 @@ public class ConsoleView {
 	}
 
 
-	public static void affichagefin(Tournoi t) {
-		System.out
-		.println("Le Tournoi est terminé ! Voici la liste des matchs joués au cours du Tournoi : ");
+	public static void affichagefin(Tournoi t) throws IOException {
+		System.out.println("Le Tournoi est terminé ! Voici la liste des matchs joués au cours du Tournoi : ");
 		afficherMatch(t.getListeMatchs());
 
-		System.out.println("Voici des statistiques sur les équipes : ");
+		System.out.println("Voici des statistiques du tournoi sur les équipes : ");
 		afficherStatEquipes(t);
+
+		SaveList.majStat(t.getListeEquipes());
+		System.out.println("Voici des statistiques globales des équipes : ");
+		afficherStatEquipesGlobale(t);
+
+		System.out.println("Voulez-vous enregistrer la liste des équipes ? ");
+		sc2 = new Scanner(System.in); 
+		int enregistrer;
+		do{
+			System.out.println(" 1. Oui 2.Non");
+			enregistrer = sc2.nextInt();
+		}
+		while (enregistrer !=2 && enregistrer != -1);
+
+		if (enregistrer == 1)
+		{
+			System.out.println("Sous quel nom souhaitez vous enregistrer ? ");
+			sc2 = new Scanner(System.in); 
+			String nom = sc2.nextLine();
+			SaveList.save(nom, t.getListeEquipes());
+			SaveList.resetStatTournoi(t.getListeEquipes());
+			System.out.println("Enregistré ! ");
+		}
+
+		System.out.println("Fin du tournoi ! ");
+
 
 	}
 
-	
+
 	//Afficher les équipes de chaque poules et leurs statistiques
 	public static void afficherResultatPoules(TournoiParPoules tPP) {
 		for (int cptPoule = 0; cptPoule< tPP.getListePoules().size(); cptPoule++){
@@ -301,7 +329,7 @@ public class ConsoleView {
 			for (int cptEq = 0; cptEq <tPP.getListePoules().get(cptPoule).getEquipesPoule().size(); cptEq ++){
 				Equipe eqTemp = tPP.getListePoules().get(cptPoule).getEquipesPoule().get(cptEq);
 				System.out.print("      "+(cptEq+1)+"             "+eqTemp.getNom()+"\t\t"+eqTemp.getScore()+"         "+eqTemp.getNbVictoire()+"          "
-				+eqTemp.calculerPourcentageVictoire()+"%\t\t\t"+eqTemp.getNbSetGagne()+ "            " + eqTemp.calculGoalAverage() + "            ") ;
+						+eqTemp.calculerPourcentageVictoire()+"%\t\t\t"+eqTemp.getNbSetGagne()+ "            " + eqTemp.calculGoalAverage() + "            ") ;
 				if ((cptEq == 0)||(cptEq == 1))	{	
 					System.out.print("Qualifiée\n");
 				}
@@ -312,7 +340,7 @@ public class ConsoleView {
 		}
 	}
 
-	
+
 	public static void afficherStatEquipes(Tournoi t) {
 		System.out.println("     Equipe          | Joués | Victoires | Pourcentage Victoire | Sets Gagnés |  Goal Average ");
 		LinkedList<Equipe> eqTriees = t.getListeEquipes();
@@ -322,6 +350,18 @@ public class ConsoleView {
 			Equipe eqTemp = eqTriees.get(cptEq);
 			System.out.print((cptEq+1)+"     "+eqTemp.getNom()+"\t\t "+eqTemp.getNbMatchJoue()+"\t  "+eqTemp.getNbVictoire()+"           "+eqTemp.calculerPourcentageVictoire()+"%\t\t\t"
 					+eqTemp.getNbSetGagne()+ "              " + eqTemp.calculGoalAverage() + "\n") ;
+		}
+	}
+
+	public static void afficherStatEquipesGlobale(Tournoi t) {
+		System.out.println("     Equipe          | Joués | Victoires | Pourcentage Victoire | Sets Gagnés |  Goal Average ");
+		LinkedList<Equipe> eqTriees = t.getListeEquipes();
+		Collections.sort(eqTriees);
+
+		for (int cptEq = 0; cptEq <t.getListeEquipes().size(); cptEq ++){
+			Equipe eqTemp = eqTriees.get(cptEq);
+			System.out.print((cptEq+1)+"     "+eqTemp.getNom()+"\t\t "+eqTemp.getHistoNbMatchJoue()+"\t  "+eqTemp.getHistoNbVictoire()+"           "+eqTemp.calculerPourcentageVictoireHisto()+"%\t\t\t"
+					+eqTemp.getHistoNbSetGagne()+ "              " + eqTemp.calculGoalAverageHisto() + "\n") ;
 		}
 	}
 }
