@@ -317,14 +317,19 @@ public class EquipesGUI{
  
 			  int NE=0;
 			  boolean numOK=false;
-			  do{
+			  do{String num =JOptionPane.showInputDialog( new JFrame(),"Combien d'équipes voulez-vous générer?","Question", JOptionPane.QUESTION_MESSAGE);
+		  		
 				  try{
-					  NE=Integer.parseInt(JOptionPane.showInputDialog( new JFrame(),"Combien d'équipes voulez-vous générer?","Question", JOptionPane.QUESTION_MESSAGE));
-					  numOK=true;
+				  	NE=Integer.parseInt(num);
+				  	numOK=true;
 				  }
 				  catch(NumberFormatException e){
-					JOptionPane.showMessageDialog(null, "Mauvais num!");
-					numOK=false;
+					  if(num == null){
+						  numOK=true;
+						  Menus.menuInscription();
+						  NE=0;}
+					  else{JOptionPane.showMessageDialog(null, "Mauvais num!");
+					numOK=false;}
 				  }
 			  }while(!numOK);
 			
@@ -341,7 +346,7 @@ public class EquipesGUI{
 					  }
 				  }while(!numOK);
 				}
-			
+			if(NE != 0){
 			for (int i = 1; i <= NE; i++) {
 				String description = "Equipe de volley-ball";
 				int nbJoueurs = 6;
@@ -355,8 +360,8 @@ public class EquipesGUI{
 				aux.setNbJoueurs(nbJoueurs);
 				aux.setListeJoueurs(listeJoueurs);
 				listeEquipes.add(aux);
-				System.out.println(aux.toString());
-				}
+				
+				}}
 		
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
