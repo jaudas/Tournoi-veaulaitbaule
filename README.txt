@@ -1,4 +1,4 @@
-26/01/2015
+26/02/2015
 FREIXA Alba
 AUDAS Jessica
 CORDIER Diane
@@ -40,14 +40,14 @@ L'utilisateur a la possibilité de générer des équipes de deux façons :
 Le nombre maximum d'équipes qui peut être créé est, dans chaque cas, égal au nombre de noms différents disponibles pour une équipe dans la liste des couleurs.
 
 Remarque : les équipes générées par le programme sont différentes à chaque fois.
-En effet, pour chaque champ d'information de chaque équipe, le programme tire au sort	une valeur dans une base de données:
+En effet, pour chaque champ d'information de chaque équipe, le programme tire au sort une valeur dans une base de données. Cette base de donnée est stockée en mémoire dans le dossier src/data, sous le format Json:
 - Le nom de l'équipe est toujours une couleur
 - L'emblème de l'équipe, qui est toujours un animal et qui est donné dans la description de l'équipe.
-- Le sexe de chaque joueur
+- Le sexe de chaque joueur est de type Enum, une Enumeration pouvant accueillir les valeurs Homme, Femme et N/A.
 - Le prénom d'un joueur, parmi une liste de prénoms correspondant à son sexe
 - Le nom de famille du joueur, parmi une liste de fruits et légumes.
 - L'âge d'un joueur, compris entre 15 et 65 ans.
-******/// Expliquer JSON et tirage au sort du sexe (Enum)	
+	
 
 L'utilisateur peut:
 - ajouter une ou plusieurs équipes
@@ -55,7 +55,7 @@ L'utilisateur peut:
 - ajouter un ou plusieurs joueurs dans une équipe
 - modifier les informations d'un ou plusieurs joueurs d'une équipe
 - afficher les informations concernant les équipes et les joueurs qui la composent
-- enregistrer une liste d'équipeset l'utiliser ultérieurement
+- enregistrer une liste d'équipes et l'utiliser ultérieurement, les statistiques sont alors mises à jour.
 
 
       -- Les matchs --
@@ -75,7 +75,7 @@ Le pourcentage de victoire est donné en fonction d'une nombre de victoires par r
 Les deux interfaces disponibles pour ce programme ont été implémentées avec :
 - la classe Scanner (client console)
 - la librairie Swing (client graphique)
-
+Ces deux clients disposent des mêmes fonctionnalités. 
 
 
 || BONUS ||
@@ -84,4 +84,8 @@ Nous avons ajouté une fonction qui permet à l'utilisateur de générer la suite du
 Autrement dit, lorsque l'utilisateur choisit cette option dans le menu principal, les scores de tous les matchs non joués et ceux des tours suivants sont tirés au sort (tout en restant conformes au règles du volley-ball).
 Ainsi, on obtient un gagnant aléatoire du tournoi.
 Nous avons nous-mêmes utilisé ce mode en s'amusant à parier sur l'équipe gagnante parmi les équipes que nous avions saisies auparavant.
- 
+
+
+     -- Charger une liste d'équipe déja existante --
+Dans notre programme, il est également possible de sauvegarder une liste d'équipe et de mettre à jour ses statistiques sur l'ensemble des matchs auquel elle a participer. 
+Les informations des équipes ainsi que la liste des joueurs ne sont donc plus à ajouter au début du tournoi, et il est possible de comparer les statistiques des équipes sur de nombreux matchs.
