@@ -29,6 +29,9 @@ import model.Joueur;
 
 public class JoueursGUI{
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void menuJoueurs(LinkedList<Equipe> listeEquipes, int chEqp,boolean elimEqp) {
 		LinkedList<Joueur> listeJoueurs = new LinkedList<Joueur> ();
 		listeJoueurs=listeEquipes.get(chEqp).getListeJoueurs();
@@ -193,9 +196,9 @@ public class JoueursGUI{
 			 			
 			 			}
 		 		});
-		 frame.add(panel1, BorderLayout.NORTH);
-		 frame.add(panel2, BorderLayout.CENTER);
-		 frame.add(panel3, BorderLayout.SOUTH);
+		 frame.getContentPane().add(panel1, BorderLayout.NORTH);
+		 frame.getContentPane().add(panel2, BorderLayout.CENTER);
+		 frame.getContentPane().add(panel3, BorderLayout.SOUTH);
 		 frame.setBackground(Color.WHITE);
 	     frame.setBounds(500, 500, 500, 300);
 	     frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
@@ -339,9 +342,9 @@ public class JoueursGUI{
 			 		menuJoueurs(listeEquipes, idEnb,elimEqp);
 			 		}
 		 		});
-		 frame.add(panel1, BorderLayout.NORTH);
-		 frame.add(panel2, BorderLayout.CENTER);
-		 frame.add(panel3, BorderLayout.SOUTH);
+		 frame.getContentPane().add(panel1, BorderLayout.NORTH);
+		 frame.getContentPane().add(panel2, BorderLayout.CENTER);
+		 frame.getContentPane().add(panel3, BorderLayout.SOUTH);
 		 frame.setBackground(Color.WHITE);
 		 frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
 	     frame.setBounds(500, 500, 500, 300);

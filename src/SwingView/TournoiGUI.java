@@ -100,11 +100,12 @@ public class TournoiGUI {
 			 JPanel infoMatches= new JPanel();
 			 infoMatches.setLayout(new BoxLayout(infoMatches, BoxLayout.Y_AXIS));
 			 JLabel titre = new JLabel ("Liste de matches dans cette tour");
+			 titre.setFont(new Font("Microsoft Tai Le", Font.BOLD, 20));
 			 infoMatches.add(titre);
 			 infoMatches.add(scrollPane);
 			 main.add(infoMatches);
 			 
-			 //Tablaux d'equipes qualifiés
+			 //Tablau d'equipes qualifiées
 
 			String[] columnNamesE = {"Equipes"};
 		 final JTable table2 = new JTable(dataEquipes, columnNamesE);
@@ -116,6 +117,7 @@ public class TournoiGUI {
 			 JPanel infoEquipes= new JPanel();
 			 infoEquipes.setLayout(new BoxLayout(infoEquipes, BoxLayout.Y_AXIS));
 			 JLabel titre2 = new JLabel ("Liste d'equipes dans cette tour");
+			 titre2.setFont(new Font("Microsoft Tai Le", Font.BOLD, 20));
 			 infoEquipes.add(titre2);
 			 infoEquipes.add(scrollPane2);
 			 main.add(infoEquipes);
@@ -126,7 +128,7 @@ public class TournoiGUI {
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 	
-		JButton b5 = new JButton("Génere des resultats automatiquement");
+		JButton b5 = new JButton("Générer des resultats automatiquement");
 		b5.addActionListener(new ActionListener() {
 			 
 	        public void actionPerformed(ActionEvent e)
@@ -144,8 +146,10 @@ public class TournoiGUI {
 			matchesjoues1++;
 		}
 		}
-		if(matchesjoues1 == tournoi.getListeMatchs().size()){
+		if(matchesjoues1 == tournoi.getListeMatchs().size() && fin==false){
 			JButton b4 = new JButton ("Generer la prochain phase du tournoi");
+			b4.setBackground(Color.BLUE);
+			b4.setForeground(Color.white);
 			b4.addActionListener(new ActionListener() {
 				 
 		        public void actionPerformed(ActionEvent e){		        
@@ -165,13 +169,16 @@ public class TournoiGUI {
 			});
 			buttons.add(b4);
 		}
-		if(fin==true){
+		if(fin==true && matchesjoues1 == tournoi.getListeMatchs().size()){
 			JButton b4 = new JButton ("Fin tournoi");
+			b4.setBackground(Color.BLUE);
+			b4.setForeground(Color.white);
 			b4.addActionListener(new ActionListener() {
 				 
 		        public void actionPerformed(ActionEvent e)
 
-		        {TournoiGUI.finTournoi(tournoi);}
+		        {	frame.dispose();
+		        	TournoiGUI.finTournoi(tournoi);}
 		        
 			});
 			buttons.add(b4);
@@ -221,7 +228,7 @@ public class TournoiGUI {
 			group.setLayout(new BoxLayout(group, BoxLayout.X_AXIS));
 			Poule pouleAffichage= listePoules.get(j);
 			Object[][] data = new Object[4][1];
-				//array de String's con los títulos de las columnas
+			
 			String[] columnNames = {"Group" +(j+1)};
 				for (int i = 0; i < pouleAffichage.getEquipesPoule().size() ; i++){
 			 
@@ -294,7 +301,7 @@ public class TournoiGUI {
 	
 	
 	
-		JButton b5 = new JButton("Génere des résultats de cette phase automatiquement");
+		JButton b5 = new JButton("Générer des résultats de cette phase automatiquement");
 		b5.addActionListener(new ActionListener() {
 			 
 	        public void actionPerformed(ActionEvent e)
@@ -449,7 +456,7 @@ public static void finTournoi(Tournoi tournoi) {
 		frame.setBounds(1200,600,1200,600);
 		frame.setLocationRelativeTo(null);
 
-		JPanel main = new JPanel(new GridLayout(2,2));
+		JPanel main = new JPanel(new BorderLayout());
 		
 		//array bidimencional de objetos con los datos de la tabla
 	  	LinkedList <Match> listeMatchs = new LinkedList <Match>();
@@ -477,14 +484,18 @@ public static void finTournoi(Tournoi tournoi) {
 			 table.setEnabled(false);
 			 table.setPreferredScrollableViewportSize(new Dimension(70, 70));
 			 JScrollPane scrollPane = new JScrollPane();
-			 scrollPane.setViewportView(table); 
-			 main.add(scrollPane);
+			 scrollPane.setViewportView(table);
+			 JPanel infoMatches= new JPanel();
+			 infoMatches.setLayout(new BoxLayout(infoMatches, BoxLayout.Y_AXIS));
+			 JLabel titre = new JLabel ("Liste de matches ");
+			 titre.setFont(new Font("Microsoft Tai Le", Font.BOLD, 20));
+			 infoMatches.add(titre);
+			 infoMatches.add(scrollPane);
+			 main.add(infoMatches,BorderLayout.PAGE_START);
+			 
 			 //Tablaux d'equipes qualifiés
 
-		JPanel buttons = new JPanel(new GridLayout (5,1));
-		
-	
-	
+		JPanel buttons = new JPanel();
 
 		JButton b5 = new JButton("Noveau tornoi");
 		b5.addActionListener(new ActionListener() {
@@ -500,14 +511,16 @@ public static void finTournoi(Tournoi tournoi) {
 	
 		buttons.add(b5);
 
+		main.add(StadistiquesGUI.afficherStatTournoi(tournoi, false),BorderLayout.CENTER);
 		
+		JPanel butEtGagnant = new JPanel(new GridLayout(2,1));
 		
-		main.add(buttons);
-		main.add(StadistiquesGUI.afficherStatTournoi(tournoi, false));
 		JLabel gagnant = new JLabel("Gagnant: "+ tournoi.getListeMatchs().getLast().getGagnant().getNom());
 		gagnant.setHorizontalAlignment(0);
 		gagnant.setFont(new Font("Microsoft Tai Le", Font.BOLD, 40));
-		main.add(gagnant);
+		butEtGagnant.add(gagnant);
+		butEtGagnant.add(buttons);
+		main.add(butEtGagnant,BorderLayout.AFTER_LAST_LINE);
 		frame.getContentPane().add(main);
 		
 	    frame.setVisible(true);
