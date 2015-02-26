@@ -79,6 +79,33 @@ public class SaveList {
         return listeEquipes;
         
 	}
+	
+	public static void majStat(LinkedList<Equipe> listeEquipe)
+	{
+		Equipe temp;
+		for (int i = 0; i<listeEquipe.size();i++)
+		{
+			temp = listeEquipe.get(i);
+			temp.setHistoNbMatchJoue(temp.getHistoNbMatchJoue()+temp.getNbMatchJoue());
+			temp.setHistoNbSetGagne(temp.getHistoNbSetGagne()+temp.getNbSetGagne());
+			temp.setHistoNbSetPerdu(temp.getHistoNbSetPerdu()+temp.getNbSetPerdu());
+			temp.setHistoNbVictoire(temp.getHistoNbVictoire()+temp.getNbVictoire());
+		}
+		
+	}
+	
+	public static void resetStatTournoi(LinkedList<Equipe> liste)
+	{
+		Equipe temp;
+		for (int i = 0; i<liste.size();i++)
+		{
+			temp = liste.get(i);
+			temp.setNbMatchJoue(0);
+			temp.setNbSetGagne(0);
+			temp.setNbSetPerdu(0);
+			temp.setNbVictoire(0);
+		}
+	}
 
 	public static void main(final String[] args) throws IOException{
 		LinkedList<Equipe> liste = InfoEquipes.inscrireEquipes();
@@ -98,5 +125,7 @@ public class SaveList {
 		ConsoleView.afficherEquipesEtJoueurs(listeapres);
 		
 	}
+	
+
 
 }
