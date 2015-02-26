@@ -30,6 +30,7 @@ import tools.FilesTools;
 import controleur.InfoEquipes;
 import model.Equipe;
 import model.Joueur;
+import model.SaveList;
 
 
 
@@ -107,9 +108,14 @@ public class EquipesGUI{
 		 enregistrer.addActionListener(new ActionListener() {
 			 
 	         public void actionPerformed(ActionEvent e)
-	         {	
-	             newEquipe(listeEquipes,elimEqp);
-	             frame.setVisible(false);
+	         {	String nomListe = JOptionPane.showInputDialog( new JFrame(),"Introduire le nom de la liste d'équipes:(Si le nom existe dejà,la liste risque d'être effacée)","Question", JOptionPane.QUESTION_MESSAGE);
+	             try {SaveList.majStat(listeEquipes);
+	            	 SaveList.resetStatTournoi(listeEquipes);
+					SaveList.save(nomListe, listeEquipes);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+	             
 	          }
 	     }); 
 		 addequipe.addActionListener(new ActionListener() {

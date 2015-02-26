@@ -4,13 +4,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.security.Principal;
+import java.io.IOException;
+
 import java.util.LinkedList;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import model.Equipe;
+import model.SaveList;
 import model.TournoiEliminationDirecte;
 import model.TournoiParPoules;
 
@@ -141,7 +143,9 @@ public static void menuBienvenue() {
 		b3.addActionListener(new ActionListener() {
 			 
             public void actionPerformed(ActionEvent e)
-            {   selectionerFitxer();
+            {   frame.dispose();
+            	selectionerFitxer();
+            	
                
             }
         }); 
@@ -228,55 +232,84 @@ public static void menuTournoi(LinkedList<Equipe> listeEquipes) {
 		frame.getContentPane().add(buttons);
 		
 		frame.setVisible(true);
-}
-
-
-public static void selectionerFitxer(){
-	JFrame frame = new JFrame("Tournoi de volley-ball");
-	frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
-	frame.setBackground(Color.WHITE);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setBounds(600, 600, 600, 600);
-	frame.setLocationRelativeTo(null);
-	PanelImagen1 p = new PanelImagen1();
-	p.setBorder(new EmptyBorder(0, 0, 0, 0));
-	frame.setContentPane(p);
-	JLabel label = new JLabel("Selectioner la liste");
-	label.setBounds(112, 106, 348, 110);
-	label.setHorizontalAlignment(0);
-	label.setFont(new Font("Microsoft Tai Le", Font.BOLD, 38));
-	label.setBackground(Color.WHITE);
-	String dir1=System.getProperty("user.dir");
-          
-	File dir = new File(dir1+"//src//data//historique");
-	
-	String[] listesEq = dir.list();
-	String[] bookTitles = new String[listesEq.length];
-
-		  for (int x=0;x<listesEq.length;x++){
-			  
-		    bookTitles[x]=listesEq[x];
-		
 	}
-	JComboBox<String> documents = new JComboBox<>(bookTitles);
-	
-	frame.getContentPane().add(documents);
-	frame.getContentPane().add(label);
-	frame.setVisible(true);
-}
-	
-	
-		
 
-public static void main(String[] args) {
+
+
+	public static void selectionerFitxer(){
+		JFrame frame = new JFrame("Tournoi de volley-ball");
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
+		frame.setBackground(Color.WHITE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(600, 600, 600, 600);
+		frame.setLocationRelativeTo(null);
+		PanelImagen1 p = new PanelImagen1();
+		p.setBorder(new EmptyBorder(0, 0, 0, 0));
+		frame.setContentPane(p);
+		JLabel label = new JLabel("Selectioner la liste");
+		label.setBounds(128, 164, 326, 50);
+		label.setHorizontalAlignment(0);
+		label.setFont(new Font("Microsoft Tai Le", Font.BOLD, 38));
+		label.setBackground(Color.WHITE);
+		String dir1=System.getProperty("user.dir");
+	          
+		File dir = new File(dir1+"//src//data//historique");
+		
+		String[] listesEq = dir.list();
+		String[] bookTitles = new String[listesEq.length];
 	
-	try {   
-		  javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");               
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-		  java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			  for (int x=0;x<listesEq.length;x++){
+				  
+			    bookTitles[x]=listesEq[x];
+			
 		}
-	javax.swing.SwingUtilities.invokeLater(new Runnable() {
-		public void run() { Menus.menuBienvenue(); }
-	});
+		JComboBox<String> documents = new JComboBox<String>(bookTitles);
+		
+		frame.getContentPane().add(documents);
+		JButton create = new JButton("Séléctioner");
+		create.setBounds(169, 386, 115, 39);
+		create.setBackground(Color.LIGHT_GRAY); 
+		 create.setForeground(Color.black);
+		 create.setFocusable(false); 
+		 create.addActionListener(new ActionListener() {
+				 
+				public void actionPerformed(ActionEvent e2){
+					 	LinkedList<Equipe> listeEquipes = new LinkedList<Equipe>();
+					 		try {
+								listeEquipes=SaveList.loadTeams(documents.getItemAt(documents.getSelectedIndex()));
+								} catch (IOException e) {
+								
+									e.printStackTrace();
+								}
+					 			
+					 			frame.dispose();
+					 			EquipesGUI.menuEquipes(listeEquipes,true);
+					 			
+					 			}
+					 			
+				 		});
+		p.setLayout(null);
+		frame.getContentPane().add(create);
+	    frame.getContentPane().add(label);
+		documents.setBounds(250,300,100,30);
+		documents.setFocusable(false);
+		frame.getContentPane().add(documents);
+		JButton cancel = new JButton("Annuler");
+		cancel.setBounds(330, 386, 109, 39);
+		cancel.setBackground(Color.LIGHT_GRAY); 
+		cancel.setForeground(Color.black);
+		cancel.setFocusable(false);
+		cancel.addActionListener(new ActionListener() {
+					 
+				public void actionPerformed(ActionEvent e2){
+					 	menuInscription();
+				}
+		});
+		frame.getContentPane().add(cancel);
+		frame.setVisible(true);
 	}
+	
+	
+		
+
 }

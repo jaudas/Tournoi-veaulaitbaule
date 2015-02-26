@@ -18,9 +18,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
 
 
 
@@ -42,6 +44,7 @@ import controleur.Randomator;
 import model.Equipe;
 import model.Match;
 import model.Poule;
+import model.SaveList;
 import model.Tournoi;
 import model.TournoiParPoules;
 
@@ -51,7 +54,9 @@ import model.TournoiParPoules;
 
 
 
+
 import java.awt.Toolkit;
+import java.io.IOException;
 
 
 
@@ -404,10 +409,10 @@ public class TournoiGUI {
 		 JComboBox<String> results= new JComboBox<>(bookTitles2);
 		 main.add(match);
 		
-		 JLabel qResult = new JLabel ("Résult:");
+		 JLabel qResult = new JLabel ("Résultat:");
 		 main.add(qResult);
 		 main.add(results);
-		 JButton create = new JButton("Guarder résultat!");
+		 JButton create = new JButton("Enregistrer le résultat!");
 		
 		 JPanel options = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		 options.add(create);
@@ -528,11 +533,36 @@ public static void finTournoi(Tournoi tournoi) {
     			}
 
 		});
-		
-	
-	
+
 		buttons.add(b5);
         
+		buttons.add(b4);
+		
+		JButton b6 = new JButton("Afficher la information historique des équipes");
+		b6.addActionListener(new ActionListener() {
+			 
+	        public void actionPerformed(ActionEvent e)
+	        {	
+    			StadistiquesGUI.afficherStatHisto(tournoi);
+	        }
+
+		});
+		buttons.add(b6);
+		JButton enregistrer = new JButton("Enregistre information des équipes");
+		enregistrer.addActionListener(new ActionListener() {
+			 
+	         public void actionPerformed(ActionEvent e)
+	         {	String nomListe = JOptionPane.showInputDialog( new JFrame(),"Introduire le nom de la liste d'équipes:(Si le nom existe dejà,la liste risque d'être effacée)","Question", JOptionPane.QUESTION_MESSAGE);
+	             try {SaveList.majStat(tournoi.getListeEquipes());
+	            	 SaveList.resetStatTournoi(tournoi.getListeEquipes());
+					SaveList.save(nomListe, tournoi.getListeEquipes());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+	             
+	          }
+	     });
+		buttons.add(enregistrer);
 		
 		LinkedList<Equipe> eqTriees = tournoi.getListeEquipes();
 		Collections.sort(eqTriees);
@@ -575,7 +605,6 @@ public static void finTournoi(Tournoi tournoi) {
 		butEtGagnant.add(buttons);
 		main.add(butEtGagnant,BorderLayout.AFTER_LAST_LINE);
 		frame.getContentPane().add(main);
-		
 	    frame.setVisible(true);
 	   
 	}
