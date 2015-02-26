@@ -293,7 +293,7 @@ public class ConsoleView {
 		afficherStatEquipes(t);
 
 		SaveList.majStat(t.getListeEquipes());
-		System.out.println("Voici des statistiques globales des équipes : ");
+		System.out.println("\n\nVoici des statistiques globales des équipes : ");
 		afficherStatEquipesGlobale(t);
 
 		System.out.println("Voulez-vous enregistrer la liste des équipes ? ");
@@ -303,15 +303,16 @@ public class ConsoleView {
 			System.out.println(" 1. Oui 2.Non");
 			enregistrer = sc2.nextInt();
 		}
-		while (enregistrer !=2 && enregistrer != -1);
+		while (enregistrer !=2 && enregistrer != 1);
 
 		if (enregistrer == 1)
 		{
-			System.out.println("Sous quel nom souhaitez vous enregistrer ? ");
+			System.out.println("Sous quel nom souhaitez vous enregistrer ? Attention, si vous enregistrez cette liste avec le nom d'un tournoi existant, cela risque d'écraser l'ancienne ! ");
 			sc2 = new Scanner(System.in); 
 			String nom = sc2.nextLine();
-			SaveList.save(nom, t.getListeEquipes());
+			SaveList.majStat(t.getListeEquipes());
 			SaveList.resetStatTournoi(t.getListeEquipes());
+			SaveList.save(nom, t.getListeEquipes());
 			System.out.println("Enregistré ! ");
 		}
 
@@ -354,6 +355,7 @@ public class ConsoleView {
 	}
 
 	public static void afficherStatEquipesGlobale(Tournoi t) {
+
 		System.out.println("     Equipe          | Joués | Victoires | Pourcentage Victoire | Sets Gagnés |  Goal Average ");
 		LinkedList<Equipe> eqTriees = t.getListeEquipes();
 		Collections.sort(eqTriees);

@@ -47,7 +47,6 @@ public class Main {
 
 		ConsoleView.afficherMatch(tournoi.getListeMatchs());
 
-
 		ConsoleView.menu(tournoi, tournoiType);		
 
 		ConsoleView.affichagefin(tournoi);

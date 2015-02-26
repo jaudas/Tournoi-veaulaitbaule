@@ -41,8 +41,7 @@ public class SaveList {
 		Gson gson = new Gson();
 
 		Type listOfTeams = new TypeToken<LinkedList<Equipe>>(){}.getType();
-		
-		System.out.println(fileNameHisto);
+	
 		//Eat Serial
 
 		Reader isReader = new InputStreamReader(new FileInputStream(fileNameHisto));
@@ -61,7 +60,8 @@ public class SaveList {
 	}
 
 	public static void majStat(LinkedList<Equipe> listeEquipe)
-	{
+	{//Fonction permettant de mettre à jour les statistiques globales des équipes
+	
 		Equipe temp;
 		for (int i = 0; i<listeEquipe.size();i++)
 		{
@@ -75,7 +75,7 @@ public class SaveList {
 	}
 
 	public static void resetStatTournoi(LinkedList<Equipe> liste)
-	{
+	{//Fonction permettant d'effacer les statistiques du tournoi, avant d'enregistrer la liste des équipes
 		Equipe temp;
 		for (int i = 0; i<liste.size();i++)
 		{
@@ -89,7 +89,7 @@ public class SaveList {
 
 	public static String[] getListeGroupeEquipes()
 	{	
-		// obtenir la liste de contenu du répertoire courat
+		// obtenir la liste de contenu du répertoire courant
         String[] dir = new java.io.File(System.getProperty("user.dir")+ "//src//data//historique//").list(new FileFiltrage( ));
 
         // Trier le résultat

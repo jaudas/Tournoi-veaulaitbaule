@@ -356,11 +356,10 @@ public class InfoEquipes {
 			System.out.println("Veuillez saisir le numero de la liste à charger : ");
 			choix = sc.nextInt();
 		}
-		while (choix < 0 && choix >listeDocuments.length);
-
-		System.out.println("Vous allez charger la liste : "+listeDocuments[choix]);
+		while (choix < 0 && choix>listeDocuments.length);
 		
 		listeEquipeschargee = SaveList.loadTeams(listeDocuments[choix]);
+		SaveList.resetStatTournoi(listeEquipeschargee);
 		
 		
 		return listeEquipeschargee;
