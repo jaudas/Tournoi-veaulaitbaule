@@ -41,6 +41,10 @@ public class EquipesGUI{
 	public static void menuEquipes(LinkedList<Equipe> listeEquipes, boolean elimEqp) {
 		 
 		JButton addequipe = new JButton ("Ajouter une équipe");
+		JButton enregistrer = new JButton ("Enregistrer la liste d'équipes");
+		enregistrer.setBackground(Color.GREEN);
+		enregistrer.setForeground(Color.black);
+		
 		JButton modfequipe = new JButton ("Modifier l'équipe");
 		JButton elimequipe = new JButton ("Eliminer l'équipe");
 		JButton affjequipe = new JButton ("Afficher les joueurs de l'équipe");
@@ -49,7 +53,7 @@ public class EquipesGUI{
 		gtournoi.setForeground(Color.white);
 		
 		JLabel chequipe = new JLabel ("Choisir une équipe");
-		JPanel panel1 = new JPanel();
+		JPanel panel1 = new JPanel(new FlowLayout());
 		
 		String[] bookTitles = new String[listeEquipes.size()];
 		for(int i=0; i<listeEquipes.size(); i++){
@@ -81,6 +85,7 @@ public class EquipesGUI{
 		 panel3.add(chequipe);
 		 panel3.add(chIdEquipe);
 		 panel1.add(addequipe);
+		 panel1.add(enregistrer);
 		 panel3.add(modfequipe);
 		 if(elimEqp==true){panel3.add(elimequipe);}
 		 panel3.add(affjequipe);
@@ -99,6 +104,14 @@ public class EquipesGUI{
 		 frame.setVisible(true);
 		 
 		 //Button actions
+		 enregistrer.addActionListener(new ActionListener() {
+			 
+	         public void actionPerformed(ActionEvent e)
+	         {	
+	             newEquipe(listeEquipes,elimEqp);
+	             frame.setVisible(false);
+	          }
+	     }); 
 		 addequipe.addActionListener(new ActionListener() {
 			 
 	         public void actionPerformed(ActionEvent e)

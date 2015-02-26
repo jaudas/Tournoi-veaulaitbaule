@@ -3,7 +3,7 @@ package SwingView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.File;
 import java.security.Principal;
 import java.util.LinkedList;
 
@@ -11,7 +11,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import model.Equipe;
-
 import model.TournoiEliminationDirecte;
 import model.TournoiParPoules;
 
@@ -138,8 +137,16 @@ public static void menuBienvenue() {
                 }
             }
         });   
+		JButton b3 = new JButton("Utiliser une liste d'équipes enregistrée");
+		b3.addActionListener(new ActionListener() {
+			 
+            public void actionPerformed(ActionEvent e)
+            {   selectionerFitxer();
+               
+            }
+        }); 
 		buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
+		buttons.add(b3);
 		buttons.add(b1);
 		buttons.add(b2);
 		frame.setVisible(true);
@@ -221,6 +228,41 @@ public static void menuTournoi(LinkedList<Equipe> listeEquipes) {
 		frame.getContentPane().add(buttons);
 		
 		frame.setVisible(true);
+}
+
+
+public static void selectionerFitxer(){
+	JFrame frame = new JFrame("Tournoi de volley-ball");
+	frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Menus.class.getResource("/images/Volleyball.jpg")));
+	frame.setBackground(Color.WHITE);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.setBounds(600, 600, 600, 600);
+	frame.setLocationRelativeTo(null);
+	PanelImagen1 p = new PanelImagen1();
+	p.setBorder(new EmptyBorder(0, 0, 0, 0));
+	frame.setContentPane(p);
+	JLabel label = new JLabel("Selectioner la liste");
+	label.setBounds(112, 106, 348, 110);
+	label.setHorizontalAlignment(0);
+	label.setFont(new Font("Microsoft Tai Le", Font.BOLD, 38));
+	label.setBackground(Color.WHITE);
+	String dir1=System.getProperty("user.dir");
+          
+	File dir = new File(dir1+"//src//data//historique");
+	
+	String[] listesEq = dir.list();
+	String[] bookTitles = new String[listesEq.length];
+
+		  for (int x=0;x<listesEq.length;x++){
+			  
+		    bookTitles[x]=listesEq[x];
+		
+	}
+	JComboBox<String> documents = new JComboBox<>(bookTitles);
+	
+	frame.getContentPane().add(documents);
+	frame.getContentPane().add(label);
+	frame.setVisible(true);
 }
 	
 	
