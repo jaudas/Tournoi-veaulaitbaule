@@ -138,8 +138,19 @@ public static void menuBienvenue() {
                 }
             }
         });   
+		JButton b3 = new JButton("Utiliser une liste d'équipes enregistrée");
+		b3.addActionListener(new ActionListener() {
+			 
+            public void actionPerformed(ActionEvent e)
+            {   
+                LinkedList<Equipe> listeEquipes = new LinkedList<Equipe>();
+                listeEquipes=EquipesGUI.genererEquipes();
+                frame.setVisible(false);
+                EquipesGUI.menuEquipes(listeEquipes,true);
+            }
+        }); 
 		buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
+		buttons.add(b3);
 		buttons.add(b1);
 		buttons.add(b2);
 		frame.setVisible(true);
