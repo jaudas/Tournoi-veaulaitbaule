@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import model.Equipe;
 import model.Joueur;
+import model.SaveList;
 import model.Tournoi;
 
 import org.json.simple.JSONArray;
@@ -45,13 +46,13 @@ public class InfoEquipes {
 
 		while (option==false){ 
 			do{
-				System.out.println("Voulez-vous :\n- introduire les informations de chaque équipe manuellement (tapez 1) \n- utiliser les équipes par défaut (tapez 2)?");
+				System.out.println("Voulez-vous :\n- introduire les informations de chaque équipe manuellement (tapez 1) \n- utiliser les équipes par défaut (tapez 2) \n- utiliser une liste d'équipe enregistrée auparavent?");
 				OPT=sc.nextLine();
 				opt = Exception.mauvaisNumero(OPT);
-				if ((opt != 1)&&(opt != 2)){
+				if ((opt != 1)&&(opt != 2)&&(opt!=3)){
 					System.out.println("Saisie incorrecte !");
 				}					
-			}while ((opt != 1)&&(opt != 2));
+			}while ((opt != 1)&&(opt != 2)&&(opt!=3));
 
 			switch (opt){
 			case 1:
@@ -76,7 +77,7 @@ public class InfoEquipes {
 					aux.setDescription(description);
 					aux.setNbJoueurs(nbJoueurs);
 					aux.setListeJoueurs(listeJoueurs);
-					
+
 					do{
 						System.out.println("Ajouter une équipe supplémentaire? : 0.NON - 1.OUI");
 						C = sc.nextLine();
@@ -84,50 +85,60 @@ public class InfoEquipes {
 						if ((CH != 0)||(CH != 1)){
 							System.out.println("Choix invalide");
 						}
-						
+
 					}while((CH != 0)||(CH != 1));
-					
+
 
 					listeEquipe.add(aux);
 				}while (CH == 1);
 				break;
 
 			case 2: System.out.println("-- Création automatique des Equipes -- ");
-				
-				
-				JSONParser parser=new JSONParser();
-				String stringFileNomsEquipes;
-				try {
-					stringFileNomsEquipes = FilesTools.readFile(System.getProperty("user.dir")+"//src//data//nomequipes.json",StandardCharsets.UTF_8);
-					Object parsedFile = parser.parse(stringFileNomsEquipes);
-					JSONArray arrayNomsEquipe = (JSONArray)parsedFile;
-					
-					//On demande le nombre d'equipes à inscrire 
-					do {
-						System.out.print("Combien d'équipes voulez-vous générer automatiquement ? (Max "+arrayNomsEquipe.size()+") : ");
-						N = sc.nextLine();
-						
-						NE=Exception.mauvaisNumero(N);
-						
-						if (NE>arrayNomsEquipe.size()){
-							System.out.println("Veuillez saisir un nombre inférieur ou égal à "+arrayNomsEquipe.size()+" :");
-						}
-					} while ((NE < 0) || (NE > arrayNomsEquipe.size()));
-	
-					for (i = 1; i <= NE; i++) {
-						nbJoueurs = 6;
-						listeJoueurs=inscrireJoueursAuto(nbJoueurs);
-						option=true;
-						//On cree l'objet temporaire "aux" de type Equipe pour aider a l'initialisation des valeurs
-						//On attribue un valor a chaque attribute
-						aux = new Equipe(i,arrayNomsEquipe,nbJoueurs,listeJoueurs);
-						listeEquipe.add(aux);
+
+
+			JSONParser parser=new JSONParser();
+			String stringFileNomsEquipes;
+			try {
+				stringFileNomsEquipes = FilesTools.readFile(System.getProperty("user.dir")+"//src//data//nomequipes.json",StandardCharsets.UTF_8);
+				Object parsedFile = parser.parse(stringFileNomsEquipes);
+				JSONArray arrayNomsEquipe = (JSONArray)parsedFile;
+
+				//On demande le nombre d'equipes à inscrire 
+				do {
+					System.out.print("Combien d'équipes voulez-vous générer automatiquement ? (Max "+arrayNomsEquipe.size()+") : ");
+					N = sc.nextLine();
+
+					NE=Exception.mauvaisNumero(N);
+
+					if (NE>arrayNomsEquipe.size()){
+						System.out.println("Veuillez saisir un nombre inférieur ou égal à "+arrayNomsEquipe.size()+" :");
+					}
+				} while ((NE < 0) || (NE > arrayNomsEquipe.size()));
+
+				for (i = 1; i <= NE; i++) {
+					nbJoueurs = 6;
+					listeJoueurs=inscrireJoueursAuto(nbJoueurs);
+					option=true;
+					//On cree l'objet temporaire "aux" de type Equipe pour aider a l'initialisation des valeurs
+					//On attribue un valor a chaque attribute
+					aux = new Equipe(i,arrayNomsEquipe,nbJoueurs,listeJoueurs);
+					listeEquipe.add(aux);
 				}
 			} catch (IOException | ParseException e) {
 				e.printStackTrace();
 			}
 
 			break;
+
+
+			case 3:
+				System.out.println("liste des équipes déja existantes");
+			//	System.out.println(SaveList.getListeGroupeEquipes());
+				
+				option=true;
+
+				break;
+
 			default:
 				System.out.println("Option incorrect!");
 				break;
@@ -183,10 +194,10 @@ public class InfoEquipes {
 		}
 		return listeJoueurs;
 	}
-	
+
 	public static void questionModif(Tournoi tournoi){
 		int rep;
-		
+
 		System.out.println("Souhaitez-vous modifier une équipe ? : 0.NON - 1.OUI");
 		rep = sc.nextInt();		
 		if (rep == 1){
@@ -240,7 +251,7 @@ public class InfoEquipes {
 				String sexe = sc.nextLine();
 				Joueur aux = new Joueur(prenom, nomj, age, sexe);
 				listeEquipe.get(idEquipe-1).getListeJoueurs().add(aux);
-				
+
 				break;
 			case 2:
 				modifierJoueur(listeEquipe.get(idEquipe).getListeJoueurs());
@@ -329,6 +340,11 @@ public class InfoEquipes {
 
 		}
 
+	}
+
+	public static void choixListeEquipe()
+	{
+		
 	}
 
 
