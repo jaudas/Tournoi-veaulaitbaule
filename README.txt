@@ -9,7 +9,8 @@ Projet JAVA
 || Postulat ||
  - Le programme que nous avons créé permet de gérer un tournoi de volley-ball uniquement.
  - Avant de lancer le programme, il faut installer la librairie JSON.1-1-1. Nous l'avons utilisée pour créer une base de données permettant de générer des équipes par défaut.
-Lien pour télécharger le JSON nécessaire : https://code.google.com/p/json-simple/downloads/detail?name=json-simple-1.1.1.jar&can=2&q=
+Lien pour télécharger JSON : https://code.google.com/p/json-simple/downloads/detail?name=json-simple-1.1.1.jar&can=2&q=
+Importer le fichier .jar dans Eclipse en allant dans Project -> Propertoes -> Build path -> Add external JARS 
 
 
 || Fonctionnalités implémentées ||
@@ -52,7 +53,7 @@ L'utilisateur peut:
 
 
       -- Les matchs --
-Un match de volley-ball se joue en 3 sets gagnants (5 sets maximums en jeu), aucune égalité n'est possible.
+Un match de volley-ball se joue en 3 sets gagnants (5 sets maximums en jeu). Aucune égalité n'est possible.
 L'utilisateur peut:
  - saisir le score de chaque équipe pour un match non joué uniquement. Une fois que tous les matchs de poules ou d'un tour ont été joués, on passe au tour suivant.
  - afficher tous les matchs qui ont été joués et les scores de chaque équipe. 
